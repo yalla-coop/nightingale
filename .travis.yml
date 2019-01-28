@@ -10,6 +10,7 @@ install:
 
 script:
   - npm run test
-  - cd client && npm run test
+  - npm run test:client
+  - npm run client:build
 on:
   branch: master
