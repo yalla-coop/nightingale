@@ -7,8 +7,9 @@ cache:
 
 install:
   - npm install
-  
+
 script:
   - npm run test
+  - cd client && npm run test
 on:
   branch: master
