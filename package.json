@@ -18,6 +18,7 @@
     "test": "jest",
     "start": "node ./server/bin/www",
     "dev": "nodemon ./server/bin/www",
+    "build": "cd client && npm run build",
     "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\"",
     "test:client:coverage": "cd client && npm run test:client",
     "test:server:coverage": "cd server && npm run test:coverage",
