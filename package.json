@@ -1,0 +1,21 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server/bin/www",
+    "dev": "nodemon ./server/bin/www",
+    "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\""
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  }
+}
