@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+  - "stable"
+cache:
+  directories:
+    - node_modules
+
+install:
+  - npm install
+
+before_script:
+  - npm run build
+  - sleep 15
+
+script:
+  - npm run test
+on:
+  branch: master
