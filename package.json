@@ -23,7 +23,8 @@
     "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\"",
     "coverage": "codecov",
     "test:coverage": "NODE_ENV=test jest --coverage",
-    "test:client:coverage": "cd client && npm run test:coverage"
+    "test:client:coverage": "cd client && npm run test:coverage",
+    "test:both": "npm run test:client:coverage && npm run test:coverage"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
