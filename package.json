@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "env2": "^2.2.2",
     "eslint": "5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
