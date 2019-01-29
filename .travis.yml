@@ -13,13 +13,14 @@ install:
 
 before_script:
   - npm run build
+  - npm run client:build
+  - npm run dev:both
   - sleep 15
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 
 script:
   - npm run test
   - npm run test:client
-  - npm run client:build
 
 on:
   branch: master
