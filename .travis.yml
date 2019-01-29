@@ -20,7 +20,7 @@ script:
   - npm run test
   - npm run test:client
   - npm run client:build
-  - codecov
+  - coverage
 
 on:
   branch: master
