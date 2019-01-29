@@ -1,0 +1,26 @@
+.button {
+    background: #555;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    font-family: 'Kodchasan', sans-serif;
+    font-style: italic;
+    text-align: center;
+    color:#fff;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin: 1rem;
+    padding: 0.5rem;
+    transition: all .1s;
+    min-width: 9rem;
+}
+.button:hover {
+    transform: translateY(-3px);
+}
+
+.button:active {
+    transform: translateY(3px);
+
+}
