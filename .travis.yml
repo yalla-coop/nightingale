@@ -10,9 +10,9 @@ cache:
 install:
   - npm install
   - cd client && npm install
-
+  
 before_script:
-  - cd client && npm run build
+  - npm run build
   - sleep 15
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 
