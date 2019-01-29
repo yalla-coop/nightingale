@@ -1,19 +1,22 @@
 language: node_js
+
 node_js:
   - "stable"
+
 cache:
   directories:
     - node_modules
 
 install:
   - npm install
+  - cd client && npm install
 
-  before_script:
+before_script:
   - npm run build
   - sleep 15
   - mongo mydb_test --eval 'db.createUser({user:"travis",pwd:"test",roles:["readWrite"]});'
 
-  script:
+script:
   - npm run test
   - npm run test:client
   - npm run client:build
