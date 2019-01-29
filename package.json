@@ -21,7 +21,9 @@
     "dev": "nodemon ./server/bin/www",
     "client:build": "cd client &&  npm run build",
     "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\"",
-    "coverage": "codecov"
+    "coverage": "codecov",
+    "test:coverage": "NODE_ENV=test  jest --coverage",
+    "test:client:coverage": "cd client && npm run test:coverage"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
