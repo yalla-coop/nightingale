@@ -15,10 +15,16 @@
     ]
   },
   "scripts": {
-    "test": "jest",
+    "test:client": "cd client && npm test",
     "start": "node ./server/bin/www",
     "dev": "nodemon ./server/bin/www",
-    "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\""
+    "client:init": "cd client && npm i",
+    "build": "cd client && npm run build",
+    "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\"",
+    "coverage": "codecov",
+    "test:coverage": "NODE_ENV=test jest --coverage",
+    "test:client:coverage": "cd client && npm run test:coverage",
+    "test": "npm run test:coverage && npm run test:client:coverage"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -26,9 +32,17 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "codecov": "^3.1.0"
   },
   "devDependencies": {
+    "concurrently": "^4.1.0",
+    "eslint": "5.6.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-jsx-a11y": "^6.2.0",
+    "eslint-plugin-react": "^7.12.4",
     "jest": "^23.6.0",
     "nodemon": "^1.18.5"
   }
