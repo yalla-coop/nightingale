@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 
+// read the config file
+require("env2")("./.env");
+
 let mongoURI = process.env.MONGO_URI;
 
 if (process.env.NODE_ENV === 'test') {
