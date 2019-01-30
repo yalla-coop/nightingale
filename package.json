@@ -22,6 +22,7 @@
     "build": "cd client && npm run build",
     "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\"",
     "coverage": "codecov",
+    "heroku-postbuild": "npm run client:init && npm run client:build",
     "test:coverage": "NODE_ENV=test jest --coverage --runInBand --detectOpenHandles --forceExit",
     "test:client:coverage": "cd client && npm run test:coverage",
     "test": "npm run test:coverage && npm run test:client:coverage",

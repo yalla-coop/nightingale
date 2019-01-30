@@ -28,12 +28,12 @@ if (process.env.NODE_ENV === "production") {
   require("env2")("./.env");
 }
 
+// error handler
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
   next(createError(404));
 });
 
-// error handler
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   // set locals, only providing error in development
