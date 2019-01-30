@@ -9,5 +9,4 @@ export default function index(props){
       </Button>
     </>
     );
-  }
 }
