@@ -4,7 +4,7 @@ const User = require("../models/User")
 
 const buildWeeklyEvents = async () => {
   // get moods 
-  const moods = await WeeklyEvents.find();
+  const moods = await Mood.find();
 
   // get default user "Nadia"
   const Nadia = await User.findOne();
