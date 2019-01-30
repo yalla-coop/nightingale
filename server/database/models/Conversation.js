@@ -15,7 +15,10 @@ const conversationSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "moods"
   },
-  completed: Boolean
+  completed: {
+    type: Boolean,
+    default: false
+  }
 });
 
-module.exports = mongoose.models("conversations", conversationSchema);
+module.exports = mongoose.model("conversations", conversationSchema);
