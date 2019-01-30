@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Logo renders correctly 1`] = `
+<div
+  className="sc-bdVaJa gPdZdB"
+>
+  <img
+    alt="logo title"
+    className="sc-htpNat vPXVf"
+    src="title.png"
+  />
+  <img
+    alt="logo"
+    className="sc-bwzfXH bpSBpN"
+    src="logo.png"
+  />
+</div>
+`;
