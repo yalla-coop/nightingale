@@ -6,7 +6,8 @@ const Schema = mongoose.Schema
 const userSchema = new Schema({
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   name: {
     type: String,
@@ -22,16 +23,20 @@ const userSchema = new Schema({
   },
   class: {
     type: String,
-      required: false
-  }
+    required: false
+  },
+  birthDate: {
+    type: Date,
+    required: false
+  },
 })
 
 // create a pre hook to hash user's password before store it in the DB
-userSchema.pre("save", async (next) => {
+userSchema.pre("save", function async (next) {
   // get the plain password that user input
   const plainPassword = this.password;
   // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) return next();
+  if (!this.isModified('password')) return next();
   bcrypt.hash(plainPassword, 8)
     .then(hash => {
       // store the hashed password
