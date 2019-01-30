@@ -1,21 +1,21 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const weeklyEventSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users"
+    ref: "users",
   },
   days: [Number], // array of days indexes
   eventEmotion: {
     type: Schema.Types.ObjectId,
-    ref: "moods"
+    ref: "moods",
   },
   text: {
     type: String,
-    required: true
-  }
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("weeklyEvents", weeklyEventSchema);

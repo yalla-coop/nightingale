@@ -5,14 +5,14 @@ const NonSteadyEvent = require("./../models/NonSteadyEvent");
 const Message = require("./../models/Message");
 const Conversation = require("./../models/Conversation");
 
-const resetDB = () => new Promise(async (resolve, reject) => { 
+const resetDB = () => new Promise(async (resolve) => {
   await Message.deleteMany();
   await WeeklyEvent.deleteMany();
   await NonSteadyEvent.deleteMany();
   await Conversation.deleteMany();
   await Mood.deleteMany();
   await User.deleteMany();
-  resolve()
+  resolve();
 });
 
 module.exports = resetDB;
