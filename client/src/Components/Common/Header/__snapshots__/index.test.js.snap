@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+<header
+  className="sc-bdVaJa iPrRLF"
+>
+  <img
+    alt="logo"
+    src="header.png"
+  />
+  <div
+    className="sc-bwzfXH cuOuty"
+  >
+    <i
+      className="fas fa-bars sc-EHOje ibRXVc"
+      onClick={[Function]}
+    />
+  </div>
+</header>
+`;
