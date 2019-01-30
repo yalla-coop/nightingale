@@ -25,7 +25,7 @@ export default function index(props) {
   );
 }
 index.propTypes = {
-  value: propTypes.string.isRequired,
+  value: propTypes.string,
   onChange: propTypes.func.isRequired,
   name: propTypes.string.isRequired,
   label: propTypes.string.isRequired,
