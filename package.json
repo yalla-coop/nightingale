@@ -22,21 +22,25 @@
     "build": "cd client && npm run build",
     "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\"",
     "coverage": "codecov",
-    "test:coverage": "NODE_ENV=test jest --coverage",
+    "test:coverage": "NODE_ENV=test jest --coverage --runInBand --detectOpenHandles --forceExit",
     "test:client:coverage": "cd client && npm run test:coverage",
-    "test": "npm run test:coverage && npm run test:client:coverage"
+    "test": "npm run test:coverage && npm run test:client:coverage",
+    "build:data": "node server/database/dummy_data/index.js"
   },
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "codecov": "^3.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "mongoose": "^5.4.7",
     "morgan": "~1.9.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
+    "env2": "^2.2.2",
     "eslint": "5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
