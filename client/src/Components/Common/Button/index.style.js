@@ -1,4 +1,7 @@
-.button {
+
+import styled from 'styled-components'
+
+export const Button = styled.button`
     background: #555;
     border: none;
     border-radius: 5px;
@@ -15,12 +18,12 @@
     padding: 0.5rem;
     transition: all .1s;
     min-width: 9rem;
-}
-.button:hover {
+
+  :hover {
     transform: translateY(-3px);
-}
-
-.button:active {
+  }
+  
+  :active{
     transform: translateY(3px);
-
-}
+  }
+`
