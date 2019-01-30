@@ -36,11 +36,11 @@
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
     "mongoose": "^5.4.7",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "env2": "^2.2.2"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "env2": "^2.2.2",
     "eslint": "5.6.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-airbnb-base": "^13.1.0",
