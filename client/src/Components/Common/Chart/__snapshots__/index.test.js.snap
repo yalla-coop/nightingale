@@ -1,0 +1,209 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button renders correctly 1`] = `
+<div
+  className="sc-bdVaJa ihKwMk"
+>
+  <h4
+    className="sc-bwzfXH hmEuYy"
+  >
+    Mood Outcomes
+  </h4>
+  <svg
+    className="bar-chart-undefined bar-chart sc-EHOje kPBAtr"
+    style={
+      Object {
+        "width": 200,
+      }
+    }
+  />
+  <div
+    className="sc-htpNat eAWYeR"
+  >
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#6b486b",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/s3wOFt8.png"
+      />
+    </div>
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#a05d56",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/s3wOFt8.png"
+      />
+    </div>
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#d0743c",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/9Kx1ErT.png"
+      />
+    </div>
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#ff8c00",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/CjNoEMy.png"
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Chart renders correctly 1`] = `
+<div
+  className="sc-bdVaJa ihKwMk"
+>
+  <h4
+    className="sc-bwzfXH hmEuYy"
+  >
+    Mood Outcomes
+  </h4>
+  <svg
+    className="bar-chart-undefined bar-chart sc-EHOje kPBAtr"
+    style={
+      Object {
+        "width": 200,
+      }
+    }
+  />
+  <div
+    className="sc-htpNat eAWYeR"
+  >
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#6b486b",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/s3wOFt8.png"
+      />
+    </div>
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#a05d56",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/s3wOFt8.png"
+      />
+    </div>
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#d0743c",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/9Kx1ErT.png"
+      />
+    </div>
+    <div
+      className="sc-bxivhb exsnzt"
+    >
+      <span
+        className="sc-ifAKCX dattsC"
+        style={
+          Object {
+            "background": "#ff8c00",
+            "height": "15px",
+            "marginRight": "12px",
+            "width": "15px",
+          }
+        }
+      />
+      <img
+        alt="emoji"
+        className="sc-bZQynM gZCdoJ"
+        src="https://i.imgur.com/CjNoEMy.png"
+      />
+    </div>
+  </div>
+</div>
+`;
