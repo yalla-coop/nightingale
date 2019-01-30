@@ -7,13 +7,13 @@ const weeklyEventSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
-  days: [String],
+  days: [Number], // array of days indexes
   eventEmotion: {
     type: Schema.Types.ObjectId,
     ref: "moods"
   },
   text: {
-    type: string,
+    type: String,
     required: true
   }
 });
