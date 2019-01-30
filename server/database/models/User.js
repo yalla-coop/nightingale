@@ -1,49 +1,51 @@
 const mongoose = require("mongoose");
-const bcrypt = require('bcryptjs');
+const bcrypt = require("bcryptjs");
 
-const Schema = mongoose.Schema
+const { Schema } = mongoose;
 
 const userSchema = new Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
   },
   name: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   school: {
     type: String,
-    required: false
+    required: false,
   },
   class: {
     type: String,
-    required: false
+    required: false,
   },
   birthDate: {
     type: Date,
-    required: false
+    required: false,
   },
-})
+});
 
-// create a pre hook to hash user's password before store it in the DB
-userSchema.pre("save", function async (next) {
+function hashPassword(next) {
   // get the plain password that user input
   const plainPassword = this.password;
   // only hash the password if it has been modified (or is new)
-  if (!this.isModified('password')) return next();
-  bcrypt.hash(plainPassword, 8)
-    .then(hash => {
-      // store the hashed password
+  if (!this.isModified("password")) return next();
+  return bcrypt.hash(plainPassword, 8)
+    .then((hash) => {
+    // store the hashed password
       this.password = hash;
-      next()
+      next();
     })
-    .catch(next)
-})
+    .catch(next);
+}
+
+// create a pre hook to hash user's password before store it in the DB
+userSchema.pre("save", hashPassword);
 
 module.exports = mongoose.model("users", userSchema);

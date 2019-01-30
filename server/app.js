@@ -29,8 +29,9 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
   });
 } else {
-    // read the config file
-    require("env2")("./.env");
+  // read the config file
+  // eslint-disable-next-line global-require
+  require("env2")("./.env");
 }
 
 // error handler
