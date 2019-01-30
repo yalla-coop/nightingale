@@ -28,10 +28,14 @@
     "build:data": "node server/database/dummy_data/index.js"
   },
   "dependencies": {
+    "@google-cloud/storage": "^2.4.1",
+    "actions-on-google": "^2.5.0",
     "bcryptjs": "^2.4.3",
     "codecov": "^3.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dialogflow": "^0.8.0",
+    "dialogflow-fulfillment": "^0.6.1",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
