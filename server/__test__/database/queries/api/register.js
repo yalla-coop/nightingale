@@ -31,7 +31,10 @@ describe("Tesing for register API schema", () => {
       .send(data)
       .expect("Content-Type", /json/)
       .expect(200)
-      .end(done);
+      .end((err, res) => {
+        expect(res.headers["set-cookie"][0]).toMatch("token");
+        done();
+      });
   });
 
   test("test with missing parameters", (done) => {
