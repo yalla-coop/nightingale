@@ -18,8 +18,6 @@ module.exports = (req, res, next) => {
           res.send();
         })
         .catch((err) => {
-          console.log(err);
-
           if (err.message === "username already taken") {
             // handle Bad request , duplicated username
             return next(createError(409, "username already taken"));
