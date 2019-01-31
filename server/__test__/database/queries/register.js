@@ -2,9 +2,6 @@ const mongoose = require("mongoose");
 const registerQuery = require("./../../../database/queries/register");
 const buildDB = require("./../../../database/dummy_data/index");
 
-// const Message = require("./../../../database/models/Message");
-// const Conversation = require("./../../../database/models/Conversation");
-
 describe("Tesing for register query", () => {
   beforeAll(async () => {
     // build dummy data
