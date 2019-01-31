@@ -6,6 +6,7 @@ import { Container } from './index.style';
 
 export default function index() {
     return (
+      <>
         <Header />
       <Container>
             <Route
@@ -14,5 +15,6 @@ export default function index() {
               component={Login}
             />
     </Container>
+      </>
   );
 }

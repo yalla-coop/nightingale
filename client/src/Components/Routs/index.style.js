@@ -1,5 +1,5 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-    margin: 12rem;
+    margin: 3rem;
 `
