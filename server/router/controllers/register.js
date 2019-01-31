@@ -15,7 +15,7 @@ module.exports = (req, res, next) => {
           const data = { name, username, id: newUser.id };
           const token = createToken(data);
           res.cookie("token", token);
-          res.send();
+          res.json({});
         })
         .catch((err) => {
           if (err.message === "username already taken") {
