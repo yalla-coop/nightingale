@@ -10,7 +10,7 @@ module.exports = (req, res) => {
   const agent = new WebhookClient({ request: req, response: res });
   console.log("agent", agent);
   const intentMap = new Map();
-  intentMap.set("TestFulFillment", welcomeFulfillment(agent));
+  intentMap.set("TestFulFillment", welcomeFulfillment);
   console.log("intent", intentMap);
   agent.handleRequest(intentMap);
 };
