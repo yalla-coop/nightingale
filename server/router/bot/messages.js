@@ -2,9 +2,7 @@
 const dialogflow = require("dialogflow");
 
 module.exports = async (req, res) => {
-  const private_key = process.env.private_key
-    .replace(new RegExp("\\\\n", "g"), "\n")
-    .replace("\"", "");
+  private_key = process.env.private_key.replace(new RegExp("\\\\n", "g"), "\n").replace("\"", "");
   // setup the configuration
   const config = {
     credentials: {
@@ -41,11 +39,11 @@ module.exports = async (req, res) => {
   // Instantiate a DialogFlow client.
   const sessionClient = new dialogflow.SessionsClient(config);
 
-  const projectId = "newagent-bd6dc";
+  const projectId = "nightingale-456a9";
   const sessionId = "12345";
   const languageCode = "BCP-47 language code, e.g. en-US";
   const query = req.body.message;
-
+  console.log("BODY", req.body.message);
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 

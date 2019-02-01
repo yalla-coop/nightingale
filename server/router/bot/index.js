@@ -11,4 +11,8 @@ bot.get("/bottest", (req, res) => {
   res.status(200).send("bot reached");
 });
 
+bot.post("/posttest", (req, res) => {
+  console.log("reached", req.body);
+  res.status(200).send("posted");
+});
 module.exports = bot;
