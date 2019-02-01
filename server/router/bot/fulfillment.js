@@ -2,36 +2,8 @@ const { WebhookClient } = require("dialogflow-fulfillment");
 
 const welcomeFulfillment = (agent) => {
   console.log("reached", agent);
-  agent.add({
-    fulfillmentMessages: [
-      {
-        card: {
-          title: "Thursday",
-          buttons: [
-            {
-              text: "yes",
-            },
-            {
-              text: "no",
-            },
-          ],
-        },
-      },
-      {
-        card: {
-          title: "Friday",
-          buttons: [
-            {
-              text: "yes",
-            },
-            {
-              text: "no",
-            },
-          ],
-        },
-      },
-    ],
-  });
+  agent.add(new Suggestion("Monday"));
+  agent.add(new Suggestion("Tuesday"));
   agent.add("this is another message also");
 };
 
