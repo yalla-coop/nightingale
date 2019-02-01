@@ -1,22 +1,22 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const moodSchema = new Schema({
   moodEmoji: {
     type: String,
-    required: true
+    required: true,
   },
   moodDescription: {
     type: String,
-    required: true
+    required: true,
   },
   score: {
     type: Number,
     required: true,
     min: 1,
-    max: 5
-  }
+    max: 5,
+  },
 });
 
 module.exports = mongoose.model("moods", moodSchema);

@@ -5,31 +5,30 @@ const buildMood = () => {
     {
       moodEmoji: "😃",
       moodDescription: "amazing",
-      score: 5
+      score: 5,
     },
     {
       moodEmoji: "😌",
       moodDescription: "good",
-      score: 4
+      score: 4,
     },
     {
       moodEmoji: "😔",
       moodDescription: "meh",
-      score: 3
+      score: 3,
     },
     {
       moodEmoji: "😫",
       moodDescription: "not great",
-      score: 2
+      score: 2,
     },
     {
       moodEmoji: "😡",
       moodDescription: "terrible",
-      score: 1
-    }
-  ]
+      score: 1,
+    },
+  ];
   return Mood.insertMany(moods);
-}
+};
 
 module.exports = buildMood;
-

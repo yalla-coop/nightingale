@@ -7,8 +7,8 @@ const buildUser = () => {
     password: "123456",
     school: "Primrose Hill Primary School",
     class: "A-10",
-    birthDate: "2009-02-01"
-  }
+    birthDate: "2009-02-01",
+  };
   return User.create(defaultUser);
 };
 

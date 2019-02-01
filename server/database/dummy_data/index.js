@@ -1,19 +1,18 @@
+const mongoose = require("mongoose");
 const buildUser = require("./user");
 const buildMood = require("./mood");
 const buildWeeklyEvent = require("./weekly_event");
-const buildNonSteadyEvent = require("./non_steady_event")
+const buildNonSteadyEvent = require("./non_steady_event");
 const buildMessage = require("./message");
 const buildConversation = require("./conversation");
-const dbConnection = require("./../db_connection")
+const dbConnection = require("./../db_connection");
 const resetDb = require("./reset_DB");
-const mongoose =require("mongoose")
 
 
 const buildDummyData = () => new Promise((resolve, reject) => {
-
   dbConnection()
     .then(async () => {
-      await resetDb()
+      await resetDb();
       await buildMood();
       await buildUser();
       await buildWeeklyEvent();
@@ -22,15 +21,15 @@ const buildDummyData = () => new Promise((resolve, reject) => {
       await buildMessage();
     })
     .then(resolve)
-    .catch(reject)
+    .catch(reject);
 });
 
 // check the NODE_ENV
 // if it is "test" that mean we run the the build script in terminal
 // invoke the build function
-if (process.env.NODE_ENV !== 'test') {  
+if (process.env.NODE_ENV !== "test") {
   buildDummyData()
-  .then(() => {
+    .then(() => {
     // close the connection after build
       mongoose.disconnect();
     });

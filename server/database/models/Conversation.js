@@ -1,24 +1,24 @@
 const mongoose = require("mongoose");
 
-const Schema = mongoose.Schema;
+const { Schema } = mongoose;
 
 const conversationSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
-    ref: "users"
+    ref: "users",
   },
   time: {
     type: Date,
-    default: Date.now
+    default: Date.now,
   },
   mood: {
     type: Schema.Types.ObjectId,
-    ref: "moods"
+    ref: "moods",
   },
   completed: {
     type: Boolean,
-    default: false
-  }
+    default: false,
+  },
 });
 
 module.exports = mongoose.model("conversations", conversationSchema);

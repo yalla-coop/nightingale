@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input renders correctly 1`] = `
+<label
+  className="sc-bdVaJa hGUIFp"
+  htmlFor="username"
+>
+  Username
+   
+  :
+  <input
+    className="sc-bwzfXH keeXxI"
+    name="username"
+    style={
+      Object {
+        "width": "20rem",
+      }
+    }
+    type="text"
+  />
+</label>
+`;
