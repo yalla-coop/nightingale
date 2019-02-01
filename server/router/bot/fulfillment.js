@@ -1,6 +1,6 @@
 const { WebhookClient } = require("dialogflow-fulfillment");
 
-welcomeFulfillment = (agent) => {
+const welcomeFulfillment = (agent) => {
   agent.add("Hey!");
   agent.add("whats your name?");
 };
@@ -8,6 +8,6 @@ welcomeFulfillment = (agent) => {
 module.exports = (req, res) => {
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
-  intentMap.set("UserOnboarding", welcomeFulfillment);
+  intentMap.set("TestFulFillment", welcomeFulfillment);
   agent.handleRequest(intentMap);
 };
