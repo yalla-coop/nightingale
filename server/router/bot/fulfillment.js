@@ -23,8 +23,8 @@ const quickReply = (agent) => {
 };
 
 const cardReply = (agent) => {
-  console.log("card reached", agent.request);
-  console.log("card response", agent.response);
+  console.log("card reached", agent);
+  console.log("card response", agent.response_);
 
   // const card = new Card({
   //   title: "card title",
@@ -50,17 +50,11 @@ const multiCards = (agent) => {
       title: "card title",
       text: "card text",
     }),
+  );
+  agent.add(
     new Card({
-      title: "card title",
-      text: "card text",
-    }),
-    new Card({
-      title: "card title",
-      text: "card text",
-    }),
-    new Card({
-      title: "card title",
-      text: "card text",
+      title: "card title2",
+      text: "card text2",
     }),
   );
 };
