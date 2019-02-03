@@ -23,40 +23,55 @@ const quickReply = (agent) => {
 };
 
 const cardReply = (agent) => {
-  console.log("card reached", agent);
   console.log("card response", agent.response_);
+  console.log("card body", agent.body);
+  console.log("card response2", agent.WebhookClient.response_);
+  console.log("card body2", agent.WebookClient.body);
 
-  // const card = new Card({
-  //   title: "card title",
-  //   text: "card text",
-  //   imageUrl: "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-  // });
-  // card.setButton({
-  //   text: "one",
-  //   url: `${hello("hello")}`,
-  // });
-  // card.setButton({
-  //   text: "two",
-  //   url: `${hello("hello")}`,
-  // });
-  // agent.add(card);
+  const card = new Card({
+    title: "card title",
+    text: "card text",
+    imageUrl: "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+  });
+  card.setButton({
+    text: "one",
+    url: `${hello("hello")}`,
+  });
+
+  agent.add(card);
 };
 
 const multiCards = (agent) => {
   console.log("multi cards reached");
+  const card1 = new Card({
+    title: "card title",
+    text: "card text",
+  });
+  card1.setButton({ text: "button 1", url: "anything" });
 
-  agent.add(
-    new Card({
-      title: "card title",
-      text: "card text",
-    }),
-  );
-  agent.add(
-    new Card({
-      title: "card title2",
-      text: "card text2",
-    }),
-  );
+  const card2 = new Card({
+    title: "card 2",
+    text: "card",
+    button: {
+      text: "button2",
+      url: "anyting",
+    },
+  });
+
+  const card3 = new Card({
+    title: "card title",
+    text: "card text",
+  });
+
+  const card4 = new Card({
+    title: "card title",
+    text: "card text",
+  });
+
+  agent.add(card1);
+  agent.add(card2);
+  agent.add(card3);
+  agent.add(card4);
 };
 
 const multiChoice = (agent) => {
