@@ -70,9 +70,21 @@ const multiCards = (agent) => {
   agent.add(card4);
 };
 
-const multiChoice = (agent) => {
-  console.log("multi reached");
+const payloadTemplate = (agent) => {
+  console.log("multi reached", agent.response);
   const options = ["Monday", "Tuesday"];
+
+  const payload = new Payload("multi", {
+    fulfillmentMessages: [
+      {
+        card: {
+          title: "card title",
+          subtitle: "card text",
+        },
+      },
+    ],
+  });
+  console.log("paylod", payload);
 
   // const payload = new Payload("multi", {
   //   text: "anything",
@@ -84,7 +96,7 @@ const multiChoice = (agent) => {
   //   })),
   // });
 
-  // agent.add(payload);
+  agent.add(payload);
 
   // const suggestion = new Suggestion({
   //   title: "Send",
@@ -92,14 +104,13 @@ const multiChoice = (agent) => {
   // });
   // agent.add(suggestion);
   // console.log("multiChoice suggestion", suggestion);
-  console.log("multiChoice agent", agent.body.queryResult);
 };
 
 module.exports = (req, res) => {
   console.log("reached", res);
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
-  intentMap.set("TestFulfillment", multiChoice);
+  intentMap.set("TestFulfillment", payloadTemplate);
   intentMap.set("CardTemplate", cardReply);
   intentMap.set("QuickTemplate", quickReply);
   intentMap.set("MultiCardsTemplate", multiCards);
