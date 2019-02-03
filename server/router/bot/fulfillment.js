@@ -98,7 +98,7 @@ module.exports = (req, res) => {
   console.log("reached", req.body);
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
-  if (req.body.intent.displayName === "TestFulfillment") {
+  if (req.body.queryResult.intent.displayName === "TestFulfillment") {
     customAction(req, res);
   } else {
     intentMap.set("CardTemplate", cardReply);
