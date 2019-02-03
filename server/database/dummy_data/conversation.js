@@ -17,37 +17,37 @@ const buildConversation = async () => {
     user: Nadia,
     mood: moods[1],
     completed: true,
-    date: "2019-01-27",
+    time: "2019-01-27",
   }, {
     user: Nadia,
     mood: moods[1],
     completed: true,
-    date: "2019-01-28",
+    time: "2019-01-28",
   }, {
     user: Nadia,
     mood: moods[0],
     completed: true,
-    date: "2019-01-29",
+    time: "2019-01-29",
   }, {
     user: Nadia,
     mood: moods[4],
     completed: true,
-    date: "2019-01-30",
+    time: "2019-01-30",
   }, {
     user: Nadia,
     mood: moods[3],
     completed: true,
-    date: "2019-01-31",
+    time: "2019-01-31",
   }, {
     user: Nadia,
     mood: moods[2],
     completed: true,
-    date: "2019-02-01",
+    time: "2019-02-01",
   }, {
     user: Nadia,
     mood: moods[0],
     completed: true,
-    date: "2019-02-02",
+    time: "2019-02-02",
   }];
 
   return Conversation.insertMany(conversations);
