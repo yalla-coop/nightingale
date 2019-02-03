@@ -23,10 +23,7 @@ const quickReply = (agent) => {
 };
 
 const cardReply = (agent) => {
-  console.log("card response", agent.response_);
-  console.log("card body", agent.body);
-  console.log("card response2", agent.WebhookClient.response_);
-  console.log("card body2", agent.WebookClient.body);
+  console.log("card response", agent);
 
   const card = new Card({
     title: "card title",
@@ -52,21 +49,20 @@ const multiCards = (agent) => {
   const card2 = new Card({
     title: "card 2",
     text: "card",
-    button: {
-      text: "button2",
-      url: "anyting",
-    },
   });
+  card2.setButton({ text: "button 1", url: "anything" });
 
   const card3 = new Card({
     title: "card title",
     text: "card text",
   });
+  card3.setButton({ text: "button 1", url: "anything" });
 
   const card4 = new Card({
     title: "card title",
     text: "card text",
   });
+  card4.setButton({ text: "button 1", url: "anything" });
 
   agent.add(card1);
   agent.add(card2);
@@ -100,7 +96,7 @@ const multiChoice = (agent) => {
 };
 
 module.exports = (req, res) => {
-  console.log("reached");
+  console.log("reached", res);
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
   intentMap.set("TestFulfillment", multiChoice);
