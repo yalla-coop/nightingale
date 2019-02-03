@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const LoginWrapper = styled.div`
   display: flex;
@@ -48,4 +49,14 @@ export const Form = styled.form`
   h1 {
     border: none;
   }
+`;
+
+export const SignUpText = styled.p`
+  text-align: center;
+`;
+
+export const SignUpLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  font-weight: 900;
 `;

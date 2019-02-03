@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import swal from "sweetalert";
+import axios from "axios";
 
 import Title from "./../../Common/Title";
 import AppTitleImage from "./../../../assets/header.png";
@@ -6,7 +8,14 @@ import AppLogoImage from "./../../../assets/logo.png";
 import Input from "./../../Common/Input";
 import Button from "./../../Common/Button";
 
-import { AppTitle, AppLogo, Form, LoginWrapper } from "./index.style";
+import {
+  AppTitle,
+  AppLogo,
+  Form,
+  LoginWrapper,
+  SignUpText,
+  SignUpLink
+} from "./index.style";
 
 class Login extends Component {
   state = {
@@ -15,14 +24,26 @@ class Login extends Component {
   };
 
   handleSubmit = event => {
-    console.log(event.target);
     event.preventDefault();
-    console.log(this.state);
+    // show error message for missing fields
     if (!this.state.username) {
-      console.log("Error in USERNAME");
-    }
-    if (!this.state.password) {
-      console.log("Error in pasword");
+      swal("You should input your username", "", "error");
+    } else if (!this.state.password) {
+      swal("You should input your password", "", "error");
+    } else {
+      axios
+        .post("/api/user/login", this.state)
+        .then(res => {
+          swal(`Welcome back ${res.data.name} 😃`, "", "success", {
+            timer: 1000
+          }).then(() => {
+            // redirect to dashboard
+            this.props.history.push("/dashboard");
+          });
+        })
+        .catch(err => {
+          swal(err.response.data.error, "", "error");
+        });
     }
   };
 
@@ -47,9 +68,14 @@ class Login extends Component {
             placeholder="Password"
             name="password"
             value={this.state.password}
+            type="password"
             onChange={this.handleChange}
           />
           <Button value="Login" />
+          <SignUpText>
+            don't have an account?{" "}
+            <SignUpLink to="/signup">sign up now!</SignUpLink>
+          </SignUpText>
         </Form>
       </LoginWrapper>
     );
