@@ -42,6 +42,29 @@ const cardReply = (agent) => {
   // agent.add(card);
 };
 
+const multiCards = (agent) => {
+  console.log("multi cards reached");
+
+  agent.add(
+    new Card({
+      title: "card title",
+      text: "card text",
+    }),
+    new Card({
+      title: "card title",
+      text: "card text",
+    }),
+    new Card({
+      title: "card title",
+      text: "card text",
+    }),
+    new Card({
+      title: "card title",
+      text: "card text",
+    }),
+  );
+};
+
 const multiChoice = (agent) => {
   console.log("multi reached");
   const options = ["Monday", "Tuesday"];
@@ -74,5 +97,6 @@ module.exports = (req, res) => {
   intentMap.set("TestFulfillment", multiChoice);
   intentMap.set("CardTemplate", cardReply);
   intentMap.set("QuickTemplate", quickReply);
+  intentMap.set("MultiCardsTemplate", multiCards);
   agent.handleRequest(intentMap);
 };
