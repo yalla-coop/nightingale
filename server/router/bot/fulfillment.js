@@ -100,9 +100,10 @@ module.exports = (req, res) => {
   const intentMap = new Map();
   if (req.body.intent.displayName === "TestFulfillment") {
     customAction(req, res);
+  } else {
+    intentMap.set("CardTemplate", cardReply);
+    intentMap.set("QuickTemplate", quickReply);
+    intentMap.set("MultiCardsTemplate", multiCards);
+    agent.handleRequest(intentMap);
   }
-  intentMap.set("CardTemplate", cardReply);
-  intentMap.set("QuickTemplate", quickReply);
-  intentMap.set("MultiCardsTemplate", multiCards);
-  agent.handleRequest(intentMap);
 };
