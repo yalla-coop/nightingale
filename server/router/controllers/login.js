@@ -1,6 +1,6 @@
 const createError = require("http-errors");
 const loginQuery = require("./../../database/queries/login");
-const validatePassword = require("./validate_passwprd");
+const validatePassword = require("./validate_password");
 const createToken = require("./create_token");
 
 module.exports = (req, res, next) => {
