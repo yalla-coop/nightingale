@@ -70,35 +70,33 @@ const multiCards = (agent) => {
   agent.add(card4);
 };
 
-const payloadTemplate = (agent) => {
-  console.log("multi reached", agent.WebhookClient);
-
-  agent.add({
-    fulfillmentMessages: [
-      {
-        card: {
-          title: "How was your Day at School?",
-          buttons: [
-            {
-              text: "good",
-              postback: "https://chatbotnightingale.herokuapp.com/update-mood-good",
-            },
-            {
-              text: "bad",
-              postback: "https://chatbotnightingale.herokuapp.com/update-mood-bad",
-            },
-          ],
-        },
+const customAction = (req, res) => res.json({
+  fulfillmentMessages: [
+    {
+      card: {
+        title: "card",
+        buttons: [
+          {
+            text: "good",
+            postback: "anything",
+          },
+          {
+            text: "bad",
+            postback: "anything",
+          },
+        ],
       },
-    ],
-  });
-};
+    },
+  ],
+});
 
 module.exports = (req, res) => {
-  console.log("reached", res);
+  console.log("reached", req.body);
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
-  intentMap.set("TestFulfillment", payloadTemplate);
+  if (req.body.intent.displayName === "TestFulfillment") {
+    customAction(req, res);
+  }
   intentMap.set("CardTemplate", cardReply);
   intentMap.set("QuickTemplate", quickReply);
   intentMap.set("MultiCardsTemplate", multiCards);
