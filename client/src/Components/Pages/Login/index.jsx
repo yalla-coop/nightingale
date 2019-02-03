@@ -24,6 +24,7 @@ class Login extends Component {
   };
 
   handleSubmit = event => {
+    const handleChangeState = this.props.handleChangeState;
     event.preventDefault();
     // show error message for missing fields
     if (!this.state.username) {
@@ -34,6 +35,9 @@ class Login extends Component {
       axios
         .post("/api/user/login", this.state)
         .then(res => {
+          // store user's data into the App state
+          handleChangeState({ ...res.data, isLogin: true });
+
           swal(`Welcome back ${res.data.name} 😃`, "", "success", {
             timer: 1000
           }).then(() => {
