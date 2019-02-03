@@ -70,25 +70,29 @@ const multiCards = (agent) => {
   agent.add(card4);
 };
 
-const customAction = (req, res) => res.json({
-  fulfillmentMessages: [
-    {
-      card: {
-        title: "card",
-        buttons: [
-          {
-            text: "good",
-            postback: "anything",
-          },
-          {
-            text: "bad",
-            postback: "anything",
-          },
-        ],
+const customAction = (req, res) => {
+  console.log("custom reached");
+  return res.json({
+    fulfillmentMessages: [
+      {
+        card: {
+          title: "card",
+          buttons: [
+            {
+              text: "good",
+              postback: "anything",
+            },
+            {
+              text: "bad",
+              postback: "anything",
+            },
+          ],
+        },
       },
-    },
-  ],
-});
+    ],
+    source: "TestFulfillment",
+  });
+};
 
 module.exports = (req, res) => {
   console.log("reached", req.body);
