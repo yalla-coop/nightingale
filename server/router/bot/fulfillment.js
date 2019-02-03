@@ -2,17 +2,18 @@ const {
   WebhookClient, Suggestion, Payload, Card,
 } = require("dialogflow-fulfillment");
 
-const welcomeFulfillment = (agent) => {
-  agent.add(new Suggestion("Monday"));
-  agent.add(new Suggestion("Tuesday"));
-  agent.add("this is another message also");
-  console.log("welcome reached");
-};
+// const welcomeFulfillment = (agent) => {
+//   agent.add(new Suggestion("Monday"));
+//   agent.add(new Suggestion("Tuesday"));
+//   agent.add("this is another message also");
+//   console.log("welcome reached");
+// };
 
 const hello = (phrase) => {
   console.log("hello", phrase);
 };
 
+// template function to put in quick reply suggestions for the user to select
 const quickReply = (agent) => {
   console.log("quick reached");
   agent.add(new Suggestion("Suggestion to go here"));
@@ -22,6 +23,8 @@ const quickReply = (agent) => {
   agent.add(new Suggestion("Suggestion 3 to go here"));
 };
 
+// template function to put in a card.
+// NOTE: this package only let's you put in one button per card
 const cardReply = (agent) => {
   console.log("card response", agent);
 
@@ -38,6 +41,7 @@ const cardReply = (agent) => {
   agent.add(card);
 };
 
+// template function to load multiple cards
 const multiCards = (agent) => {
   console.log("multi cards reached");
   const card1 = new Card({
@@ -70,6 +74,8 @@ const multiCards = (agent) => {
   agent.add(card4);
 };
 
+// template function for a custom action rather than using the fulfillment package
+// this is useful if we want to do something very bespoke e.g. multiple buttons per card
 const customAction = (req, res) => {
   console.log("custom reached");
   return res.json({
