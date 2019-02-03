@@ -71,39 +71,27 @@ const multiCards = (agent) => {
 };
 
 const payloadTemplate = (agent) => {
-  console.log("multi reached", agent.response);
-  const options = ["Monday", "Tuesday"];
+  console.log("multi reached", agent.WebhookClient);
 
-  const payload = new Payload("multi", {
+  agent.add({
     fulfillmentMessages: [
       {
         card: {
-          title: "card title",
-          subtitle: "card text",
+          title: "How was your Day at School?",
+          buttons: [
+            {
+              text: "good",
+              postback: "https://chatbotnightingale.herokuapp.com/update-mood-good",
+            },
+            {
+              text: "bad",
+              postback: "https://chatbotnightingale.herokuapp.com/update-mood-bad",
+            },
+          ],
         },
       },
     ],
   });
-  console.log("paylod", payload);
-
-  // const payload = new Payload("multi", {
-  //   text: "anything",
-  //   quick_replies: options.map(option => ({
-  //     content_type: "text",
-  //     title: option,
-  //     payload: option,
-  //     sendAsMessage: true,
-  //   })),
-  // });
-
-  agent.add(payload);
-
-  // const suggestion = new Suggestion({
-  //   title: "Send",
-  //   reply: "The answer",
-  // });
-  // agent.add(suggestion);
-  // console.log("multiChoice suggestion", suggestion);
 };
 
 module.exports = (req, res) => {
