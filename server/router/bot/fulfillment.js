@@ -33,22 +33,6 @@ const cardReply = (agent) => {
         postback: "hello",
         text: "two",
       },
-      {
-        postback: "hello",
-        text: "three",
-      },
-      {
-        postback: "hello",
-        text: "four",
-      },
-      {
-        postback: "hello",
-        text: "five",
-      },
-      {
-        postback: "hello",
-        text: "six",
-      },
     ],
   });
   agent.add(card);
@@ -76,7 +60,7 @@ const multiChoice = (agent) => {
   // });
   // agent.add(suggestion);
   // console.log("multiChoice suggestion", suggestion);
-  console.log("multiChoice agent", agent);
+  console.log("multiChoice agent", agent.body.queryResult);
 };
 
 module.exports = (req, res) => {
