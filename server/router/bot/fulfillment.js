@@ -10,8 +10,10 @@ const welcomeFulfillment = (agent) => {
 const multiChoice = (agent) => {
   console.log("multi reached");
 
-  const suggestion = new Suggestion("Send");
-  suggestion.setReply("The answer");
+  const suggestion = new Suggestion({
+    title: "Send",
+    reply: "The answer",
+  });
   agent.add(suggestion);
   console.log("multiChoice suggestion", suggestion);
   console.log("multiChoice agent", agent);
