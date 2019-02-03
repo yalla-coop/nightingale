@@ -23,38 +23,40 @@ const quickReply = (agent) => {
 };
 
 const cardReply = (agent) => {
-  console.log("card reached");
-  const card = new Card({
-    title: "card title",
-    text: "card text",
-    imageUrl: "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-  });
-  card.setButton({
-    text: "one",
-    url: `${hello("hello")}`,
-  });
-  card.setButton({
-    text: "two",
-    url: `${hello("hello")}`,
-  });
-  agent.add(card);
+  console.log("card reached", agent.request);
+  console.log("card response", agent.response);
+
+  // const card = new Card({
+  //   title: "card title",
+  //   text: "card text",
+  //   imageUrl: "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
+  // });
+  // card.setButton({
+  //   text: "one",
+  //   url: `${hello("hello")}`,
+  // });
+  // card.setButton({
+  //   text: "two",
+  //   url: `${hello("hello")}`,
+  // });
+  // agent.add(card);
 };
 
 const multiChoice = (agent) => {
   console.log("multi reached");
   const options = ["Monday", "Tuesday"];
 
-  const payload = new Payload("multi", {
-    text: "anything",
-    quick_replies: options.map(option => ({
-      content_type: "text",
-      title: option,
-      payload: option,
-      sendAsMessage: true,
-    })),
-  });
+  // const payload = new Payload("multi", {
+  //   text: "anything",
+  //   quick_replies: options.map(option => ({
+  //     content_type: "text",
+  //     title: option,
+  //     payload: option,
+  //     sendAsMessage: true,
+  //   })),
+  // });
 
-  agent.add(payload);
+  // agent.add(payload);
 
   // const suggestion = new Suggestion({
   //   title: "Send",
