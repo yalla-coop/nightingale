@@ -9,6 +9,10 @@ const welcomeFulfillment = (agent) => {
   console.log("welcome reached");
 };
 
+const hello = (phrase) => {
+  console.log("hello", phrase);
+};
+
 const quickReply = (agent) => {
   console.log("quick reached");
   agent.add(new Suggestion("Suggestion to go here"));
@@ -24,16 +28,14 @@ const cardReply = (agent) => {
     title: "card title",
     text: "card text",
     imageUrl: "https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png",
-    buttons: [
-      {
-        postback: "hello",
-        text: "one",
-      },
-      {
-        postback: "hello",
-        text: "two",
-      },
-    ],
+  });
+  card.setButton({
+    text: "one",
+    url: `${hello("hello")}`,
+  });
+  card.setButton({
+    text: "two",
+    url: `${hello("hello")}`,
   });
   agent.add(card);
 };
