@@ -1,9 +1,8 @@
 const { WebhookClient, Suggestion } = require("dialogflow-fulfillment");
 
 const welcomeFulfillment = (agent) => {
-  agent.add(new Suggestion("Monday"));
-  agent.add(new Suggestion("Tuesday"));
-  agent.add("this is another message also");
+  agent.add(new Suggestion("Send"));
+  Suggestion.setReply("the actual answer");
   console.log("reached", agent);
 };
 
