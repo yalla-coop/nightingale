@@ -1,4 +1,4 @@
-const { WebhookClient, Suggestion } = require("dialogflow-fulfillment");
+const { WebhookClient, Suggestion, Payload } = require("dialogflow-fulfillment");
 
 const welcomeFulfillment = (agent) => {
   agent.add(new Suggestion("Monday"));
@@ -9,13 +9,25 @@ const welcomeFulfillment = (agent) => {
 
 const multiChoice = (agent) => {
   console.log("multi reached");
-
-  const suggestion = new Suggestion({
-    title: "Send",
-    reply: "The answer",
+  const options = ["Monday", "Tuesday"];
+  options.map(option => agent.add(new Suggestion(option)));
+  const payload = new Payload("multi", {
+    text: "anything",
+    quick_replies: options.map(option => ({
+      content_type: "text",
+      title: option,
+      payload: option,
+    })),
   });
-  agent.add(suggestion);
-  console.log("multiChoice suggestion", suggestion);
+
+  agent.add(payload);
+
+  // const suggestion = new Suggestion({
+  //   title: "Send",
+  //   reply: "The answer",
+  // });
+  // agent.add(suggestion);
+  // console.log("multiChoice suggestion", suggestion);
   console.log("multiChoice agent", agent);
 };
 
