@@ -1,4 +1,4 @@
-const validation = require("./../../../validation");
+const validation = require("./../../validation");
 
 describe("Tesing for register validation", () => {
   test("register validation with valid data", (done) => {
