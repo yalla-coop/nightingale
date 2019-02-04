@@ -10,6 +10,9 @@ export const Heading = styled.h1`
     padding: 3px 9px;
     font-size: 30px;
     font-weight: 100;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
     color: #555;
+    @media (max-width: 768px) {
+        margin-bottom: 0;
+    }
 `
