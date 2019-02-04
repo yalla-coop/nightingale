@@ -4,6 +4,7 @@ const dialogflow = require("dialogflow");
 // load database requests
 const storeUserMsg = require("../../database/queries/storeUserMsg");
 const storeBotMsg = require("../../database/queries/storeBotMsg");
+const checkConversation = require("../../database/queries/checkConversation");
 
 module.exports = async (req, res) => {
   private_key = process.env.private_key.replace(new RegExp("\\\\n", "g"), "\n").replace("\"", "");
@@ -78,16 +79,21 @@ module.exports = async (req, res) => {
 
   // this will be req.user.id once authentication all set up
   // currently using dummy Id from local database
-  const dummyId = "5c583e6ad57cabb7682fef61";
+  const dummyId = "5c586a12ed1d9bbf06a7033d";
 
-  storeUserMsg(dummyId, result.queryText)
+  // get conversation ID
+  const conversationId = await checkConversation(dummyId);
+
+  console.log("CONVID", conversationId);
+
+  storeUserMsg(dummyId, result.queryText, conversationId)
     .then(msgResult => console.log("message stored", msgResult))
     .catch(err => console.log("message storage error", err));
 
   // store the bot's text
   console.log(`  Response: ${result.fulfillmentMessages}`);
 
-  storeBotMsg(dummyId, result.fulfillmentMessages)
+  storeBotMsg(dummyId, result.fulfillmentMessages, conversationId)
     .then(msgResult => console.log("bot message storred", msgResult))
     .catch(err => console.log("bot message storage error", err));
 

@@ -1,6 +1,6 @@
 const Message = require("../models/Message");
 
-const storeBotMsg = (userId, messages) => new Promise((resolve, reject) => {
+const storeBotMsg = (userId, messages, conversationId) => new Promise((resolve, reject) => {
   // fulfillment messages is always an array
   // filter to only get the objects where the message === 'text'
   // by doing this we don't store Suggestions, Cards that we don't want
@@ -10,7 +10,7 @@ const storeBotMsg = (userId, messages) => new Promise((resolve, reject) => {
 
   textMessages.map((message) => {
     const newMessage = new Message({
-      conversation: "5c5831dd22611ab398779480",
+      conversation: conversationId,
       text: message.text.text,
       sender: "bot",
     });
