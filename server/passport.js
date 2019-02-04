@@ -3,6 +3,8 @@ const passport = require("passport");
 
 const User = require("./database/models/User");
 
+require("env2")("./.env");
+
 module.exports = () => {
   // passport strategy options
   const opts = {};
@@ -10,7 +12,7 @@ module.exports = () => {
   opts.secretOrKey = process.env.SECRET;
 
   // JWT strategy
-  const strategy = new JwtStrategy(opts, ((jwtPayload, done) => {
+  const strategy = new JwtStrategy(opts, (jwtPayload, done) => {
     User.findById(jwtPayload)
       .then((user) => {
         if (user) return done(null, user);
@@ -19,7 +21,7 @@ module.exports = () => {
       .catch((err) => {
         done(err, false);
       });
-  }));
+  });
 
   // use JWT strategy as middleware
   passport.use(strategy);

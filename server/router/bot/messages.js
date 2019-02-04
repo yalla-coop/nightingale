@@ -76,14 +76,18 @@ module.exports = async (req, res) => {
   const result = responses[0].queryResult;
   console.log(`  Query: ${result.queryText}`);
 
-  storeUserMsg(result.queryText)
+  // this will be req.user.id once authentication all set up
+  // currently using dummy Id from local database
+  const dummyId = "5c583e6ad57cabb7682fef61";
+
+  storeUserMsg(dummyId, result.queryText)
     .then(msgResult => console.log("message stored", msgResult))
     .catch(err => console.log("message storage error", err));
 
   // store the bot's text
   console.log(`  Response: ${result.fulfillmentMessages}`);
 
-  storeBotMsg(result.fulfillmentMessages)
+  storeBotMsg(dummyId, result.fulfillmentMessages)
     .then(msgResult => console.log("bot message storred", msgResult))
     .catch(err => console.log("bot message storage error", err));
 
