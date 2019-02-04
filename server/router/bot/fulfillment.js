@@ -2,7 +2,6 @@ const {
   WebhookClient, Suggestion, Payload, Card,
 } = require("dialogflow-fulfillment");
 
-
 const hello = (phrase) => {
   console.log("hello", phrase);
 };
