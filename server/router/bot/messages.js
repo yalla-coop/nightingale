@@ -3,6 +3,7 @@ const dialogflow = require("dialogflow");
 
 // load database requests
 const storeUserMsg = require("../../database/queries/storeUserMsg");
+const storeBotMsg = require("../../database/queries/storeBotMsg");
 
 module.exports = async (req, res) => {
   private_key = process.env.private_key.replace(new RegExp("\\\\n", "g"), "\n").replace("\"", "");
@@ -71,15 +72,21 @@ module.exports = async (req, res) => {
   console.log("Detected intent");
   console.log(responses[0].queryResult.intent);
 
+  // store the user's text
   const result = responses[0].queryResult;
   console.log(`  Query: ${result.queryText}`);
 
-  // store the user's text
   storeUserMsg(result.queryText)
     .then(msgResult => console.log("message stored", msgResult))
     .catch(err => console.log("message storage error", err));
 
-  console.log(`  Response: ${result.fulfillmentText}`);
+  // store the bot's text
+  console.log(`  Response: ${result.fulfillmentMessages}`);
+
+  storeBotMsg(result.fulfillmentMessages)
+    .then(msgResult => console.log("bot message storred", msgResult))
+    .catch(err => console.log("bot message storage error", err));
+
   if (result.intent) {
     console.log(`  Intent: ${result.intent.displayName}`);
   } else {
