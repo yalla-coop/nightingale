@@ -20,9 +20,6 @@ describe("Tesing for bot - Fulfillment - API", () => {
       .expect(200)
       .end((err, res) => {
         expect(res).toBeDefined();
-        console.log(res.body, "res.body");
-        console.log(res.body.fulfillmentMessages, "fulfillmentMessages");
-
         expect(res.body.fulfillmentMessages).toBeDefined();
         expect(res.body.fulfillmentMessages[0]).toBeDefined();
         expect(res.body.fulfillmentMessages.length).toBe(1);
