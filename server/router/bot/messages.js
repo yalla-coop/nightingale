@@ -84,8 +84,6 @@ module.exports = async (req, res) => {
   // get conversation ID
   const conversationId = await checkConversation(dummyId).catch(err => console.log("conversationID error", err));
 
-  console.log("CONVID", conversationId);
-
   storeUserMsg(result.queryText, conversationId)
     .then(msgResult => console.log("message stored", msgResult))
     .catch(err => console.log("message storage error", err));
