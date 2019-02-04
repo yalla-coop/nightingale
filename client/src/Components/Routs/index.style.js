@@ -1,3 +1,8 @@
 import styled from "styled-components";
 
-export const Container = styled.div``;
+export const Container = styled.div`
+  margin: 3rem;
+  @media (max-width: 768px) {
+    margin: 0.5rem;
+  }
+`;
