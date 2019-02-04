@@ -1,10 +1,7 @@
 const mongoos = require("mongoose");
 const Conversations = require("../models/Conversation");
-const User = require("../models/User");
 
 exports.getData = id => new Promise((resolve, reject) => {
-  // const id = "5c56a698cb10027b574c7074";
-
   Conversations.aggregate([
     {
       $match: {
@@ -87,14 +84,3 @@ exports.getData = id => new Promise((resolve, reject) => {
     })
     .catch(error => reject(error));
 });
-
-// To Get User Id
-const Get = () => {
-  User.findOne()
-    .then((res) => {
-      console.log(res);
-    });
-};
-
-
-Get();
