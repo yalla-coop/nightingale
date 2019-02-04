@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Login must match the snapshots renders correctly 1`] = `
+<div
+  className="sc-EHOje kHDAue"
+>
+  <img
+    className="sc-bZQynM iCtEDl"
+    src="header.png"
+  />
+  <img
+    className="sc-gzVnrw hPXWJT"
+    src="logo.png"
+  />
+  <form
+    className="sc-htoDjs QlDZz"
+    onSubmit={[Function]}
+  >
+    <div
+      className="sc-bdVaJa khUSez"
+    >
+      <h1
+        className="sc-bwzfXH dtARpq"
+      >
+        Login
+      </h1>
+    </div>
+    <label
+      className="sc-htpNat duRZTP"
+      htmlFor="username"
+    >
+       
+      <input
+        className="sc-bxivhb iHLnwu"
+        name="username"
+        onChange={[Function]}
+        placeholder="Username"
+        style={
+          Object {
+            "width": undefined,
+          }
+        }
+        value=""
+      />
+    </label>
+    <label
+      className="sc-htpNat duRZTP"
+      htmlFor="password"
+    >
+       
+      <input
+        className="sc-bxivhb iHLnwu"
+        name="password"
+        onChange={[Function]}
+        placeholder="Password"
+        style={
+          Object {
+            "width": undefined,
+          }
+        }
+        type="password"
+        value=""
+      />
+    </label>
+    <button
+      className="sc-ifAKCX iAgQtD"
+      style={
+        Object {
+          "background": undefined,
+        }
+      }
+      type="submit"
+    >
+      Login
+    </button>
+    <p
+      className="sc-dnqmqq fXmtAI"
+    >
+      don't have an account?
+       
+      <a
+        className="sc-iwsKbI hTGocj"
+        href="/signup"
+        onClick={[Function]}
+      >
+        sign up now!
+      </a>
+    </p>
+  </form>
+</div>
+`;

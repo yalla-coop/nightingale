@@ -2,10 +2,10 @@
 
 exports[`Title renders correctly 1`] = `
 <div
-  className="sc-bdVaJa eyITYu"
+  className="sc-bdVaJa khUSez"
 >
   <h1
-    className="sc-bwzfXH kqcyBX"
+    className="sc-bwzfXH dtARpq"
   >
     Bio
   </h1>
