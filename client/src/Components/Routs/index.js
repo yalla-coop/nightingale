@@ -11,7 +11,12 @@ export default function index(props) {
     <>
       {isLogin && <Header />}
       <Container>
-        <Route exact path="/login" component={Login} />
+        <Route
+          exact
+          path="/login"
+          component={Login}
+          handleChangeState={handleChangeState}
+        />
         <Route exact path="/:id/conversations" component={Conversations} />
       </Container>
     </>
