@@ -4,4 +4,5 @@ const controllers = require("./controllers");
 
 router.use("/bot", bot);
 router.use(controllers);
+
 module.exports = router;
