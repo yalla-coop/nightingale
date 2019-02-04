@@ -1,8 +1,8 @@
 const request = require("supertest");
 const mongoose = require("mongoose");
 
-const buildDB = require("./../../../../database/dummy_data/index");
-const app = require("./../../../../app");
+const buildDB = require("./../../database/dummy_data/index");
+const app = require("./../../app");
 
 describe("Tesing for register API schema", () => {
   beforeAll(async () => {
