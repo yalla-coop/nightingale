@@ -16,8 +16,9 @@ export default function index(props) {
         <Route
           exact
           path="/login"
-          component={Login}
-          handleChangeState={handleChangeState}
+          render={props => (
+            <Login {...props} handleChangeState={handleChangeState} />
+          )}
         />
         <Route
           path="/signup"
