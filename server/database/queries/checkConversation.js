@@ -13,7 +13,7 @@ const checkConversation = async (userId) => {
   const date = moment(Date.now()).format("YYYY-MM-DD");
 
   // get all conversations for that user
-  const conversations = await Conversation.find({ user: userId });
+  const conversations = await Conversation.find({ user: userId }).catch(err => err);
 
   const filteredConv = conversations.filter(
     conv => moment(conv.time).format("YYYY-MM-DD") === date,
@@ -27,6 +27,8 @@ const checkConversation = async (userId) => {
   const newConversation = new Conversation({
     user: userId,
   });
+
+  await newConversation.save().catch(err => console.log(err));
 
   return newConversation.id;
 };

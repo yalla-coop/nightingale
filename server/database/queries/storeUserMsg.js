@@ -1,7 +1,7 @@
 // load models
 const Message = require("../models/Message");
 
-const storeUserMsg = async (userId, message, conversationId) => {
+const storeUserMsg = async (message, conversationId) => {
   const newMessage = new Message({
     conversation: conversationId,
     text: message,
