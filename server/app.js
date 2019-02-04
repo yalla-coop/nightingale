@@ -24,11 +24,6 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/api", router);
 
-// catch 404 and forward to error handler
-app.use((req, res, next) => {
-  next(createError(404));
-});
-
 if (process.env.NODE_ENV === "production") {
   // serve any static files
   app.use(express.static(path.join(__dirname, "../client/build")));
@@ -42,6 +37,11 @@ if (process.env.NODE_ENV === "production") {
   // eslint-disable-next-line global-require
   require("env2")("./.env");
 }
+
+// catch 404 and forward to error handler
+app.use((req, res, next) => {
+  next(createError(404));
+});
 
 // use passport config middleware
 app.use(passport().initialize());
