@@ -22,9 +22,9 @@ export default function index(props) {
 }
 index.propTypes = {
   value: propTypes.string,
-  onChange: propTypes.func.isRequired,
+  onChange: propTypes.func,
   name: propTypes.string.isRequired,
-  label: propTypes.string.isRequired,
+  label: propTypes.string,
   type: propTypes.string,
   width: propTypes.string
 };

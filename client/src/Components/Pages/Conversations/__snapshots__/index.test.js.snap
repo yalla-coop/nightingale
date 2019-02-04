@@ -3,10 +3,10 @@
 exports[`Conversations renders correctly 1`] = `
 Array [
   <div
-    className="sc-EHOje RSCmD"
+    className="sc-EHOje fCNSzj"
   >
     <h1
-      className="sc-bZQynM ijeeFp"
+      className="sc-bZQynM hcCOkX"
     >
       Conversations
     </h1>
