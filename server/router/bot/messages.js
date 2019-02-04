@@ -1,6 +1,9 @@
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 
+// load database requests
+const storeUserMsg = require("../../database/queries/storeUserMsg");
+
 module.exports = async (req, res) => {
   private_key = process.env.private_key.replace(new RegExp("\\\\n", "g"), "\n").replace("\"", "");
   // setup the configuration
@@ -70,6 +73,12 @@ module.exports = async (req, res) => {
 
   const result = responses[0].queryResult;
   console.log(`  Query: ${result.queryText}`);
+
+  // store the user's text
+  storeUserMsg(result.queryText)
+    .then(msgResult => console.log("message stored", msgResult))
+    .catch(err => console.log("message storage error", err));
+
   console.log(`  Response: ${result.fulfillmentText}`);
   if (result.intent) {
     console.log(`  Intent: ${result.intent.displayName}`);
