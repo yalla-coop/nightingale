@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Conversations renders correctly 1`] = `
+Array [
+  <div
+    className="sc-EHOje fCNSzj"
+  >
+    <h1
+      className="sc-bZQynM hcCOkX"
+    >
+      Conversations
+    </h1>
+  </div>,
+  <div
+    className="sc-bdVaJa dpATM"
+  >
+    
+  </div>,
+]
+`;

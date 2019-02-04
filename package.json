@@ -11,7 +11,10 @@
       "!**/__snapshots__/**",
       "!**/client/**",
       "!**/server/app.js",
-      "!**/coverage/**"
+      "!**/coverage/**",
+      "!**/bot/fulfillment.js",
+      "!**/bot/messages.js",
+      "!**/bot/index.js"
     ]
   },
   "scripts": {
@@ -20,19 +23,25 @@
     "dev": "nodemon ./server/bin/www",
     "client:init": "cd client && npm i",
     "build": "cd client && npm run build",
+    "client:build": "cd client && npm run build",
     "dev:both": "concurrently --kill-others-on-fail \"cd client && npm start\" \"nodemon ./server/bin/www\"",
     "init:both": "npm i && npm run client:init",
     "coverage": "codecov",
     "test:coverage": "NODE_ENV=test jest --coverage --runInBand --detectOpenHandles --forceExit",
     "test:client:coverage": "cd client && npm run test:coverage",
     "test": "npm run test:coverage && npm run test:client:coverage",
-    "build:data": "node server/database/dummy_data/index.js"
+    "build:data": "node server/database/dummy_data/index.js",
+    "heroku-postbuild": "npm run client:init && npm run client:build"
   },
   "dependencies": {
+    "@google-cloud/storage": "^2.4.1",
+    "actions-on-google": "^2.5.0",
     "bcryptjs": "^2.4.3",
     "codecov": "^3.1.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dialogflow": "^0.8.0",
+    "dialogflow-fulfillment": "^0.6.1",
     "env2": "^2.2.2",
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
