@@ -34,11 +34,7 @@ export const Form = styled.form`
   margin-top: 25px;
   border-radius: 8px;
   max-width: 500px;
-  input {
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-  }
+
   button {
     max-width: 100px;
     margin: 12px auto;
@@ -46,6 +42,25 @@ export const Form = styled.form`
   h1 {
     border: none;
   }
+`;
+
+export const InputWrapper = styled.div`
+  position: relative;
+  margin: 0 auto;
+`;
+
+export const Input = styled.input`
+  outline: none;
+  border: solid 0.5px #c8c7cc;
+  margin: 1rem 0;
+  display: block;
+  height: 35px;
+  padding: 0 1rem;
+  border-radius: 100px;
+  outline-color: orange;
+  font-size: 16px;
+  width: 100%;
+  max-width: 400px;
 `;
 
 export const SignUpText = styled.p`
@@ -57,9 +72,10 @@ export const SignUpLink = styled(Link)`
   text-decoration: none;
   font-weight: 900;
 `;
+
 export const ErrorBox = styled.div`
-  position: relative;
-  min-width: 120px;
+  position: absolute;
+  min-width: 250px;
   max-width: 85%;
   background-color: #cccccc38;
   margin: 0 auto;
@@ -67,7 +83,11 @@ export const ErrorBox = styled.div`
   border-radius: 4px;
   padding: 5px 10px;
   color: red;
-  margin-top: -6px;
+  transform: translate(-50%, -50%);
+  top: 102%;
+  z-index: 1;
+  left: 50%;
+  font-size: 12px;
 
   &:before {
     display: block;
