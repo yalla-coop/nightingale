@@ -1,7 +1,6 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import uuid from 'uuid';
 import {Div, ViewDiv, ErrorMsg, Items, Item} from './index.style';
 import Title from '../../Common/Title';
