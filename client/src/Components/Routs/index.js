@@ -2,6 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
+import SignUp from "../Pages/SignUp";
 import { Container } from "./index.style";
 
 export default function index(props) {
@@ -15,6 +16,13 @@ export default function index(props) {
           exact
           render={props => (
             <Login {...props} handleChangeState={handleChangeState} />
+          )}
+        />
+        <Route
+          path="/signup"
+          exact
+          render={props => (
+            <SignUp {...props} handleChangeState={handleChangeState} />
           )}
         />
       </Container>
