@@ -51,11 +51,11 @@ export const Form = styled.form`
   }
 `;
 
-export const SignUpText = styled.p`
+export const LoginWrapperText = styled.p`
   text-align: center;
 `;
 
-export const SignUpLink = styled(Link)`
+export const LoginWrapperLink = styled(Link)`
   color: black;
   text-decoration: none;
   font-weight: 900;

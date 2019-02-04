@@ -13,8 +13,8 @@ import {
   AppLogo,
   Form,
   LoginWrapper,
-  SignUpText,
-  SignUpLink
+  LoginWrapperText,
+  LoginWrapperLink
 } from "./index.style";
 
 class Login extends Component {
@@ -76,10 +76,10 @@ class Login extends Component {
             onChange={this.handleChange}
           />
           <Button value="Login" />
-          <SignUpText>
+          <LoginWrapperText>
             don't have an account?{" "}
-            <SignUpLink to="/signup">sign up now!</SignUpLink>
-          </SignUpText>
+            <LoginWrapperLink to="/signup">sign up now!</LoginWrapperLink>
+          </LoginWrapperText>
         </Form>
       </LoginWrapper>
     );
