@@ -20,8 +20,6 @@ const quickReply = (agent) => {
 // template function to put in a card.
 // NOTE: this package only let's you put in one button per card
 const cardReply = (agent) => {
-  console.log("card response", agent);
-
   const card = new Card({
     title: "card title",
     text: "card text",
@@ -95,7 +93,6 @@ const customAction = (req, res) => {
 };
 
 module.exports = (req, res) => {
-  console.log("reached", req.body);
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
   if (req.body.queryResult.intent.displayName === "TestFulfillment") {

@@ -26,7 +26,6 @@ module.exports = async (req, res) => {
   const sessionId = "12345";
   const languageCode = "BCP-47 language code, e.g. en-US";
   const query = req.body.message;
-  console.log("BODY", req.body.message);
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
@@ -49,8 +48,6 @@ module.exports = async (req, res) => {
   // Send request and log result
   const responses = await sessionClient.detectIntent(request);
   console.log("Detected intent");
-  console.log(responses[0].queryResult.intent);
-
   const result = responses[0].queryResult;
   console.log(`  Query: ${result.queryText}`);
   console.log(`  Response: ${result.fulfillmentText}`);
