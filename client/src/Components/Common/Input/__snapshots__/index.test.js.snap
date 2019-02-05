@@ -2,13 +2,13 @@
 
 exports[`Input renders correctly 1`] = `
 <label
-  className="sc-bdVaJa hGUIFp"
+  className="sc-bdVaJa eWdFUc"
   htmlFor="username"
 >
   Username
    
   <input
-    className="sc-bwzfXH keeXxI"
+    className="sc-bwzfXH eZzzSf"
     name="username"
     style={
       Object {

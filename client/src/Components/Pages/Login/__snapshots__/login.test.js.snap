@@ -26,12 +26,12 @@ exports[`Login must match the snapshots renders correctly 1`] = `
       </h1>
     </div>
     <label
-      className="sc-htpNat duRZTP"
+      className="sc-htpNat LgIXX"
       htmlFor="username"
     >
        
       <input
-        className="sc-bxivhb iHLnwu"
+        className="sc-bxivhb gYiBtt"
         name="username"
         onChange={[Function]}
         placeholder="Username"
@@ -44,12 +44,12 @@ exports[`Login must match the snapshots renders correctly 1`] = `
       />
     </label>
     <label
-      className="sc-htpNat duRZTP"
+      className="sc-htpNat LgIXX"
       htmlFor="password"
     >
        
       <input
-        className="sc-bxivhb iHLnwu"
+        className="sc-bxivhb gYiBtt"
         name="password"
         onChange={[Function]}
         placeholder="Password"

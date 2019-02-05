@@ -2,10 +2,10 @@
 
 exports[`Menu renders correctly 1`] = `
 <div
-  className="sc-bdVaJa jtpuzB"
+  className="sc-bdVaJa fbaCFo"
 >
   <i
-    className="fas fa-bars sc-ifAKCX hghThA"
+    className="fas fa-bars sc-ifAKCX eEdOhH"
     onClick={[Function]}
   />
 </div>
