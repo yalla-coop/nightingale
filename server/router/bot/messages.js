@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 

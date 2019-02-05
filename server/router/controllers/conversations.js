@@ -1,7 +1,7 @@
 
-const { getData } = require("../../database/queries/conversation");
+const getData = require("../../database/queries/conversation");
 
-exports.getConversations = (req, res) => {
+module.exports = (req, res) => {
   const { id } = req.params;
   getData(id)
     .then((result) => {

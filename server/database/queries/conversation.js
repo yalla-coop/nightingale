@@ -1,7 +1,7 @@
 const mongoos = require("mongoose");
 const Conversations = require("../models/Conversation");
 
-exports.getData = id => new Promise((resolve, reject) => {
+module.exports = id => new Promise((resolve, reject) => {
   Conversations.aggregate([
     {
       $match: {
