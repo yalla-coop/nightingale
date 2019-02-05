@@ -1,10 +1,15 @@
 import React from "react";
 import { Route } from "react-router-dom";
+
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
+
+import SignUp from "../Pages/SignUp";
+
 import Landing from "../Pages/Landing";
 import Messages from "../Pages/ConversationMessages";
 import Home from "../Pages/Home";
+
 import { Container } from "./index.style";
 import Conversations from "../Pages/Conversations";
 
@@ -17,8 +22,16 @@ export default function index(props) {
         <Route
           exact
           path="/login"
-          component={Login}
-          handleChangeState={handleChangeState}
+          render={props => (
+            <Login {...props} handleChangeState={handleChangeState} />
+          )}
+        />
+        <Route
+          path="/signup"
+          exact
+          render={props => (
+            <SignUp {...props} handleChangeState={handleChangeState} />
+          )}
         />
         <Route exact path="/:id/conversations" component={Conversations} />
         <Route
