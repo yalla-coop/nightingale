@@ -1,8 +1,10 @@
 const {
-  WebhookClient, Suggestion, Payload, Card,
+  WebhookClient, Suggestion, Payload, Card, Text,
 } = require("dialogflow-fulfillment");
 
 exports.mood = (agent) => {
+  agent.add(new Text("Hi!"));
+  agent.add(new Text("How was your school day?"));
   agent.add(new Suggestion("Amazing"));
   agent.add(new Suggestion("Good"));
   agent.add(new Suggestion("Meh"));
