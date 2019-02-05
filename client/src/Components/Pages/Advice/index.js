@@ -15,7 +15,7 @@ export default class Advice extends Component {
         <Wrapper>
           <Collapsible
             trigger={<h3>Section One</h3>}
-            transitionTime="300"
+            transitionTime={300}
             easing="ease"
             openedClassName="open"
           >
@@ -34,7 +34,7 @@ export default class Advice extends Component {
           </Collapsible>
           <Collapsible
             trigger={<h3>Section Two</h3>}
-            transitionTime="300"
+            transitionTime={300}
             easing="ease"
           >
             <Article>
@@ -46,7 +46,7 @@ export default class Advice extends Component {
           </Collapsible>
           <Collapsible
             trigger={<h3>Section Three</h3>}
-            transitionTime="300"
+            transitionTime={300}
             easing="ease"
           >
             <Article>
@@ -70,7 +70,7 @@ export default class Advice extends Component {
           </Collapsible>
           <Collapsible
             trigger={<h3>Section Four</h3>}
-            transitionTime="300"
+            transitionTime={300}
             easing="ease"
           >
             <Article>
