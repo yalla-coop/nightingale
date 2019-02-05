@@ -63,7 +63,7 @@ exports[`Login must match the snapshots renders correctly 1`] = `
       />
     </label>
     <button
-      className="sc-ifAKCX iAgQtD"
+      className="sc-ifAKCX fRujPU"
       style={
         Object {
           "background": undefined,
