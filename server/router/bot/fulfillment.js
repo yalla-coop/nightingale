@@ -2,6 +2,8 @@ const {
   WebhookClient, Suggestion, Payload, Card,
 } = require("dialogflow-fulfillment");
 
+const weekday = require("./weekdayFulfillment");
+
 const hello = (phrase) => {
   console.log("hello", phrase);
 };
@@ -100,6 +102,9 @@ module.exports = (req, res) => {
     intentMap.set("CardTemplate", cardReply);
     intentMap.set("QuickTemplate", quickReply);
     intentMap.set("MultiCardsTemplate", multiCards);
+    intentMap.set("WeekdayStart", weekday.mood);
+    intentMap.set("WeekdayPositive", weekday.positive);
+    intentMap.set("DontUsuallyEnjoy", weekday.dontUsuallyEnjoyLesson);
     agent.handleRequest(intentMap);
   }
 };
