@@ -4,6 +4,7 @@ import Header from "../Common/Header";
 import { Container } from "./index.style";
 import Login from "../Pages/Login";
 import Conversations from "../Pages/Conversations";
+import Chat from "../Pages/Chat";
 
 export default function index(props) {
   const { handleChangeState, isLogin } = props;
@@ -18,6 +19,7 @@ export default function index(props) {
           handleChangeState={handleChangeState}
         />
         <Route exact path="/:id/conversations" component={Conversations} />
+        <Route exact path="/chat" component={Chat} />
       </Container>
     </>
   );

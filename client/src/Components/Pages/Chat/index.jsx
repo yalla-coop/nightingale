@@ -65,7 +65,7 @@ class Chat extends Component {
       );
     };
     const chat = this.state.conversation.map((e, index) => {
-      ChatBubble(e.text, index, e.user);
+      return ChatBubble(e.text, index, e.user);
     });
 
     return (
