@@ -34,7 +34,13 @@ export default function index(props) {
           )}
         />
         <Route exact path="/:id/conversations" component={Conversations} />
-        <Route exact path="/chat" component={Chat} />
+        <Route
+          path="/chat"
+          exact
+          render={props => (
+            <Chat {...props} handleChangeState={handleChangeState} />
+          )}
+        />
       </Container>
 
       <Route path="/" exact component={Landing} />
