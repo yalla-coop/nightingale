@@ -57,7 +57,6 @@ class Chat extends Component {
   };
 
   render() {
-    console.log(this.state);
     const ChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
