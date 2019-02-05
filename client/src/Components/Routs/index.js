@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
 import Landing from "../Pages/Landing";
+import Messages from "../Pages/ConversationMessages";
 import Home from "../Pages/Home";
 import { Container } from "./index.style";
 import Conversations from "../Pages/Conversations";
@@ -20,6 +21,11 @@ export default function index(props) {
           handleChangeState={handleChangeState}
         />
         <Route exact path="/:id/conversations" component={Conversations} />
+        <Route
+          exact
+          path="/:id/conversations/:conversation"
+          component={Messages}
+        />
       </Container>
 
       <Route path="/" exact component={Landing} />
