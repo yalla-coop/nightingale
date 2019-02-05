@@ -52,6 +52,9 @@ class Chat extends Component {
     axios.post("http://localhost:8080/api/bot/chat", {
       message: this.state.userMessage
     });
+    axios.post("http://localhost:8080/api/bot/messages", {
+      message: this.state.userMessage
+    });
 
     this.setState({ userMessage: "" });
   };
