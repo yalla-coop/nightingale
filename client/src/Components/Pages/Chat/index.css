@@ -1,25 +1,4 @@
-html,
-body {
-  font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
-  font-weight: 400;
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  text-align: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-.chat-window {
+/* .chat-window {
   width: 750px;
   margin: auto;
   border: 1px solid #d5d5d5;
@@ -41,7 +20,7 @@ h1 {
   width: 100%;
   border: none;
   padding: 5px;
-}
+} */
 
 .chat-bubble {
   font-size: 20px;

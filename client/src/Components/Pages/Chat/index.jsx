@@ -3,6 +3,7 @@ import Pusher from "pusher-js";
 import axios from "axios";
 
 import "./index.css";
+import { ChatWindow, ConversationView, MessageBox, Form } from "./index.style";
 
 class Chat extends Component {
   // userMessage contains user input
@@ -52,14 +53,15 @@ class Chat extends Component {
     axios.post("http://localhost:8080/api/bot/chat", {
       message: this.state.userMessage
     });
-    axios.post("http://localhost:8080/api/bot/messages", {
-      message: this.state.userMessage
-    });
+    // axios.post("http://localhost:8080/api/bot/messages", {
+    //   message: this.state.userMessage
+    // });
 
     this.setState({ userMessage: "" });
   };
 
   render() {
+    // set up function that renders text by human or ai (defined as className)
     const ChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
@@ -73,11 +75,10 @@ class Chat extends Component {
 
     return (
       <div>
-        <h1>React Chatbot</h1>
-        <div className="chat-window">
-          <div className="conversation-view">{chat}</div>
-          <div className="message-box">
-            <form onSubmit={this.handleSubmit}>
+        <ChatWindow>
+          <ConversationView>{chat}</ConversationView>
+          <MessageBox>
+            <Form onSubmit={this.handleSubmit}>
               <input
                 value={this.state.userMessage}
                 onInput={this.handlechange}
@@ -86,9 +87,9 @@ class Chat extends Component {
                 autoFocus
                 placeholder="Type your message and hit enter to send"
               />
-            </form>
-          </div>
-        </div>
+            </Form>
+          </MessageBox>
+        </ChatWindow>
       </div>
     );
   }
