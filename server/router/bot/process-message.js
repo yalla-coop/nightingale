@@ -48,7 +48,10 @@ const processMessage = (message) => {
       // check if fulfillmentMessages Array includes more than 1 message
       if (messageArr.length > 1) {
         // loop over it and send all individual responses
+        // syntax channel.trigger(eventName, data);
         messageArr.forEach((message) => {
+          console.log(message);
+
           pusher.trigger("bot", "bot-response", {
             message: message.text.text,
           });

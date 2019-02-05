@@ -18,7 +18,9 @@ export const MessageBox = styled.div`
 export const Form = styled.form`
   input {
     width: 100%;
-    border: none;
+    border: 1px solid black;
+    font-size: 15px;
+    border-radius: 10px;
     padding: 5px;
   }
 `;
