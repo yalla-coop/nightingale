@@ -22,7 +22,7 @@ export const MainLogo = styled.img`
 
 export const View = styled.div`
   width: 100%;
-  padding: 1rem;
+  padding: 5rem 0.5rem 5rem 0.5rem;
   min-height: 100vh;
   text-align: center;
   @media (min-width: 768px) {
