@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Landing renders correctly 1`] = `
+<div
+  className="sc-bwzfXH dCmxRV"
+  onClick={[Function]}
+>
+  <img
+    alt="logo"
+    className="sc-htpNat jpugCE"
+    src="mainLogo.png"
+  />
+</div>
+`;

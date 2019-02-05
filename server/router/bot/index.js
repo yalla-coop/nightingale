@@ -1,4 +1,5 @@
 const bot = require("express").Router();
+const auth = require("./../../passport.js");
 
 const messages = require("./messages");
 const fulfillment = require("./fulfillment");

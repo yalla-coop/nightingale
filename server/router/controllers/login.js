@@ -18,7 +18,9 @@ module.exports = (req, res, next) => {
           // is the password matched create token and resonse with user data
           const token = createToken({ id: user.id, name: user.name, username: user.username });
           res.cookie("token", token);
-          return res.json({ id: user.id, name: user.name, username: user.username });
+          return res.json({
+            id: user.id, name: user.name, username: user.username, token,
+          });
         })
         .catch(() => next(createError(500)));
     })
