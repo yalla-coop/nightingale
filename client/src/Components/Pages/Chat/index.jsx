@@ -48,12 +48,11 @@ class Chat extends Component {
       conversation: [...this.state.conversation, msg]
     });
 
-    axios.post(
-      "/api/bot/chat",
-      JSON.stringify({
-        message: this.state.userMessage
-      })
-    );
+    axios.post("http://localhost:8080/api/bot/chat", {
+      message: this.state.userMessage
+    });
+
+    this.setState({ userMessage: "" });
   };
 
   render() {
@@ -64,9 +63,9 @@ class Chat extends Component {
         </div>
       );
     };
-    const chat = this.state.conversation.map((e, index) => {
-      return ChatBubble(e.text, index, e.user);
-    });
+    const chat = this.state.conversation.map((e, index) =>
+      ChatBubble(e.text, index, e.user)
+    );
 
     return (
       <div>

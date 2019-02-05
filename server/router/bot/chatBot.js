@@ -1,7 +1,6 @@
 const processMessage = require("./process-message");
 
-module.exports = (req, res, next) => {
-  const message = req.body;
-  console.log(message);
+module.exports = (req, res) => {
+  const { message } = req.body;
   processMessage(message);
 };
