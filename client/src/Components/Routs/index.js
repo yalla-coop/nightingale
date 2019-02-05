@@ -3,7 +3,9 @@ import { Route } from "react-router-dom";
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
 import Landing from "../Pages/Landing";
+import Home from "../Pages/Home";
 import { Container } from "./index.style";
+import Conversations from "../Pages/Conversations";
 
 export default function index(props) {
   const { handleChangeState, isLogin } = props;
@@ -12,20 +14,16 @@ export default function index(props) {
       {isLogin && <Header />}
       <Container>
         <Route
+          exact
           path="/login"
-          exact
-          render={props => (
-            <Login {...props} handleChangeState={handleChangeState} />
-          )}
+          component={Login}
+          handleChangeState={handleChangeState}
         />
-        <Route
-          path="/"
-          exact
-          render={props => (
-            <Landing {...props} handleChangeState={handleChangeState} />
-          )}
-        />
+        <Route exact path="/:id/conversations" component={Conversations} />
       </Container>
+
+      <Route path="/" exact component={Landing} />
+      <Route path="/home" exact component={Home} />
     </>
   );
 }
