@@ -19,6 +19,7 @@ class Conversations extends Component {
       const msg = " There is no conversations yet !!";
       this.setState({ message: msg, conversations: [] });
     } else {
+      console.log("final", finalData);
       finalData.map(row =>
         conversations.push([
           row.mood[0].moodEmoji,
