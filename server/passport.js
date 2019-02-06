@@ -10,7 +10,8 @@ module.exports = () => {
   opts.secretOrKey = process.env.SECRET;
 
   // JWT strategy
-  const strategy = new JwtStrategy(opts, ((jwtPayload, done) => {
+  const strategy = new JwtStrategy(opts, (jwtPayload, done) => {
+    console.log("JWT", jwtPayload);
     User.findById(jwtPayload)
       .then((user) => {
         if (user) return done(null, user);
@@ -19,7 +20,7 @@ module.exports = () => {
       .catch((err) => {
         done(err, false);
       });
-  }));
+  });
 
   // use JWT strategy as middleware
   passport.use(strategy);
