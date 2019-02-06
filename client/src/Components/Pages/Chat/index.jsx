@@ -10,6 +10,7 @@ import axios from "axios";
 // import styles
 import "./index.css";
 import { ChatWindow, ConversationView, MessageBox, Form } from "./index.style";
+import { log } from "util";
 
 class Chat extends Component {
   // userMessage contains user input
@@ -34,18 +35,23 @@ class Chat extends Component {
     });
     // listening for the bot-response event on the bot channel, event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
+    // const checkQuickReplies = array => {
+    //   if array[0]
+    // }
     channel.bind("bot-response", data => {
-      // console.log(data);
+      console.log(data);
 
-      // setup bot response
-      const botMsg = {
-        text: data.message,
-        user: "ai"
-      };
-      // update state with every incoming bot response
-      this.setState({
-        botMessage: botMsg.text,
-        conversation: [...this.state.conversation, botMsg]
+      data.message.map(e => {
+        // setup bot response
+        const botMsg = {
+          text: e.text.text[0],
+          user: "ai"
+        };
+        // update state with every incoming bot response
+        return this.setState({
+          botMessage: botMsg.text,
+          conversation: [...this.state.conversation, botMsg]
+        });
       });
     });
   }
@@ -59,6 +65,10 @@ class Chat extends Component {
   handlechange = event => {
     this.setState({ userMessage: event.target.value });
   };
+
+  // handleClick = event => {
+
+  // }
 
   handleSubmit = event => {
     event.preventDefault();
@@ -85,20 +95,19 @@ class Chat extends Component {
       axios.post("/api/bot/messages", {
         message: this.state.userMessage
       });
+    messageRender();
 
-    // messageRender();
-
-    axios
-      .all([messageRender(), messageStorage()])
-      .then(result => console.log("received by server"))
-      .catch(err => console.log(err));
+    // axios
+    //   .all([messageRender(), messageStorage()])
+    //   .then(result => console.log("received by server"))
+    //   .catch(err => console.log(err));
 
     // after POST requests, clearing the input field
     this.setState({ userMessage: "" });
   };
 
   render() {
-    // function that renders text by human or ai (defined as className)
+    // function that renders text by human or ai (defined as className) as speech bubble
     const ChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
@@ -106,11 +115,11 @@ class Chat extends Component {
         </div>
       );
     };
-
+    // function that renders quickReply button as speech bubble
     const QuickReplyChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
-          <button>
+          <button onClick={this.handleSubmit}>
             <span className="chat-content">{text}</span>
           </button>
         </div>
@@ -118,18 +127,17 @@ class Chat extends Component {
     };
 
     // loop over conversation array and create chatBubbles for human and bot
+
     const chat = this.state.conversation.map((e1, index) => {
+      // if a quick reply comes from the server then render a button
       if (e1.text[0].message === "quickReplies") {
         return e1.text[0].quickReplies.quickReplies.map((e2, index) => {
-          return QuickReplyChatBubble(e2, index, "ai");
+          return QuickReplyChatBubble(e2, index, e1.user);
         });
       } else {
         return ChatBubble(e1.text, index, e1.user);
       }
     });
-
-    console.log(this.state.conversation);
-
     return (
       <div>
         <ChatWindow>
@@ -155,32 +163,6 @@ class Chat extends Component {
         </ChatWindow>
       </div>
     );
-
-    // return (
-    //   <div>
-    //     <ChatWindow>
-    //       <ConversationView>{chat}</ConversationView>
-    //       <MessageBox>
-    //         <Form onSubmit={this.handleSubmit}>
-    //           <input
-    //             value={this.state.userMessage}
-    //             onInput={this.handlechange}
-    //             className="text-input"
-    //             type="text"
-    //             autoFocus
-    //             placeholder="Type your message and hit enter to send"
-    //           />
-    //         </Form>
-    //         <div
-    //           style={{ float: "left", clear: "both" }}
-    //           ref={el => {
-    //             this.messagesEnd = el;
-    //           }}
-    //         />
-    //       </MessageBox>
-    //     </ChatWindow>
-    //   </div>
-    // );
   }
 }
 
