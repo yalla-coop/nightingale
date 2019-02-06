@@ -10,12 +10,12 @@ const dashboard = require("./dashboard");
 const auth = require("./../../passport")();
 
 router.post("/user/register", register);
-router.get("/user/:id/conversations", conversations);
 router.post("/user/login", login);
 router.get("/user/:id/conversations/:conversationId", messages);
 
 // authenticated routes
 router.get("/user/dashboard", auth.authenticate(), dashboard);
+router.get("/user/conversations", auth.authenticate(), conversations);
 
 
 module.exports = router;
