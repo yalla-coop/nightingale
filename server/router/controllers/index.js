@@ -12,12 +12,8 @@ router.post("/user/register", register);
 router.get("/user/:id/conversations", conversations.getConversations);
 router.post("/user/login", login);
 
-// authentication middleware
-router.use(auth.authenticate());
-
-
 // authenticated routes
-router.post("/user/dashboard", dashboard);
+router.get("/user/dashboard", auth.authenticate(), dashboard);
 
 
 module.exports = router;
