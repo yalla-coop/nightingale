@@ -30,7 +30,7 @@ module.exports = async (req, res) => {
   const sessionClient = new dialogflow.SessionsClient(config);
 
   const projectId = "nightingale-456a9";
-  const sessionId = "12345";
+  const sessionId = "123456";
   const languageCode = "BCP-47 language code, e.g. en-US";
   const query = req.body.message;
   // Define session path
@@ -61,6 +61,8 @@ module.exports = async (req, res) => {
   // store the user's text
   const result = responses[0].queryResult;
   console.log(`  Query: ${result.queryText}`);
+
+  console.log("SESSION:", request.session);
 
   // this will be req.user.id once authentication all set up
   // currently using dummy Id from local database
