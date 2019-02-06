@@ -10,33 +10,38 @@ class Conversations extends Component {
     message: ""
   };
 
-  getConversations = async () => {
-    const { id } = this.props.match.params;
-    const data = await axios(`/api/user/${id}/conversations`);
-    const finalData = data.data;
-    const { conversations } = this.state;
-    if (finalData.length === 0) {
-      const msg = " There is no conversations yet !!";
-      this.setState({ message: msg, conversations: [] });
-    } else {
-      finalData.map(row =>
-        conversations.push([
-          row.mood[0].moodEmoji,
-          row.dayOfWeek,
-          row.date,
-          row._id
-        ])
-      );
-      this.setState({ conversations });
-    }
+  getConversations = () => {
+    axios
+      .get("/api/user/conversations")
+      .then(response => {
+        const { data } = response;
+        const { conversations } = this.state;
+        if (Object.keys(data).length === 0 || data.length === 0) {
+          const msg = " There is no conversations yet !!";
+          this.setState({ message: msg, conversations: [] });
+        } else {
+          data.map(row =>
+            conversations.push([
+              row.mood[0].moodEmoji,
+              row.dayOfWeek,
+              row.date,
+              row._id
+            ])
+          );
+          this.setState({ conversations });
+        }
+      })
+      .catch(() => {
+        const msg = " Sorry, There is an error!!";
+        this.setState({ message: msg, conversations: [] });
+      });
   };
 
   componentDidMount = () => {
     this.getConversations();
   };
   onClick = conversation => {
-    const user = this.props.match.params.id;
-    this.props.history.push(`/${user}/conversations/${conversation}`);
+    this.props.history.push(`/conversations/${conversation}`);
   };
 
   render() {
