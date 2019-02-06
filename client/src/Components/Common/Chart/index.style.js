@@ -1,24 +1,24 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const PieChart = styled.div`
-        display: block;
-        width: 60%;
-        margin: 0 auto;
-`
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+`;
 
 export const Header = styled.h4`
-    font-size: 20px;
-    color:#333333;
-    margin-top: 2rem;
-`
+  font-size: 20px;
+  color: #333333;
+  margin-top: 2rem;
+`;
 
 export const Charts = styled.div`
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-`
+  width: 100%;
+  margin: 0 auto;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+`;
 
 export const Title = styled.div`
     animation: up 0.5s ease-in 0.5s;
@@ -40,16 +40,16 @@ export const Title = styled.div`
       opacity: 1;
       transform: translate(0);
     }
-`
+`;
 export const Decription = styled.span`
-    display: inline-block;
-    width: 30px;
-    height: 15px;
-    margin-right: 30px;
-`
+  display: inline-block;
+  width: 30px;
+  height: 15px;
+  margin-right: 30px;
+`;
 export const Svg = styled.svg`
-    margin-top: 4rem;
-    animation: down 0.7s ease-in;
+  margin-top: 4rem;
+  animation: down 0.7s ease-in;
 
   @keyframes down {
     0% {
@@ -64,8 +64,6 @@ export const Svg = styled.svg`
       transform: translate(0);
     }
   }
-`
+`;
 
-export const Img = styled.img`
-
-`
+export const Img = styled.img``;

@@ -45,5 +45,12 @@
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4"
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/serviceWorker.js",
+      "!src/index.js",
+      "!src/**"
+    ]
+  },
   "proxy": "http://localhost:8080"
 }
