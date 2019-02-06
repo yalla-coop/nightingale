@@ -3,8 +3,8 @@ import { Route } from "react-router-dom";
 
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
-
 import SignUp from "../Pages/SignUp";
+import Advice from "../Pages/Advice";
 
 import Landing from "../Pages/Landing";
 import Home from "../Pages/Home";
@@ -33,6 +33,7 @@ export default function index(props) {
           )}
         />
         <Route exact path="/:id/conversations" component={Conversations} />
+        <Route exact path="/advice" component={Advice} />
       </Container>
 
       <Route path="/" exact component={Landing} />
