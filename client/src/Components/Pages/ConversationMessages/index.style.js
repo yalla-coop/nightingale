@@ -54,7 +54,7 @@ export const MessagesDiv = styled.div`
     padding: 1rem;
     border-radius: 30px;
     color: #000;
-    font-weight: 600;
+    font-weight: 500;
     margin: 5px;
   }
   :nth-child(even) p:nth-child(2) {
@@ -63,16 +63,16 @@ export const MessagesDiv = styled.div`
   :nth-child(odd) {
     float: right;
     color: #fff;
-    font-weight: 600;
+    font-weight: 500;
     margin: 5px;
   }
   :nth-child(odd) p:nth-child(1) {
     font-size: 1rem;
-    background: #8d2bff;
+    background: linear-gradient(to top, #925de5, #7874fd);
     padding: 1rem;
     border-radius: 30px;
     color: #fff;
-    font-weight: 600;
+    font-weight: 500;
     margin: 5px;
   }
   :nth-child(odd) p:nth-child(2) {

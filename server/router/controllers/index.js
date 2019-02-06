@@ -7,7 +7,6 @@ const register = require("./register");
 const conversations = require("./conversations");
 const messages = require("./messages");
 
-
 router.post("/user/register", register);
 router.get("/user/:id/conversations", conversations);
 router.post("/user/login", login);
