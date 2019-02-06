@@ -49,10 +49,19 @@ const processMessage = (message, response) => {
     .then((responses) => {
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
+      console.log(messageArr);
+
+      // console.log("ressss", result.parameters.fields);
+
       // check if queryResult and intent are defined
       if (result && result.intent) {
+        if (result.intent.displayName === "QuickTemplate") {
+          pusher.trigger("bot", "bot-response", {
+            message: messageArr,
+          });
+        }
         // check if fulfillmentMessages Array includes more than 1 message
-        if (messageArr.length > 1) {
+        else if (messageArr.length > 1) {
           // loop over it and send all individual responses to front
           // syntax: channel.trigger(eventName, data);
           messageArr.forEach((message) => {

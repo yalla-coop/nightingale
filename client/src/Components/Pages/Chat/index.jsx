@@ -35,6 +35,8 @@ class Chat extends Component {
     // listening for the bot-response event on the bot channel, event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
     channel.bind("bot-response", data => {
+      // console.log(data);
+
       // setup bot response
       const botMsg = {
         text: data.message,
@@ -71,16 +73,20 @@ class Chat extends Component {
     this.setState({
       conversation: [...this.state.conversation, msgHuman]
     });
+
     // 1) post request to pusher route for rendering
     const messageRender = () =>
       axios.post("/api/bot/chat", {
         message: this.state.userMessage
       });
+
     // 2) post request to storage route
     const messageStorage = () =>
       axios.post("/api/bot/messages", {
         message: this.state.userMessage
       });
+
+    // messageRender();
 
     axios
       .all([messageRender(), messageStorage()])
@@ -101,10 +107,28 @@ class Chat extends Component {
       );
     };
 
+    const QuickReplyChatBubble = (text, i, className) => {
+      return (
+        <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
+          <button>
+            <span className="chat-content">{text}</span>
+          </button>
+        </div>
+      );
+    };
+
     // loop over conversation array and create chatBubbles for human and bot
-    const chat = this.state.conversation.map((e, index) =>
-      ChatBubble(e.text, index, e.user)
-    );
+    const chat = this.state.conversation.map((e1, index) => {
+      if (e1.text[0].message === "quickReplies") {
+        return e1.text[0].quickReplies.quickReplies.map((e2, index) => {
+          return QuickReplyChatBubble(e2, index, "ai");
+        });
+      } else {
+        return ChatBubble(e1.text, index, e1.user);
+      }
+    });
+
+    console.log(this.state.conversation);
 
     return (
       <div>
@@ -131,6 +155,32 @@ class Chat extends Component {
         </ChatWindow>
       </div>
     );
+
+    // return (
+    //   <div>
+    //     <ChatWindow>
+    //       <ConversationView>{chat}</ConversationView>
+    //       <MessageBox>
+    //         <Form onSubmit={this.handleSubmit}>
+    //           <input
+    //             value={this.state.userMessage}
+    //             onInput={this.handlechange}
+    //             className="text-input"
+    //             type="text"
+    //             autoFocus
+    //             placeholder="Type your message and hit enter to send"
+    //           />
+    //         </Form>
+    //         <div
+    //           style={{ float: "left", clear: "both" }}
+    //           ref={el => {
+    //             this.messagesEnd = el;
+    //           }}
+    //         />
+    //       </MessageBox>
+    //     </ChatWindow>
+    //   </div>
+    // );
   }
 }
 
