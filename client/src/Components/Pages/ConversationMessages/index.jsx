@@ -38,13 +38,8 @@ class Messages extends Component {
     this.getMessages();
   };
   goBack = () => {
-    const {
-      match: {
-        params: { id }
-      },
-      history
-    } = this.props;
-    history.push(`/${id}/conversations`);
+    const { history } = this.props;
+    history.push(`/conversations`);
   };
   render() {
     const { date, errMsg, time, msg } = this.state;

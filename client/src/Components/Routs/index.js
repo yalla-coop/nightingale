@@ -33,12 +33,8 @@ export default function index(props) {
             <SignUp {...props} handleChangeState={handleChangeState} />
           )}
         />
-        <Route exact path="/:id/conversations" component={Conversations} />
-        <Route
-          exact
-          path="/:id/conversations/:conversation"
-          component={Messages}
-        />
+        <Route exact path="/conversations" component={Conversations} />
+        <Route exact path="/conversations/:conversation" component={Messages} />
         <Route exact path="/advice" component={Advice} />
       </Container>
 
