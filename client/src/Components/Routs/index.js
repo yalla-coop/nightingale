@@ -3,8 +3,8 @@ import { Route } from "react-router-dom";
 
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
-
 import SignUp from "../Pages/SignUp";
+import Advice from "../Pages/Advice";
 
 import Landing from "../Pages/Landing";
 import Messages from "../Pages/ConversationMessages";
@@ -39,6 +39,7 @@ export default function index(props) {
           path="/:id/conversations/:conversation"
           component={Messages}
         />
+        <Route exact path="/advice" component={Advice} />
       </Container>
 
       <Route path="/" exact component={Landing} />

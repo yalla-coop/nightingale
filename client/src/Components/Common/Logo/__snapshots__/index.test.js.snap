@@ -2,16 +2,16 @@
 
 exports[`Logo renders correctly 1`] = `
 <div
-  className="sc-bdVaJa gPdZdB"
+  className="sc-bdVaJa icPBCE"
 >
   <img
     alt="logo title"
-    className="sc-htpNat vPXVf"
+    className="sc-htpNat hoGSrG"
     src="title.png"
   />
   <img
     alt="logo"
-    className="sc-bwzfXH bpSBpN"
+    className="sc-bwzfXH pBgPN"
     src="logo.png"
   />
 </div>

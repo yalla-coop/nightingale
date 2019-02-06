@@ -80,7 +80,7 @@ exports[`SignUp must match the snapshots renders correctly 1`] = `
       
     </div>
     <button
-      className="sc-htpNat dAAEqt"
+      className="sc-htpNat dSGjhB"
       style={
         Object {
           "background": undefined,
