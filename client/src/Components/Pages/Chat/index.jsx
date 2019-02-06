@@ -71,20 +71,21 @@ class Chat extends Component {
     this.setState({
       conversation: [...this.state.conversation, msgHuman]
     });
-
-    // // 1) post request to pusher route for rendering
-    axios
-      .post("/api/bot/chat", {
+    // 1) post request to pusher route for rendering
+    const messageRender = () =>
+      axios.post("/api/bot/chat", {
         message: this.state.userMessage
-      })
-      .catch(err => console.log("error using pusher route", err));
-
+      });
     // 2) post request to storage route
-    axios
-      .post("/api/bot/messages", {
+    const messageStorage = () =>
+      axios.post("/api/bot/messages", {
         message: this.state.userMessage
-      })
-      .catch(err => console.log("error using message storage route", err));
+      });
+
+    axios
+      .all([messageRender(), messageStorage()])
+      .then(result => console.log("received by server"))
+      .catch(err => console.log(err));
 
     // after POST requests, clearing the input field
     this.setState({ userMessage: "" });
