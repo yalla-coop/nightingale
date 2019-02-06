@@ -1,6 +1,6 @@
 const createError = require("http-errors");
 
-const checkUsername = require("../../database/queries/register");
+const registerQuery = require("../../database/queries/register");
 const validation = require("./../../validation");
 const createToken = require("./create_token");
 
@@ -9,13 +9,13 @@ module.exports = (req, res, next) => {
 
   validation({ name, username, password }, "register")
     .then(async () => {
-      // check the username is it unique?
-      await checkUsername({ name, username, password })
+      // check the username is it's unique? and create new one
+      await registerQuery({ name, username, password })
         .then((newUser) => {
           const data = { name, username, id: newUser.id };
           const token = createToken(data);
           res.cookie("token", token);
-          res.json({});
+          res.json(data);
         })
         .catch((err) => {
           if (err.message === "username already taken") {
