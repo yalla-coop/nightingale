@@ -4,7 +4,7 @@ import axios from "axios";
 
 // about pusher
 // WebSockets enable a client and a server to communicate in both directions. It lets a server send messages to the client, and vice-versa.
-// Essentially, Pusher encapsulates WebSockets implementation, functionality, debugging, and hosting for you.
+// Essentially, Pusher encapsulates WebSockets implementation, functionality, debugging, and hosting.
 // Instead of having to run your own WebSockets server, it allows you to offload the entire process to Pusher's servers, saving you both time and money.
 
 // import styles
@@ -21,6 +21,7 @@ class Chat extends Component {
     conversation: []
   };
 
+  // function to scroll to bottom of the page (dummy div called messagesEnd)
   scrollToBottom = () => {
     this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   };
@@ -47,6 +48,7 @@ class Chat extends Component {
     });
   }
 
+  // scroll to bottom every time the component updates
   componentDidUpdate() {
     this.scrollToBottom();
   }
@@ -71,21 +73,25 @@ class Chat extends Component {
     });
 
     // // 1) post request to pusher route for rendering
-    axios.post("/api/bot/chat", {
-      message: this.state.userMessage
-    });
+    axios
+      .post("/api/bot/chat", {
+        message: this.state.userMessage
+      })
+      .catch(err => console.log("error using pusher route", err));
 
     // 2) post request to storage route
-    axios.post("/api/bot/messages", {
-      message: this.state.userMessage
-    });
+    axios
+      .post("/api/bot/messages", {
+        message: this.state.userMessage
+      })
+      .catch(err => console.log("error using message storage route", err));
 
-    // after POST request, clearing the input field by setting the value of userMessage to an empty string.
+    // after POST requests, clearing the input field
     this.setState({ userMessage: "" });
   };
 
   render() {
-    // set up function that renders text by human or ai (defined as className)
+    // function that renders text by human or ai (defined as className)
     const ChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
