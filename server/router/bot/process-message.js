@@ -33,7 +33,7 @@ const sessionClient = new Dialogflow.SessionsClient(config);
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
 // function to use websocket/pusher and dialogflow inserting user message coming from react
-const processMessage = (message) => {
+const processMessage = (message, response) => {
   const request = {
     session: sessionPath,
     queryInput: {
@@ -49,21 +49,27 @@ const processMessage = (message) => {
     .then((responses) => {
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
-      // check if fulfillmentMessages Array includes more than 1 message
-      if (messageArr.length > 1) {
-        // loop over it and send all individual responses to front
-        // syntax: channel.trigger(eventName, data);
-        messageArr.forEach((message) => {
-          pusher.trigger("bot", "bot-response", {
-            message: message.text.text,
+      // check if queryResult and intent are defined
+      if (result && result.intent) {
+        // check if fulfillmentMessages Array includes more than 1 message
+        if (messageArr.length > 1) {
+          // loop over it and send all individual responses to front
+          // syntax: channel.trigger(eventName, data);
+          messageArr.forEach((message) => {
+            pusher.trigger("bot", "bot-response", {
+              message: message.text.text,
+            });
           });
-        });
+        } else {
+          // if there is only 1 single response then render it directly
+          return pusher.trigger("bot", "bot-response", {
+            message: result.fulfillmentText,
+          });
+        }
       } else {
-        // if there is only 1 single response then render it directly
-        return pusher.trigger("bot", "bot-response", {
-          message: result.fulfillmentText,
-        });
+        console.log("no intent matched");
       }
+      return response.sendStatus(200);
     })
     .catch((err) => {
       console.error("ERROR:", err);
