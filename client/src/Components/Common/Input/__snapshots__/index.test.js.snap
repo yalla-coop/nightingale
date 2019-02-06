@@ -9,6 +9,7 @@ exports[`Input renders correctly 1`] = `
    
   <input
     className="sc-bwzfXH eZzzSf"
+    label="Username"
     name="username"
     style={
       Object {
@@ -16,6 +17,7 @@ exports[`Input renders correctly 1`] = `
       }
     }
     type="text"
+    width="20rem"
   />
 </label>
 `;

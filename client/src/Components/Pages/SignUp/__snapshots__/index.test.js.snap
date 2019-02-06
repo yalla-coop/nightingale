@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUp must match the snapshots renders correctly 1`] = `
+<div
+  className="sc-bxivhb hqlsQb"
+>
+  <img
+    className="sc-ifAKCX djVFOV"
+    src="header.png"
+  />
+  <img
+    className="sc-EHOje lbgmuu"
+    src="logo.png"
+  />
+  <form
+    className="sc-bZQynM ggoioL"
+    onSubmit={[Function]}
+  >
+    <div
+      className="sc-bdVaJa khUSez"
+    >
+      <h1
+        className="sc-bwzfXH dtARpq"
+      >
+        Sign Up
+      </h1>
+    </div>
+    <div
+      className="sc-gzVnrw ekbgNh"
+    >
+      <input
+        autoFocus={true}
+        className="sc-htoDjs ekjgyT"
+        name="name"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Name"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="sc-gzVnrw ekbgNh"
+    >
+      <input
+        className="sc-htoDjs ekjgyT"
+        name="username"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Username"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="sc-gzVnrw ekbgNh"
+    >
+      <input
+        className="sc-htoDjs ekjgyT"
+        name="password"
+        onBlur={[Function]}
+        onChange={[Function]}
+        placeholder="Password"
+        type="password"
+        value=""
+      />
+      
+    </div>
+    <div
+      className="sc-gzVnrw ekbgNh"
+    >
+      <input
+        className="sc-htoDjs ekjgyT"
+        name="rePassword"
+        onChange={[Function]}
+        placeholder="Re-Password"
+        type="password"
+        value=""
+      />
+      
+    </div>
+    <button
+      className="sc-htpNat dSGjhB"
+      style={
+        Object {
+          "background": undefined,
+        }
+      }
+      type="submit"
+    >
+      Sign Up
+    </button>
+    <p
+      className="sc-dnqmqq fXmtAI"
+    >
+      Have an account? 
+      <a
+        className="sc-iwsKbI hTGocj"
+        href="/login"
+        onClick={[Function]}
+      >
+        Login
+      </a>
+    </p>
+  </form>
+</div>
+`;

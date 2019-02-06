@@ -15,6 +15,7 @@ export default function index(props) {
           placeholder={placeholder}
           value={value}
           onChange={onChange}
+          {...props}
         />
       </Lable>
     </>
