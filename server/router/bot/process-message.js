@@ -3,6 +3,7 @@ const Dialogflow = require("dialogflow");
 const Pusher = require("pusher");
 require("env2")("./.env");
 
+// setup dialogflow config
 const projectId = "nightingale-456a9";
 const sessionId = "123456";
 const languageCode = "en-US";
@@ -18,6 +19,7 @@ const config = {
   },
 };
 
+// setup pusher config
 const pusher = new Pusher({
   appId: process.env.PUSHER_APP_ID,
   key: process.env.PUSHER_APP_KEY,
@@ -26,9 +28,11 @@ const pusher = new Pusher({
   encrypted: true,
 });
 
+// start new dialogflow session
 const sessionClient = new Dialogflow.SessionsClient(config);
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
+// function to use websocket/pusher and dialogflow inserting user message coming from react
 const processMessage = (message) => {
   const request = {
     session: sessionPath,
@@ -47,17 +51,15 @@ const processMessage = (message) => {
       const messageArr = result.fulfillmentMessages;
       // check if fulfillmentMessages Array includes more than 1 message
       if (messageArr.length > 1) {
-        // loop over it and send all individual responses
-        // syntax channel.trigger(eventName, data);
+        // loop over it and send all individual responses to front
+        // syntax: channel.trigger(eventName, data);
         messageArr.forEach((message) => {
-          console.log(message);
-
           pusher.trigger("bot", "bot-response", {
             message: message.text.text,
           });
         });
       } else {
-        // if there is only 1 single response then render...
+        // if there is only 1 single response then render it directly
         return pusher.trigger("bot", "bot-response", {
           message: result.fulfillmentText,
         });
