@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
 
   // this will be req.user.id once authentication all set up
   // currently using dummy Id from local database
-  const dummyId = "5c587dcf87d23dc5b76530e6";
+  const dummyId = "5c5bfbcc7a13640da8e4b71b";
 
   // get conversation ID
   const conversationId = await checkConversation(dummyId).catch(err => console.log("conversationID error", err));

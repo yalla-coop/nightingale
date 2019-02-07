@@ -71,12 +71,12 @@ class Chat extends Component {
     this.setState({ userMessage: event.target.value });
   };
 
+  // handles user's click on quick reply buttons
   handleClick = event => {
     const msgHuman = {
       text: event.target.value,
       user: "human"
     };
-
     this.setState({
       conversation: [...this.state.conversation, msgHuman]
     });
@@ -107,12 +107,12 @@ class Chat extends Component {
       axios.post("/api/bot/messages", {
         message: this.state.userMessage
       });
-    messageRender();
+    // messageRender();
 
-    // axios
-    //   .all([messageRender(), messageStorage()])
-    //   .then(result => console.log("received by server"))
-    //   .catch(err => console.log(err));
+    axios
+      .all([messageRender(), messageStorage()])
+      .then(result => console.log("received by server"))
+      .catch(err => console.log(err));
 
     // after POST requests, clearing the input field
     this.setState({ userMessage: "" });
