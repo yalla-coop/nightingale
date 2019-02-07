@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
   .Collapsible {
     border-top: 1px solid #cccc;
   }

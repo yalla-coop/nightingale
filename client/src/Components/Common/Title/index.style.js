@@ -13,6 +13,6 @@ export const Heading = styled.h1`
   margin-bottom: 4rem;
   color: #555;
   @media (max-width: 768px) {
-    margin-bottom: 0;
+    margin-bottom: 1rem;
   }
 `;

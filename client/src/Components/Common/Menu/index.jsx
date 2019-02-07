@@ -3,7 +3,7 @@ import {
   MenuDiv,
   Menu,
   MenuItem,
-  MainUl,
+  MainDiv,
   MenuClose,
   MenuIcon
 } from "./index.style";
@@ -29,27 +29,27 @@ export default class HumburgerMenu extends Component {
           {toggleShow && (
             <Menu>
               <MenuClose className="fas fa-times" onClick={this.onClick} />
-              <MainUl>
-                <MenuItem>
+              <MainDiv>
+                <MenuItem to="/bio">
                   <i className="fas fa-info-circle" /> Bio
                 </MenuItem>
-                <MenuItem>
+                <MenuItem to="/conversations">
                   <i class="fas fa-comments" /> Conversation
                 </MenuItem>
-                <MenuItem>
+                <MenuItem to="/chat">
                   <i class="fas fa-comment" /> Start Chat
                 </MenuItem>
-                <MenuItem>
-                  <i class="fas fa-link" /> Advices
+                <MenuItem to="/advice">
+                  <i class="fas fa-link" /> Advice
                 </MenuItem>
-                <MenuItem>
+                <MenuItem to="/dashboard">
                   <i class="fas fa-smile-beam" /> Dashboard
                 </MenuItem>
-                <MenuItem>
+                <MenuItem to="/">
                   {" "}
                   <i class="fas fa-sign-out-alt" /> LogOut
                 </MenuItem>
-              </MainUl>
+              </MainDiv>
             </Menu>
           )}
         </MenuDiv>

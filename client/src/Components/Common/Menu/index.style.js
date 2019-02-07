@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const MenuDiv = styled.div`
   position: absolute;
@@ -18,17 +19,22 @@ export const Menu = styled.div`
   transition: all 500ms ease;
   padding: 40px 10px;
 `;
-export const MainUl = styled.ul`
-  list-style: none;
-  padding: 20px 0 0 20px;
+export const MainDiv = styled.div`
+  padding: 2rem 0 0 2rem;
 `;
-export const MenuItem = styled.li`
+export const MenuItem = styled(Link)`
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
   color: #283d4c;
-  line-height: 3;
   font-weight: bold;
   letter-spacing: 1px;
   transition: all 500ms ease;
   cursor: pointer;
+
+  i {
+    margin-right: 0.5rem;
+  }
 
   :hover {
     text-indent: 5px;
