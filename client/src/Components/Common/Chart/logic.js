@@ -54,7 +54,7 @@ export const Chart = (sections, tag, width) => {
     .attr("transform", d => `translate(${label.centroid(d)})`)
     .attr("text-anchor", "middle")
     .text(d => `${d.data.percentage} %`)
-    .style("font-size", "15px")
+    .style("font-size", "13px")
     .style("font-weight", "bold")
     .style("fill", "white")
     .style("cursor", "pointer")

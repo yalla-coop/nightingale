@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const MenuDiv = styled.div`
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   padding: 20px 20px 0px 0px;

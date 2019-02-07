@@ -2,15 +2,15 @@
 
 exports[`Chart renders correctly 1`] = `
 <div
-  className="sc-bdVaJa gStxGy"
+  className="sc-bdVaJa ehdsTR"
 >
   <h4
-    className="sc-bwzfXH epJQHC"
+    className="sc-bwzfXH gqJssl"
   >
     Mood Outcomes
   </h4>
   <svg
-    className="bar-chart-undefined bar-chart sc-EHOje cyWivA"
+    className="bar-chart-undefined bar-chart sc-EHOje iqMUOf"
     style={
       Object {
         "width": 200,
@@ -18,87 +18,103 @@ exports[`Chart renders correctly 1`] = `
     }
   />
   <div
-    className="sc-htpNat eRkXaX"
+    className="sc-htpNat jbLzsI"
   >
     <div
-      className="sc-bxivhb exsnzt"
+      className="sc-bxivhb foBzPx"
     >
+      <p>
+        title 1
+      </p>
       <span
-        className="sc-ifAKCX dnURyV"
+        className="sc-ifAKCX csFauE"
         style={
           Object {
-            "background": "#6b486b",
-            "height": "15px",
-            "marginRight": "12px",
-            "width": "15px",
+            "color": "#6b486b",
+            "fontSize": "13px",
+            "fontWeight": "600",
+            "textTransform": "capitalize",
           }
         }
       />
-      <img
-        alt="emoji"
-        className="sc-bZQynM bOrPFB"
-        src="https://i.imgur.com/s3wOFt8.png"
-      />
+      <span
+        className="sc-bZQynM jsjzYN"
+      >
+        (
+        )
+      </span>
     </div>
     <div
-      className="sc-bxivhb exsnzt"
+      className="sc-bxivhb foBzPx"
     >
+      <p>
+        title 1
+      </p>
       <span
-        className="sc-ifAKCX dnURyV"
+        className="sc-ifAKCX csFauE"
         style={
           Object {
-            "background": "#a05d56",
-            "height": "15px",
-            "marginRight": "12px",
-            "width": "15px",
+            "color": "#a05d56",
+            "fontSize": "13px",
+            "fontWeight": "600",
+            "textTransform": "capitalize",
           }
         }
       />
-      <img
-        alt="emoji"
-        className="sc-bZQynM bOrPFB"
-        src="https://i.imgur.com/s3wOFt8.png"
-      />
+      <span
+        className="sc-bZQynM jsjzYN"
+      >
+        (
+        )
+      </span>
     </div>
     <div
-      className="sc-bxivhb exsnzt"
+      className="sc-bxivhb foBzPx"
     >
+      <p>
+        title 1
+      </p>
       <span
-        className="sc-ifAKCX dnURyV"
+        className="sc-ifAKCX csFauE"
         style={
           Object {
-            "background": "#d0743c",
-            "height": "15px",
-            "marginRight": "12px",
-            "width": "15px",
+            "color": "#d0743c",
+            "fontSize": "13px",
+            "fontWeight": "600",
+            "textTransform": "capitalize",
           }
         }
       />
-      <img
-        alt="emoji"
-        className="sc-bZQynM bOrPFB"
-        src="https://i.imgur.com/9Kx1ErT.png"
-      />
+      <span
+        className="sc-bZQynM jsjzYN"
+      >
+        (
+        )
+      </span>
     </div>
     <div
-      className="sc-bxivhb exsnzt"
+      className="sc-bxivhb foBzPx"
     >
+      <p>
+        title 1
+      </p>
       <span
-        className="sc-ifAKCX dnURyV"
+        className="sc-ifAKCX csFauE"
         style={
           Object {
-            "background": "#ff8c00",
-            "height": "15px",
-            "marginRight": "12px",
-            "width": "15px",
+            "color": "#ff8c00",
+            "fontSize": "13px",
+            "fontWeight": "600",
+            "textTransform": "capitalize",
           }
         }
       />
-      <img
-        alt="emoji"
-        className="sc-bZQynM bOrPFB"
-        src="https://i.imgur.com/CjNoEMy.png"
-      />
+      <span
+        className="sc-bZQynM jsjzYN"
+      >
+        (
+        )
+      </span>
     </div>
   </div>
 </div>

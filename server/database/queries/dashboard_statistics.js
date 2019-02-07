@@ -47,13 +47,13 @@ module.exports = id => new Promise((resolve, reject) => {
               _id: {
                 $switch: {
                   branches: [
-                    { case: { $eq: [{ $dayOfWeek: "$time" }, 1] }, then: "Sunday" },
-                    { case: { $eq: [{ $dayOfWeek: "$time" }, 2] }, then: "Monday" },
-                    { case: { $eq: [{ $dayOfWeek: "$time" }, 3] }, then: "Tuesday" },
-                    { case: { $eq: [{ $dayOfWeek: "$time" }, 4] }, then: "Wednesday" },
-                    { case: { $eq: [{ $dayOfWeek: "$time" }, 5] }, then: "Thursday" },
-                    { case: { $eq: [{ $dayOfWeek: "$time" }, 6] }, then: "Friday" },
-                    { case: { $eq: [{ $dayOfWeek: "$time" }, 7] }, then: "Saturday" },
+                    { case: { $eq: [{ $dayOfWeek: "$time" }, 1] }, then: "Sun" },
+                    { case: { $eq: [{ $dayOfWeek: "$time" }, 2] }, then: "Mon" },
+                    { case: { $eq: [{ $dayOfWeek: "$time" }, 3] }, then: "Tue" },
+                    { case: { $eq: [{ $dayOfWeek: "$time" }, 4] }, then: "Weds" },
+                    { case: { $eq: [{ $dayOfWeek: "$time" }, 5] }, then: "Thu" },
+                    { case: { $eq: [{ $dayOfWeek: "$time" }, 6] }, then: "Fri" },
+                    { case: { $eq: [{ $dayOfWeek: "$time" }, 7] }, then: "Sat" },
                   ],
                   default: "day not found",
                 },

@@ -6,9 +6,9 @@ import {
   Header,
   Charts,
   Title,
-  Decription,
+  Description,
   Svg,
-  Img
+  Count
 } from "./index.style";
 
 export default class Pie extends Component {
@@ -24,6 +24,8 @@ export default class Pie extends Component {
 
   render() {
     const { sections, id, width, title } = this.props;
+    console.log(sections);
+    if (!sections) return;
     return (
       <PieChart>
         <Header>{title}</Header>
@@ -35,15 +37,18 @@ export default class Pie extends Component {
         <Charts>
           {sections.map((section, index) => (
             <Title key={uuid()}>
-              <Decription
+              <p>{section.decription}</p>
+              <Description
                 style={{
-                  background: layout[index],
-                  width: "15px",
-                  height: "15px",
-                  marginRight: "12px"
+                  color: layout[index],
+                  textTransform: "capitalize",
+                  fontWeight: "600",
+                  fontSize: "13px"
                 }}
-              />
-              <Img src={section.decription} alt="emoji" />
+              >
+                {section.mood}
+              </Description>
+              <Count>({section.count})</Count>
             </Title>
           ))}
         </Charts>

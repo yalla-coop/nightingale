@@ -31,6 +31,7 @@ class App extends Component {
           <>
             <Routes
               handleChangeState={this.handleChangeState}
+              isLogin={this.state.isLogin}
               {...this.state}
             />
           </>

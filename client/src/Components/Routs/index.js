@@ -9,7 +9,7 @@ import Advice from "../Pages/Advice";
 import Landing from "../Pages/Landing";
 import Messages from "../Pages/ConversationMessages";
 import Home from "../Pages/Home";
-
+import Dashboard from "../Pages/Dashboard";
 import { Container } from "./index.style";
 import Conversations from "../Pages/Conversations";
 
@@ -40,6 +40,13 @@ export default function index(props) {
               exact
               path="/conversations/:conversation"
               component={Messages}
+            />
+          )}
+          {isLogin && (
+            <Route
+              exact
+              path="/dashboard"
+              render={Linkprops => <Dashboard {...props} {...Linkprops} />}
             />
           )}
 
