@@ -2,14 +2,14 @@
 
 exports[`Header renders correctly 1`] = `
 <header
-  className="sc-bdVaJa gOUdBB"
+  className="sc-bdVaJa jyvac"
 >
   <img
     alt="logo"
     src="header.png"
   />
   <div
-    className="sc-bwzfXH ktXHyj"
+    className="sc-bwzfXH cFwRmr"
   >
     <i
       className="fas fa-bars sc-EHOje gascYv"
