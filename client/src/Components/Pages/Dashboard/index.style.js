@@ -54,7 +54,7 @@ export const Dailyparagraph = styled.p`
     }
   }
   @media (max-width: 768px) {
-    font-size: 1rem;
+    font-size: 0.5rem;
     :nth-child(1) {
       font-size: 1rem;
     }

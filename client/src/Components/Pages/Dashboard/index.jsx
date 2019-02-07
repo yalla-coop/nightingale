@@ -69,7 +69,7 @@ class Dashboard extends Component {
           )}
         </TopDiv>
 
-        {statusMood && <Chart sections={statusMood} width={200} />}
+        {statusMood && <Chart sections={statusMood} width={180} />}
         {dailyMood && (
           <DailyDiv>
             {dailyMood.map(day => (
