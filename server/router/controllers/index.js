@@ -5,15 +5,17 @@ const router = express.Router();
 const login = require("./login");
 const register = require("./register");
 const conversations = require("./conversations");
+const messages = require("./messages");
 const dashboard = require("./dashboard");
 const auth = require("./../../passport")();
 
 router.post("/user/register", register);
-router.get("/user/:id/conversations", conversations.getConversations);
 router.post("/user/login", login);
+router.get("/user/:id/conversations/:conversationId", messages);
 
 // authenticated routes
 router.get("/user/dashboard", auth.authenticate(), dashboard);
+router.get("/user/conversations", auth.authenticate(), conversations);
 
 
 module.exports = router;

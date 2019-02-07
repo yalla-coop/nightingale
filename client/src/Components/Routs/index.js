@@ -1,5 +1,5 @@
-import React from "react";
-import { Route, Redirect } from "react-router-dom";
+import React, { Fragment } from "react";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
@@ -7,6 +7,7 @@ import SignUp from "../Pages/SignUp";
 import Advice from "../Pages/Advice";
 
 import Landing from "../Pages/Landing";
+import Messages from "../Pages/ConversationMessages";
 import Home from "../Pages/Home";
 
 import { Container } from "./index.style";
@@ -18,12 +19,12 @@ export default function index(props) {
     <>
       {isLogin && <Header />}
       <Container>
-        {/* Private Routes Here */}
-        {isLogin && (
-          <>
+        <Switch>
+          {/* Private Routes Here */}
+          {isLogin && (
             <Route
               exact
-              path="/:id/conversations"
+              path="/conversations"
               render={RouteProps => (
                 <Conversations
                   {...props}
@@ -32,15 +33,20 @@ export default function index(props) {
                 />
               )}
             />
-            <Route exact path="/advice" component={Advice} />
-          </>
-        )}
+          )}
+          {isLogin && <Route exact path="/advice" component={Advice} />}
+          {isLogin && (
+            <Route
+              exact
+              path="/conversations/:conversation"
+              component={Messages}
+            />
+          )}
 
-        {/* Public Routes Here */}
-        <Route path="/home" exact component={Home} />
+          {/* Public Routes Here */}
+          <Route path="/home" exact component={Home} />
 
-        {/* Public Routes For Not Logged In Users Here */}
-        <>
+          {/* Public Routes For Not Logged In Users Here */}
           <Route
             path="/"
             exact
@@ -76,9 +82,13 @@ export default function index(props) {
           />
 
           {/* 404 Error Page -need to be created */}
-          <Route render={() => <h1>Page Not Found</h1>} />
-        </>
+          <Route component={A} />
+        </Switch>
       </Container>
     </>
   );
+}
+
+function A() {
+  return <h1>Page Not Found</h1>;
 }
