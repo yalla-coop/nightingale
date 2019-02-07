@@ -105,6 +105,20 @@ module.exports = (req, res) => {
     intentMap.set("WeekdayStart", weekday.mood);
     intentMap.set("WeekdayPositive", weekday.positive);
     intentMap.set("DontUsuallyEnjoy", weekday.dontUsuallyEnjoyLesson);
+    intentMap.set("Talk-Yes", weekday.negative);
+    intentMap.set("TalkFriends-Fallback", weekday.finish);
+    intentMap.set("Dont-Like-Lesson", weekday.dontlikeLesson);
+    intentMap.set("Lesson-Classmates", weekday.classmates);
+    intentMap.set("TalkLesson-Other-Fallback", weekday.finish);
+    intentMap.set("Usually-Like-Lesson", weekday.usuallyLikeLesson);
+    intentMap.set("LikeLesson-Other - Fallback", weekday.finish);
+    intentMap.set("Negative-Work-Talk - Fallback", weekday.finish);
+    intentMap.set("Negative-Pressure", weekday.pressure);
+    intentMap.set("Talk-Exams - fallback", weekday.finish);
+    intentMap.set("Bullied-Talk-Yes - fallback", weekday.finish);
+    intentMap.set("Work-Issue-Talk - Fallback", weekday.finish);
+    intentMap.set("Friend-Issue-Talk - fallback", weekday.finish);
+    intentMap.set("General-Other-Talk - fallback", weekday.finish);
     agent.handleRequest(intentMap);
   }
 };

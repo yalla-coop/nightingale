@@ -14,7 +14,8 @@
       "!**/coverage/**",
       "!**/bot/fulfillment.js",
       "!**/bot/messages.js",
-      "!**/bot/index.js"
+      "!**/bot/index.js",
+      "!**/bot/weekdayFulfillment.js"
     ]
   },
   "scripts": {
