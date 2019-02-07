@@ -8,7 +8,7 @@ import Advice from "../Pages/Advice";
 
 import Landing from "../Pages/Landing";
 import Home from "../Pages/Home";
-
+import Dashboard from "../Pages/Dashboard";
 import { Container } from "./index.style";
 import Conversations from "../Pages/Conversations";
 
@@ -38,6 +38,7 @@ export default function index(props) {
 
       <Route path="/" exact component={Landing} />
       <Route path="/home" exact component={Home} />
+      <Route path="/dashboard" exact component={Dashboard} />
     </>
   );
 }
