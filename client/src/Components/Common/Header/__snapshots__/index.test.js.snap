@@ -9,10 +9,10 @@ exports[`Header renders correctly 1`] = `
     src="header.png"
   />
   <div
-    className="sc-bwzfXH cuOuty"
+    className="sc-bwzfXH ktXHyj"
   >
     <i
-      className="fas fa-bars sc-EHOje ibRXVc"
+      className="fas fa-bars sc-EHOje gascYv"
       onClick={[Function]}
     />
   </div>

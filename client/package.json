@@ -10,6 +10,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "joi": "^14.3.1",
     "react": "^16.7.0",
+    "react-collapsible": "^2.5.0",
     "react-dom": "^16.7.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.3",
@@ -43,6 +44,13 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/serviceWorker.js",
+      "!src/index.js",
+      "!src/**"
+    ]
   },
   "proxy": "http://localhost:8080"
 }

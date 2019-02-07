@@ -2,15 +2,15 @@
 
 exports[`Chart renders correctly 1`] = `
 <div
-  className="sc-bdVaJa ihKwMk"
+  className="sc-bdVaJa gStxGy"
 >
   <h4
-    className="sc-bwzfXH hmEuYy"
+    className="sc-bwzfXH epJQHC"
   >
     Mood Outcomes
   </h4>
   <svg
-    className="bar-chart-undefined bar-chart sc-EHOje kPBAtr"
+    className="bar-chart-undefined bar-chart sc-EHOje cyWivA"
     style={
       Object {
         "width": 200,
@@ -18,13 +18,13 @@ exports[`Chart renders correctly 1`] = `
     }
   />
   <div
-    className="sc-htpNat eAWYeR"
+    className="sc-htpNat eRkXaX"
   >
     <div
       className="sc-bxivhb exsnzt"
     >
       <span
-        className="sc-ifAKCX dattsC"
+        className="sc-ifAKCX dnURyV"
         style={
           Object {
             "background": "#6b486b",
@@ -36,7 +36,7 @@ exports[`Chart renders correctly 1`] = `
       />
       <img
         alt="emoji"
-        className="sc-bZQynM gZCdoJ"
+        className="sc-bZQynM bOrPFB"
         src="https://i.imgur.com/s3wOFt8.png"
       />
     </div>
@@ -44,7 +44,7 @@ exports[`Chart renders correctly 1`] = `
       className="sc-bxivhb exsnzt"
     >
       <span
-        className="sc-ifAKCX dattsC"
+        className="sc-ifAKCX dnURyV"
         style={
           Object {
             "background": "#a05d56",
@@ -56,7 +56,7 @@ exports[`Chart renders correctly 1`] = `
       />
       <img
         alt="emoji"
-        className="sc-bZQynM gZCdoJ"
+        className="sc-bZQynM bOrPFB"
         src="https://i.imgur.com/s3wOFt8.png"
       />
     </div>
@@ -64,7 +64,7 @@ exports[`Chart renders correctly 1`] = `
       className="sc-bxivhb exsnzt"
     >
       <span
-        className="sc-ifAKCX dattsC"
+        className="sc-ifAKCX dnURyV"
         style={
           Object {
             "background": "#d0743c",
@@ -76,7 +76,7 @@ exports[`Chart renders correctly 1`] = `
       />
       <img
         alt="emoji"
-        className="sc-bZQynM gZCdoJ"
+        className="sc-bZQynM bOrPFB"
         src="https://i.imgur.com/9Kx1ErT.png"
       />
     </div>
@@ -84,7 +84,7 @@ exports[`Chart renders correctly 1`] = `
       className="sc-bxivhb exsnzt"
     >
       <span
-        className="sc-ifAKCX dattsC"
+        className="sc-ifAKCX dnURyV"
         style={
           Object {
             "background": "#ff8c00",
@@ -96,7 +96,7 @@ exports[`Chart renders correctly 1`] = `
       />
       <img
         alt="emoji"
-        className="sc-bZQynM gZCdoJ"
+        className="sc-bZQynM bOrPFB"
         src="https://i.imgur.com/CjNoEMy.png"
       />
     </div>

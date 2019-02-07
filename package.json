@@ -15,7 +15,10 @@
       "!**/bot/fulfillment.js",
       "!**/bot/messages.js",
       "!**/bot/index.js",
-      "!**/bot/weekdayFulfillment.js"
+      "!**/bot/weekdayFulfillment.js",
+      "!**/bot/index.js",
+      "!**/passport.js",
+      "!**/db_connection.js"
     ]
   },
   "scripts": {
@@ -37,6 +40,7 @@
   "dependencies": {
     "@google-cloud/storage": "^2.4.1",
     "actions-on-google": "^2.5.0",
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "codecov": "^3.1.0",
     "cookie-parser": "~1.4.3",

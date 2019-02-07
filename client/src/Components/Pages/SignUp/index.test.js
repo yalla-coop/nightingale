@@ -41,6 +41,8 @@ describe("SignUp must match the snapshots", () => {
     const renderedNameInput = renderedSignUp.find('[name="username"]').first();
     expect(renderedNameInput).toHaveLength(1);
 
+    console.log(renderedNameInput.debug());
+
     // trigger focus event
     renderedNameInput.simulate("focus");
 
