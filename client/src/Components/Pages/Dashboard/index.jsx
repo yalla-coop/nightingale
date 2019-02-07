@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Chart from "../../Common/Chart";
+import jwt_decode from "jwt-decode";
+import jsCookie from "js-cookie";
 import uuid from "uuid";
 import axios from "axios";
 import {
@@ -24,7 +26,10 @@ class Dashboard extends Component {
       .get("/api/user/dashboard")
       .then(res => {
         const { data } = res;
-        if (Object.keys(data).length === 0 || data.length === 0) {
+        if (
+          data[0].moodsBystatus.length === 0 &&
+          data[0].moodsByDays.length === 0
+        ) {
           const message =
             "hey! there is no information about your mood! Start chatting to get it";
           this.setState({ message, dailyMood: [], statusMood: null });
@@ -55,7 +60,7 @@ class Dashboard extends Component {
     return (
       <>
         <TopDiv>
-          <Name>Hi Nadia !</Name>
+          <Name>Hi {this.props.name} !</Name>
           <Welcome>It’s great to see you again</Welcome>
           {message && <Message>{message}</Message>}
           {statusMood && dailyMood && (
@@ -65,6 +70,7 @@ class Dashboard extends Component {
             </Message>
           )}
         </TopDiv>
+
         {statusMood && <Chart sections={statusMood} width={200} />}
         {dailyMood && (
           <DailyDiv>

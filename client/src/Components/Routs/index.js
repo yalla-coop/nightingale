@@ -38,7 +38,11 @@ export default function index(props) {
 
       <Route path="/" exact component={Landing} />
       <Route path="/home" exact component={Home} />
-      <Route path="/dashboard" exact component={Dashboard} />
+      <Route
+        path="/dashboard"
+        exact
+        render={Linkprops => <Dashboard {...props} {...Linkprops} />}
+      />
     </>
   );
 }
