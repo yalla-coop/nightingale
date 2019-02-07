@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Chart from "../../Common/Chart";
-import jwt_decode from "jwt-decode";
-import jsCookie from "js-cookie";
 import uuid from "uuid";
 import axios from "axios";
 import {
