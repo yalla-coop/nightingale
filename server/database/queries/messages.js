@@ -1,20 +1,11 @@
 const mongoos = require("mongoose");
-const Conversations = require("../models/Conversation");
+const Messages = require("../models/Message");
 
 module.exports = id => new Promise((resolve, reject) => {
-  Conversations.aggregate([
+  Messages.aggregate([
     {
       $match: {
-        user: mongoos.Types.ObjectId(id),
-      },
-    },
-    {
-      $lookup: {
-        from: "moods",
-        localField: "mood",
-        foreignField: "_id",
-        as: "mood",
-
+        conversation: mongoos.Types.ObjectId(id),
       },
     },
     {
@@ -55,7 +46,7 @@ module.exports = id => new Promise((resolve, reject) => {
 
         },
         date: {
-          $concat: [{ $substr: [{ $dayOfMonth: "$time" }, 0, -1] }, " ", {
+          $concat: [{ $toString: { $dayOfMonth: "$time" } }, " ", {
             $switch: {
               branches: [
                 { case: { $eq: [{ $month: "$time" }, 1] }, then: "Jan" },
@@ -75,7 +66,11 @@ module.exports = id => new Promise((resolve, reject) => {
             },
           }],
         },
-        mood: 1,
+        time: {
+          $dateToString: { format: "%H:%Z", date: "$time" },
+        },
+        sender: 1,
+        text: 1,
       },
     },
   ])
