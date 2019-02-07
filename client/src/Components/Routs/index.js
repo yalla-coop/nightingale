@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Route, Redirect, Switch } from "react-router-dom";
 
 import Header from "../Common/Header";
