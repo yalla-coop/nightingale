@@ -19,7 +19,8 @@ class Chat extends Component {
     botMessage: "",
     botQuickReply: [],
     userMessage: "",
-    conversation: []
+    conversation: [],
+    btnDisabled: false
   };
 
   // function to scroll to bottom of the page (dummy div called messagesEnd)
@@ -78,9 +79,19 @@ class Chat extends Component {
       user: "human"
     };
     this.setState({
-      conversation: [...this.state.conversation, msgHuman]
+      conversation: [...this.state.conversation, msgHuman],
+      btnDisabled: true
     });
+    // this.disabled();
+    // console.log(this.state.conversation.map(e => {
+    //   if(e.quickReply)
+    // }));
   };
+  // disableQuickButton = () => (this.btn.style = "display:none");
+  // disabled = () =>
+  //   this.state.btnDisabled
+  //     ? (this.btn.disabled = "disabled")
+  //     : (this.btn.disabled = "");
 
   handleSubmit = event => {
     event.preventDefault();
@@ -127,11 +138,19 @@ class Chat extends Component {
         </div>
       );
     };
+
     // function that renders quickReply button as speech bubble
     const QuickReplyChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
-          <button value={text} onClick={this.handleClick}>
+          <button
+            ref={el => {
+              this.btn = el;
+            }}
+            disabled=""
+            value={text}
+            onClick={this.handleClick}
+          >
             {text}
           </button>
         </div>
