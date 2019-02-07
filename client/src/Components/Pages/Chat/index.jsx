@@ -10,7 +10,6 @@ import axios from "axios";
 // import styles
 import "./index.css";
 import { ChatWindow, ConversationView, MessageBox, Form } from "./index.style";
-import { log } from "util";
 
 class Chat extends Component {
   // userMessage contains user input
@@ -18,6 +17,7 @@ class Chat extends Component {
   // conversation holds each message in conversation
   state = {
     botMessage: "",
+    botQuickReply: [],
     userMessage: "",
     conversation: []
   };
@@ -35,21 +35,26 @@ class Chat extends Component {
     });
     // listening for the bot-response event on the bot channel, event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
-    // const checkQuickReplies = array => {
-    //   if array[0]
-    // }
-    channel.bind("bot-response", data => {
-      console.log(data);
 
+    channel.bind("bot-response", data => {
       data.message.map(e => {
-        // setup bot response
         const botMsg = {
-          text: e.text.text[0],
+          text: null,
+          quickReply: null,
           user: "ai"
         };
+        //check if quickReply exists
+        if (e.message === "quickReplies") {
+          botMsg.quickReply = e.quickReplies.quickReplies;
+          botMsg.text = "";
+        } else {
+          botMsg.text = e.text.text[0];
+          botMsg.quickReply = [];
+        }
         // update state with every incoming bot response
         return this.setState({
           botMessage: botMsg.text,
+          botQuickReply: botMsg.quickReply,
           conversation: [...this.state.conversation, botMsg]
         });
       });
@@ -125,18 +130,15 @@ class Chat extends Component {
         </div>
       );
     };
-
     // loop over conversation array and create chatBubbles for human and bot
-
     const chat = this.state.conversation.map((e1, index) => {
       // if a quick reply comes from the server then render a button
-      if (e1.text[0].message === "quickReplies") {
-        return e1.text[0].quickReplies.quickReplies.map((e2, index) => {
-          return QuickReplyChatBubble(e2, index, e1.user);
+      if (e1.quickReply && e1.quickReply.length > 0) {
+        return e1.quickReply.map((e2, index) => {
+          return QuickReplyChatBubble(e2, index, "ai");
         });
-      } else {
-        return ChatBubble(e1.text, index, e1.user);
       }
+      return ChatBubble(e1.text, index, e1.user);
     });
     return (
       <div>
