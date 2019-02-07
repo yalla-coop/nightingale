@@ -39,8 +39,8 @@ class Chat extends Component {
     channel.bind("bot-response", data => {
       data.message.map(e => {
         const botMsg = {
-          text: null,
-          quickReply: null,
+          text: "",
+          quickReply: [],
           user: "ai"
         };
         //check if quickReply exists
@@ -67,13 +67,20 @@ class Chat extends Component {
   }
 
   // allows the displayed value to update as the user types
-  handlechange = event => {
+  handleChange = event => {
     this.setState({ userMessage: event.target.value });
   };
 
-  // handleClick = event => {
+  handleClick = event => {
+    const msgHuman = {
+      text: event.target.value,
+      user: "human"
+    };
 
-  // }
+    this.setState({
+      conversation: [...this.state.conversation, msgHuman]
+    });
+  };
 
   handleSubmit = event => {
     event.preventDefault();
@@ -124,8 +131,8 @@ class Chat extends Component {
     const QuickReplyChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
-          <button onClick={this.handleSubmit}>
-            <span className="chat-content">{text}</span>
+          <button value={text} onClick={this.handleClick}>
+            {text}
           </button>
         </div>
       );
@@ -148,7 +155,7 @@ class Chat extends Component {
             <Form onSubmit={this.handleSubmit}>
               <input
                 value={this.state.userMessage}
-                onInput={this.handlechange}
+                onInput={this.handleChange}
                 className="text-input"
                 type="text"
                 autoFocus
