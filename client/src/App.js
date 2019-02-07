@@ -12,8 +12,17 @@ class App extends Component {
   };
 
   handleChangeState = object => {
-    this.setState(object);
+    // store the incomming oject into state and store the new state inot loacal storage
+    this.setState(object, () => {
+      localStorage.setItem("AppState", JSON.stringify(this.state));
+    });
   };
+
+  componentDidMount() {
+    // get the App state from the loal storage
+    const AppState = localStorage.getItem("AppState");
+    this.setState(JSON.parse(AppState));
+  }
 
   render() {
     return (
@@ -22,7 +31,7 @@ class App extends Component {
           <>
             <Routes
               handleChangeState={this.handleChangeState}
-              isLogin={this.state.isLogin}
+              {...this.state}
             />
           </>
         </div>
