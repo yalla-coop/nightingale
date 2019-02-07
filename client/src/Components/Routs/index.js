@@ -7,6 +7,7 @@ import SignUp from "../Pages/SignUp";
 import Advice from "../Pages/Advice";
 
 import Landing from "../Pages/Landing";
+import Messages from "../Pages/ConversationMessages";
 import Home from "../Pages/Home";
 import Dashboard from "../Pages/Dashboard";
 import { Container } from "./index.style";
@@ -32,7 +33,8 @@ export default function index(props) {
             <SignUp {...props} handleChangeState={handleChangeState} />
           )}
         />
-        <Route exact path="/:id/conversations" component={Conversations} />
+        <Route exact path="/conversations" component={Conversations} />
+        <Route exact path="/conversations/:conversation" component={Messages} />
         <Route exact path="/advice" component={Advice} />
       </Container>
 

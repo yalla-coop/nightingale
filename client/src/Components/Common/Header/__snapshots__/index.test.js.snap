@@ -2,7 +2,7 @@
 
 exports[`Header renders correctly 1`] = `
 <header
-  className="sc-bdVaJa kTJBpN"
+  className="sc-bdVaJa gOUdBB"
 >
   <img
     alt="logo"
