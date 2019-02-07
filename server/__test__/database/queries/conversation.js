@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const buildDB = require("./../../../database/dummy_data/index");
 
 const User = require("./../../../database/models/User");
-const { getData } = require("../../../database/queries/conversation");
+const conversationQuery = require("../../../database/queries/conversation");
 
 describe("Tesing conversation query", () => {
   beforeAll(async () => {
@@ -22,7 +22,7 @@ describe("Tesing conversation query", () => {
   test("get conversations for dummy user", async () => {
     const user = await User.findOne();
     const userID = user._id;
-    await getData(userID).then((conversations) => {
+    await conversationQuery(userID).then((conversations) => {
       expect(conversations).toBeDefined();
       expect(conversations.length).toEqual(8);
     });
