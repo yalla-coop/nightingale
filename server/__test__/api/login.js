@@ -76,4 +76,14 @@ describe("Tesing for login API", () => {
         done();
       });
   });
+
+  test("server error handling", (done) => {
+    request(app)
+      .post("/api/user/login")
+      .expect(500)
+      .end((err, res) => {
+        expect(err).toBeTruthy();
+        done();
+      });
+  });
 });

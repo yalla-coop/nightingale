@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 
@@ -30,7 +31,7 @@ module.exports = async (req, res) => {
   const sessionClient = new dialogflow.SessionsClient(config);
 
   const projectId = "nightingale-456a9";
-  const sessionId = "12345";
+  const sessionId = "123456";
   const languageCode = "BCP-47 language code, e.g. en-US";
   const query = req.body.message;
   // Define session path
@@ -54,12 +55,15 @@ module.exports = async (req, res) => {
 
   // Send request and log result
   const responses = await sessionClient.detectIntent(request);
+
   console.log("Detected intent");
   console.log(responses[0].queryResult.intent);
 
   // store the user's text
   const result = responses[0].queryResult;
   console.log(`  Query: ${result.queryText}`);
+
+  console.log("SESSION:", request.session);
 
   // this will be req.user.id once authentication all set up
   // currently using dummy Id from local database

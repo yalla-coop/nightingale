@@ -1,14 +1,15 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect, Switch } from "react-router-dom";
 
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
-
 import SignUp from "../Pages/SignUp";
+import Advice from "../Pages/Advice";
 
 import Landing from "../Pages/Landing";
+import Messages from "../Pages/ConversationMessages";
 import Home from "../Pages/Home";
-
+import Dashboard from "../Pages/Dashboard";
 import { Container } from "./index.style";
 import Conversations from "../Pages/Conversations";
 import Chat from "../Pages/Chat";
@@ -19,32 +20,90 @@ export default function index(props) {
     <>
       {isLogin && <Header />}
       <Container>
-        <Route
-          exact
-          path="/login"
-          render={props => (
-            <Login {...props} handleChangeState={handleChangeState} />
+        <Switch>
+          {/* Private Routes Here */}
+          {isLogin && (
+            <Route
+              exact
+              path="/conversations"
+              render={RouteProps => (
+                <Conversations
+                  {...props}
+                  {...RouteProps}
+                  handleChangeState={handleChangeState}
+                />
+              )}
+            />
           )}
-        />
-        <Route
-          path="/signup"
-          exact
-          render={props => (
-            <SignUp {...props} handleChangeState={handleChangeState} />
+          {isLogin && <Route exact path="/advice" component={Advice} />}
+          {isLogin && (
+            <Route
+              exact
+              path="/conversations/:conversation"
+              component={Messages}
+            />
           )}
-        />
-        <Route exact path="/:id/conversations" component={Conversations} />
-        <Route
-          path="/chat"
-          exact
-          render={props => (
-            <Chat {...props} handleChangeState={handleChangeState} />
+          {isLogin && (
+            <Route
+              exact
+              path="/dashboard"
+              render={Linkprops => <Dashboard {...props} {...Linkprops} />}
+            />
           )}
-        />
-      </Container>
+          {isLogin && (
+            <Route
+              exact
+              path="/chat"
+              render={Linkprops => <Chat {...props} {...Linkprops} />}
+            />
+          )}
 
-      <Route path="/" exact component={Landing} />
-      <Route path="/home" exact component={Home} />
+          {/* Public Routes Here */}
+          <Route path="/home" exact component={Home} />
+
+          {/* Public Routes For Not Logged In Users Here */}
+          <Route
+            path="/"
+            exact
+            render={props =>
+              !isLogin ? (
+                <Landing {...props} handleChangeState={handleChangeState} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/login"
+            render={props =>
+              !isLogin ? (
+                <Login {...props} handleChangeState={handleChangeState} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
+          />
+          <Route
+            path="/signup"
+            exact
+            render={props =>
+              !isLogin ? (
+                <SignUp {...props} handleChangeState={handleChangeState} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
+          />
+
+          {/* 404 Error Page -need to be created */}
+          <Route component={A} />
+        </Switch>
+      </Container>
     </>
   );
+}
+
+function A() {
+  return <h1>Page Not Found</h1>;
 }

@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Header, Heading } from './index.style'
+import React, { Component } from "react";
+import { Header, Heading } from "./index.style";
 
 export default class Title extends Component {
   render() {

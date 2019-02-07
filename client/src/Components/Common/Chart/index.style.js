@@ -1,55 +1,52 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 export const PieChart = styled.div`
-        display: block;
-        width: 60%;
-        margin: 0 auto;
-`
+  display: block;
+  width: 60%;
+  clear: both;
+  overflow: hidden;
+  margin: 0 auto;
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+`;
 
 export const Header = styled.h4`
-    font-size: 20px;
-    color:#333333;
-    margin-top: 2rem;
-`
+  font-size: 20px;
+  color: #333333;
+  text-align: center;
+  margin-bottom: 1rem;
+`;
 
 export const Charts = styled.div`
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 2rem;
-    display: flex;
-    justify-content: space-between;
-`
+  margin-top: 3rem;
+  margin-left: 20rem;
+  @media (max-width: 768px) {
+    min-width: 50px;
+    margin-left: 0rem;
+  }
+`;
 
 export const Title = styled.div`
-    animation: up 0.5s ease-in 0.5s;
-    animation-fill-mode: both;
-    font-size: 13px;
-    color:#555555;
-
-
-  @keyframes up {
-    0% {
-      visibility: visible;
-      opacity: 0;
-      transform: translateY(1rem);
-    }
-    70% {
-      transform: translateY(-0.1rem);
-    }
-    100% {
-      opacity: 1;
-      transform: translate(0);
-    }
-`
-export const Decription = styled.span`
-    display: inline-block;
-    width: 30px;
-    height: 15px;
-    margin-right: 30px;
-`
+  animation: down 0.7s ease-in 0.5s;
+  animation-fill-mode: both;
+  font-size: 1rem;
+  padding-lift: 15px;
+  color: #555555;
+  justify-content: flex-start;
+  display: flex;
+  @media (max-width: 768px) {
+    font-size: 15px;
+  }
+`;
+export const Description = styled.span`
+  display: inline-block;
+  margin: 0px 12px 0px 15px;
+  font-size: 18px;
+`;
 export const Svg = styled.svg`
-    margin-top: 4rem;
-    animation: down 0.7s ease-in;
+  float: left;
+  animation: down 0.7s ease-in;
 
   @keyframes down {
     0% {
@@ -64,8 +61,8 @@ export const Svg = styled.svg`
       transform: translate(0);
     }
   }
-`
+`;
 
-export const Img = styled.img`
-
-`
+export const Count = styled.span`
+  font-size: 18px;
+`;

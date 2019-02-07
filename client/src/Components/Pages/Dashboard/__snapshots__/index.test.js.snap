@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard renders correctly 1`] = `
+Array [
+  <div
+    className="sc-gzVnrw iRVTRi"
+  >
+    <h1
+      className="sc-htoDjs louLhm"
+    >
+      Hi 
+       !
+    </h1>
+    <h2
+      className="sc-dnqmqq hTpVIo"
+    >
+      It’s great to see you again
+    </h2>
+    
+  </div>,
+  <div
+    className="sc-gZMcBi dJGste"
+  />,
+]
+`;
