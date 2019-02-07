@@ -55,7 +55,7 @@ exports.getData = id => new Promise((resolve, reject) => {
 
         },
         date: {
-          $concat: [{ $toString: { $dayOfMonth: "$time" } }, " ", {
+          $concat: [{ $convert: { input: { $dayOfMonth: "$time" }, to: "string" } }, " ", {
             $switch: {
               branches: [
                 { case: { $eq: [{ $month: "$time" }, 1] }, then: "Jan" },
