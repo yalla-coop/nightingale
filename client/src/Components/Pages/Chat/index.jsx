@@ -82,6 +82,8 @@ class Chat extends Component {
       conversation: [...this.state.conversation, msgHuman],
       btnDisabled: true
     });
+    // to be continued
+
     // this.disabled();
     // console.log(this.state.conversation.map(e => {
     //   if(e.quickReply)
@@ -174,7 +176,7 @@ class Chat extends Component {
             <Form onSubmit={this.handleSubmit}>
               <input
                 value={this.state.userMessage}
-                onInput={this.handleChange}
+                onChange={this.handleChange}
                 className="text-input"
                 type="text"
                 autoFocus
