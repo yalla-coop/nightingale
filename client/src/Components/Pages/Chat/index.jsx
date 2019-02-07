@@ -12,21 +12,25 @@ import "./index.css";
 import { ChatWindow, ConversationView, MessageBox, Form } from "./index.style";
 
 class Chat extends Component {
-  // userMessage contains user input
-  // botMessage contains dialogflow responses
-  // conversation holds each message in conversation
+  // STATE ---------------------------------------------------------------------------------------------
   state = {
     botMessage: "",
     botQuickReply: [],
     userMessage: "",
-    conversation: [],
-    btnDisabled: false
+    conversation: []
   };
+  // userMessage contains user input
+  // botQuickReply contains quick replies
+  // botMessage contains dialogflow bot responses
+  // conversation holds each message in conversation
 
-  // function to scroll to bottom of the page (dummy div called messagesEnd)
-  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
-  };
+  // creates Object to be used as Array for quick reply buttons
+  constructor(props) {
+    super(props);
+    this.btn = new Map();
+  }
+
+  // LIFECYCLE METHODS ---------------------------------------------------------------------------------------------
 
   componentDidMount() {
     // create new Pusher
@@ -34,25 +38,27 @@ class Chat extends Component {
       cluster: "eu",
       encrypted: true
     });
-    // listening for the bot-response event on the bot channel, event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
+    // listening for the bot-response event on the bot channel
+    // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
-
     channel.bind("bot-response", data => {
+      // loop over fullfilment-array and create message objects
       data.message.map(e => {
         const botMsg = {
           text: "",
           quickReply: [],
           user: "ai"
         };
-        //check if quickReply exists
+        //check if quickReply exist in array and update quick reply value
         if (e.message === "quickReplies") {
           botMsg.quickReply = e.quickReplies.quickReplies;
           botMsg.text = "";
         } else {
+          // if not only update bot response text
           botMsg.text = e.text.text[0];
           botMsg.quickReply = [];
         }
-        // update state with every incoming bot response
+        // update state (with every incoming bot response)
         return this.setState({
           botMessage: botMsg.text,
           botQuickReply: botMsg.quickReply,
@@ -62,43 +68,70 @@ class Chat extends Component {
     });
   }
 
-  // scroll to bottom every time the component updates
   componentDidUpdate() {
+    // scroll to bottom every time the component updates
     this.scrollToBottom();
   }
+
+  // FUNCTIONS ---------------------------------------------------------------------------------------------
+
+  // function to scroll to bottom of the page (target: dummy div called messagesEnd)
+  scrollToBottom = () => {
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
+  };
 
   // allows the displayed value to update as the user types
   handleChange = event => {
     this.setState({ userMessage: event.target.value });
   };
 
+  // 1) post request to pusher route for rendering
+  messageRender = async message =>
+    await axios.post("/api/bot/chat", { message });
+
+  // 2) post request to storage route
+  messageStorage = async message =>
+    await axios.post("/api/bot/messages", { message });
+
+  // creates array of quick reply buttons and disables them
+  disableQuickButtons = () => {
+    Array.from(this.btn.values())
+      .filter(btn => btn != null)
+      .forEach(btn => {
+        return (btn.disabled = "disabled");
+      });
+  };
+
   // handles user's click on quick reply buttons
   handleClick = event => {
+    event.preventDefault();
+    // sets button text to message value
     const msgHuman = {
       text: event.target.value,
       user: "human"
     };
+    // adds it to conversation
     this.setState({
-      conversation: [...this.state.conversation, msgHuman],
-      btnDisabled: true
+      conversation: [...this.state.conversation, msgHuman]
     });
-    // to be continued
+    let message = msgHuman.text;
 
-    // this.disabled();
-    // console.log(this.state.conversation.map(e => {
-    //   if(e.quickReply)
-    // }));
+    // fires post requests
+    axios
+      .all([this.messageRender(message), this.messageStorage(message)])
+      .then(result => console.log("received by server"))
+      .catch(err => console.log(err));
+
+    // after clicking quick reply button disable all existing buttons
+    this.disableQuickButtons();
   };
-  // disableQuickButton = () => (this.btn.style = "display:none");
-  // disabled = () =>
-  //   this.state.btnDisabled
-  //     ? (this.btn.disabled = "disabled")
-  //     : (this.btn.disabled = "");
 
-  handleSubmit = event => {
+  // handles submit after user hits enter
+  handleSubmit = async event => {
     event.preventDefault();
     // Remove whitespace from both sides of a string:
     if (!this.state.userMessage.trim()) return;
+
     // set up user message to be sent to backend
     const msgHuman = {
       text: this.state.userMessage,
@@ -109,30 +142,21 @@ class Chat extends Component {
       conversation: [...this.state.conversation, msgHuman]
     });
 
-    // 1) post request to pusher route for rendering
-    const messageRender = () =>
-      axios.post("/api/bot/chat", {
-        message: this.state.userMessage
-      });
+    let message = this.state.userMessage;
 
-    // 2) post request to storage route
-    const messageStorage = () =>
-      axios.post("/api/bot/messages", {
-        message: this.state.userMessage
-      });
-    // messageRender();
-
-    axios
-      .all([messageRender(), messageStorage()])
+    // post requests
+    await axios
+      .all([this.messageRender(message), this.messageStorage(message)])
       .then(result => console.log("received by server"))
       .catch(err => console.log(err));
 
-    // after POST requests, clearing the input field
+    // after POST requests, clear the input field
     this.setState({ userMessage: "" });
   };
 
+  // RENDER -------------------------------------------------------------------------------------------------------------------------------
   render() {
-    // function that renders text by human or ai (defined as className) as speech bubble
+    // function that renders text by human or bot (ai) (defined as className) as speech bubble
     const ChatBubble = (text, i, className) => {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
@@ -146,9 +170,7 @@ class Chat extends Component {
       return (
         <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
           <button
-            ref={el => {
-              this.btn = el;
-            }}
+            ref={el => this.btn.set(i, el)}
             disabled=""
             value={text}
             onClick={this.handleClick}
@@ -158,9 +180,10 @@ class Chat extends Component {
         </div>
       );
     };
+
     // loop over conversation array and create chatBubbles for human and bot
     const chat = this.state.conversation.map((e1, index) => {
-      // if a quick reply comes from the server then render a button
+      // if quick reply comes from the server then render a button and set it to user: bot
       if (e1.quickReply && e1.quickReply.length > 0) {
         return e1.quickReply.map((e2, index) => {
           return QuickReplyChatBubble(e2, index, "ai");
@@ -168,6 +191,7 @@ class Chat extends Component {
       }
       return ChatBubble(e1.text, index, e1.user);
     });
+
     return (
       <div>
         <ChatWindow>
