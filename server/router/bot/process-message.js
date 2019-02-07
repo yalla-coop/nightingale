@@ -53,7 +53,8 @@ const processMessage = (message, response) => {
       // console.log("ressss", result.parameters.fields);
       // check if queryResult and intent are defined
       if (result && result.intent) {
-        // syntax: channel.trigger(eventName, data);
+        // syntax: channel.trigger(eventName, data)
+        // send over array of fullfilment messages
         pusher.trigger("bot", "bot-response", {
           message: messageArr,
         });
