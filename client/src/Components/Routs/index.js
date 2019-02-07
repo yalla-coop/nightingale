@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 
 import Header from "../Common/Header";
 import Login from "../Pages/Login";
@@ -18,36 +18,67 @@ export default function index(props) {
     <>
       {isLogin && <Header />}
       <Container>
-        <Route
-          exact
-          path="/login"
-          render={props => (
-            <Login {...props} handleChangeState={handleChangeState} />
-          )}
-        />
-        <Route
-          path="/signup"
-          exact
-          render={props => (
-            <SignUp {...props} handleChangeState={handleChangeState} />
-          )}
-        />
-        <Route
-          exact
-          path="/:id/conversations"
-          render={RouteProps => (
-            <Conversations
-              {...props}
-              {...RouteProps}
-              handleChangeState={handleChangeState}
+        {/* Private Routes Here */}
+        {isLogin && (
+          <>
+            <Route
+              exact
+              path="/:id/conversations"
+              render={RouteProps => (
+                <Conversations
+                  {...props}
+                  {...RouteProps}
+                  handleChangeState={handleChangeState}
+                />
+              )}
             />
-          )}
-        />
-        <Route exact path="/advice" component={Advice} />
-      </Container>
+            <Route exact path="/advice" component={Advice} />
+          </>
+        )}
 
-      <Route path="/" exact component={Landing} />
-      <Route path="/home" exact component={Home} />
+        {/* Public Routes Here */}
+        <Route path="/home" exact component={Home} />
+
+        {/* Public Routes For Not Logged In Users Here */}
+        <>
+          <Route
+            path="/"
+            exact
+            render={props =>
+              !isLogin ? (
+                <Landing {...props} handleChangeState={handleChangeState} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/login"
+            render={props =>
+              !isLogin ? (
+                <Login {...props} handleChangeState={handleChangeState} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
+          />
+          <Route
+            path="/signup"
+            exact
+            render={props =>
+              !isLogin ? (
+                <SignUp {...props} handleChangeState={handleChangeState} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
+            }
+          />
+
+          {/* 404 Error Page -need to be created */}
+          <Route render={() => <h1>Page Not Found</h1>} />
+        </>
+      </Container>
     </>
   );
 }
