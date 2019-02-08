@@ -22,20 +22,19 @@ module.exports = async (req, res) => {
       // check if result comes back defined and includes intent
       if (result && result.intent) {
         // send over array of fullfilment messages via pusher
-        await pusher("bot", "bot-response", {
+        pusher("bot", "bot-response", {
           message: messageArr,
-        });
-        console.log("pusher hiiiii");
+        }).catch(err => console.log(err));
       } else {
         console.log("  No intent matched.");
       }
-      // if (result.sentimentAnalysisResult) {
-      //   console.log("Detected sentiment");
-      //   console.log(`  Score: ${result.sentimentAnalysisResult.queryTextSentiment.score}`);
-      //   console.log(`  Magnitude: ${result.sentimentAnalysisResult.queryTextSentiment.magnitude}`);
-      // } else {
-      //   console.log("No sentiment Analysis Found");
-      // }
+      if (result.sentimentAnalysisResult) {
+        console.log("Detected sentiment");
+        console.log(`  Score: ${result.sentimentAnalysisResult.queryTextSentiment.score}`);
+        console.log(`  Magnitude: ${result.sentimentAnalysisResult.queryTextSentiment.magnitude}`);
+      } else {
+        console.log("No sentiment Analysis Found");
+      }
       return res.sendStatus(200);
     })
     .catch(err => res.sendStatus(500));

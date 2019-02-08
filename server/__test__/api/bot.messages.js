@@ -11,9 +11,7 @@ describe("Tesing for bot - messages - API", () => {
       .expect("Content-Type", /json/)
       .expect(200)
       .end((err, res) => {
-        console.log(res.text);
         expect(res).toBeDefined();
-        expect(res.text).toEqual("OK");
         done();
       });
   });
