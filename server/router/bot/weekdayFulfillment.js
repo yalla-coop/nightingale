@@ -43,6 +43,20 @@ exports.finish = (agent) => {
   agent.add(new Suggestion("Finished"));
 };
 
+exports.newFinish = (agent) => {
+  const finish = agent.parameters.finished;
+  const userFinished = finish.length > 0;
+
+  if (userFinished) {
+    agent.add(new Text("Hopefully you feel better for doing that."));
+    agent.add(
+      new Text(
+        "Add any more thoughts you like and if you feel it is someting serious then never be afraid to talk to someone you trust",
+      ),
+    );
+  }
+};
+
 exports.dontlikeLesson = (agent) => {
   agent.add(new Text("What is it that you don't enjoy?"));
   agent.add(new Suggestion("It isn't interesting"));
