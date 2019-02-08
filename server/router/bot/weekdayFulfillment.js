@@ -27,7 +27,7 @@ exports.extraThoughts = (agent) => {
   const userFinished = finish.length > 0;
 
   if (userStarted && userFinished) {
-    finalOptions(agent);
+    // finalOptions(agent);
   } else if (userStarted && !userFinished) {
     agent.add(new Suggestion("Finished"));
   } else {
@@ -93,7 +93,7 @@ exports.newFinish = (agent) => {
         "Add any more thoughts you like below about this or anything else you like. And if you feel it is someting serious then never be afraid to talk to someone you trust",
       ),
     );
-    finalOptions(agent);
+    // finalOptions(agent);
   } else if (userStarted && !userFinished) {
     agent.add(new Suggestion("Finished"));
   } else {
