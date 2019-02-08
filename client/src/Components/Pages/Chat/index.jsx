@@ -16,6 +16,7 @@ class Chat extends Component {
   state = {
     botMessage: "",
     botQuickReply: [],
+    botCardReply: null,
     userMessage: "",
     conversation: []
   };
@@ -47,11 +48,16 @@ class Chat extends Component {
         const botMsg = {
           text: "",
           quickReply: [],
+          cardReply: null,
           user: "ai"
         };
         //check if quickReply exist in array and update quick reply value
         if (e.message === "quickReplies") {
           botMsg.quickReply = e.quickReplies.quickReplies;
+          botMsg.text = "";
+        } else if (e.message === "card") {
+          console.log("CARD REACHED");
+          botMsg.cardReply = e.card;
           botMsg.text = "";
         } else {
           // if not only update bot response text
@@ -63,6 +69,7 @@ class Chat extends Component {
         return this.setState({
           botMessage: botMsg.text,
           botQuickReply: botMsg.quickReply,
+          botCardReply: botMsg.cardReply,
           conversation: [...this.state.conversation, botMsg]
         });
       });
