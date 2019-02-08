@@ -44,16 +44,23 @@ exports.finish = (agent) => {
 };
 
 exports.newFinish = (agent) => {
+  const userInput = agent.parameters.any;
   const finish = agent.parameters.finished;
+  const userStarted = userInput.length > 0;
   const userFinished = finish.length > 0;
 
-  if (userFinished) {
+  if (userStarted && userFinished) {
     agent.add(new Text("Hopefully you feel better for doing that."));
     agent.add(
       new Text(
         "Add any more thoughts you like and if you feel it is someting serious then never be afraid to talk to someone you trust",
       ),
     );
+  } else if (userStarted && !userFinished) {
+    agent.add(new Suggestion("Finished"));
+  } else {
+    agent.add(new Text("You can type out how you feel below. Remember only you can see this..."))
+    agent.add(new Text("Whenever you're done, press the 'Finished' button"))
   }
 };
 
