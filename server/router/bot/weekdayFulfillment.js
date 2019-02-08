@@ -3,16 +3,40 @@ const {
 } = require("dialogflow-fulfillment");
 
 const finalOptions = (agent) => {
-  const card = new Card({
-    title: "Thanks for sharing!",
-    text:
-      "Keep adding thoughts about your day by typing below or check out the Advice section for useful articles and resources.",
-  });
-  card.setButton({
-    text: "View Advice",
-    url: "/advice",
-  });
-  agent.add(card);
+  // const card = new Card({
+  //   title: "Thanks for sharing!",
+  //   text:
+  //     "Keep adding thoughts about your day by typing below or check out the Advice section for useful articles and resources.",
+  // });
+  // card.setButton({
+  //   text: "View Advice",
+  //   url: "/advice",
+  // });
+  // agent.add(card);
+
+  agent.add(new Text("Thanks for sharing! I hope it was helpful. What would you like to do now?"));
+  agent.add(new Suggestion("View Advice"));
+  agent.add(new Suggestion("View previous conversations"));
+  agent.add(new Suggestion("Add more thoughts"));
+};
+
+exports.extraThoughts = (agent) => {
+  const userInput = agent.parameters.any;
+  const finish = agent.parameters.finished;
+  const userStarted = userInput.length > 0;
+  const userFinished = finish.length > 0;
+
+  if (userStarted && userFinished) {
+    finalOptions(agent);
+  } else if (userStarted && !userFinished) {
+    agent.add(new Suggestion("Finished"));
+  } else {
+    agent.add(
+      new Text(
+        "Cool. Write about anything you like below. When you're done, select the 'Finished' button.",
+      ),
+    );
+  }
 };
 
 exports.mood = (agent) => {
