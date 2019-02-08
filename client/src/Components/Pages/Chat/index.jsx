@@ -42,6 +42,8 @@ class Chat extends Component {
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
     channel.bind("bot-response", data => {
+      console.log("mount message ", data.message[0].text.text);
+
       // loop over fullfilment-array and create message objects
       data.message.map(e => {
         const botMsg = {
@@ -58,6 +60,7 @@ class Chat extends Component {
           botMsg.text = e.text.text[0];
           botMsg.quickReply = [];
         }
+
         // update state (with every incoming bot response)
         return this.setState({
           botMessage: botMsg.text,
@@ -143,11 +146,19 @@ class Chat extends Component {
     });
 
     let message = this.state.userMessage;
+    console.log("userMsg  ", this.state.userMessage);
+    console.log("botMsg  ", this.state.botMessage);
+    console.log("conversation ", this.state.conversation);
 
     // post requests
     await axios
       .all([this.messageRender(message), this.messageStorage(message)])
-      .then(result => console.log("received by server"))
+      .then(result => {
+        console.log(
+          "array to be stored   ",
+          result[1].data[0].queryResult.fulfillmentMessages[0].text.text
+        );
+      })
       .catch(err => console.log(err));
 
     // after POST requests, clear the input field

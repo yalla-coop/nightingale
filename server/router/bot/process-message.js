@@ -47,6 +47,7 @@ const processMessage = (message, response) => {
   sessionClient
     .detectIntent(request)
     .then((responses) => {
+      // console.log("response from dialogflow in process ", responses);
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
 
