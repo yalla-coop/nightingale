@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 
 // creates sessionClient, detects intend and sends response
+
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 
@@ -28,10 +29,10 @@ module.exports = query => new Promise((resolve, reject) => {
   // Instantiate a DialogFlow client.
   const sessionClient = new dialogflow.SessionsClient(config);
 
-  const projectId = "nightingale-456a9";
+  const projectId = config.credentials.project_id;
   const sessionId = "123456";
   const languageCode = "BCP-47 language code, e.g. en-US";
-  // const query = req.body.message;
+
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
@@ -53,8 +54,6 @@ module.exports = query => new Promise((resolve, reject) => {
 
   // Send request and log result
   const responses = sessionClient.detectIntent(request);
-
-  // console.log("response from dialogflow in store msg", responses);
 
   resolve(responses);
 });
