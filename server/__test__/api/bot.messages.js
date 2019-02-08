@@ -12,6 +12,7 @@ describe("Tesing for bot - messages - API", () => {
       .expect(200)
       .end((err, res) => {
         expect(res).toBeDefined();
+        expect(res.text).toEqual("OK");
         done();
       });
   });
@@ -20,6 +21,16 @@ describe("Tesing for bot - messages - API", () => {
     request(app)
       .post("/api/bot/messages")
       .send(data)
+      .expect(500)
+      .end((err, res) => {
+        expect(res.error).toBeDefined();
+        done();
+      });
+  });
+  test("Test with no data", (done) => {
+    request(app)
+      .post("/api/bot/messages")
+      .send()
       .expect(500)
       .end((err, res) => {
         expect(res.error).toBeDefined();
