@@ -4,10 +4,7 @@ const app = require("./../../app");
 
 describe("Tesing for bot - messages - API", () => {
   test("Test with valid message", (done) => {
-    const data = {
-      message: "Hi",
-    };
-
+    const data = { message: "hi" };
     request(app)
       .post("/api/bot/messages")
       .send(data)
@@ -15,8 +12,27 @@ describe("Tesing for bot - messages - API", () => {
       .expect(200)
       .end((err, res) => {
         expect(res).toBeDefined();
-        expect(res.body).toBeDefined();
-        expect(res.body[0].queryResult).toBeDefined();
+        done();
+      });
+  });
+  test("Test with invalid message", (done) => {
+    const data = "anything";
+    request(app)
+      .post("/api/bot/messages")
+      .send(data)
+      .expect(500)
+      .end((err, res) => {
+        expect(res.error).toBeDefined();
+        done();
+      });
+  });
+  test("Test with no data", (done) => {
+    request(app)
+      .post("/api/bot/messages")
+      .send()
+      .expect(500)
+      .end((err, res) => {
+        expect(res.error).toBeDefined();
         done();
       });
   });

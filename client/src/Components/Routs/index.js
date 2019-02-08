@@ -12,6 +12,7 @@ import Home from "../Pages/Home";
 import Dashboard from "../Pages/Dashboard";
 import { Container } from "./index.style";
 import Conversations from "../Pages/Conversations";
+import Chat from "../Pages/Chat";
 
 export default function index(props) {
   const { handleChangeState, isLogin } = props;
@@ -47,6 +48,13 @@ export default function index(props) {
               exact
               path="/dashboard"
               render={Linkprops => <Dashboard {...props} {...Linkprops} />}
+            />
+          )}
+          {isLogin && (
+            <Route
+              exact
+              path="/chat"
+              render={Linkprops => <Chat {...props} {...Linkprops} />}
             />
           )}
 
