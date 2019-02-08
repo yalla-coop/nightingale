@@ -139,6 +139,7 @@ class Chat extends Component {
     });
 
     let message = this.state.userMessage;
+    console.log(message);
 
     // post request
     this.messagetoBackEnd(message)
