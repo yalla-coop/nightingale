@@ -118,7 +118,7 @@ module.exports = (req, res) => {
     intentMap.set("Bullied-Talk-Yes - fallback", weekday.finish);
     intentMap.set("Work-Issue-Talk - Fallback", weekday.finish);
     intentMap.set("Friend-Issue-Talk - fallback", weekday.finish);
-    intentMap.set("General-Other-Talk - fallback", weekday.newFinish);
+    intentMap.set("General-Other - yes", weekday.newFinish);
     agent.handleRequest(intentMap);
   }
 };
