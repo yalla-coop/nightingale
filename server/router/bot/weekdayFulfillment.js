@@ -2,30 +2,22 @@ const {
   WebhookClient, Suggestion, Payload, Card, Text,
 } = require("dialogflow-fulfillment");
 
-// list end of conversation options
-// const finalText = new Text(
-//   "Thanks for sharing! I hope it was helpful. What would you like to do now?",
-// );
-// const viewAdvice = new Suggestion("View Advice");
-// const prevConvs = new Suggestion("View previous conversations");
-// const addThoughts = new Suggestion("Add more thoughts");
-
 const finalOptions = (agent) => {
-  // const card = new Card({
-  //   title: "Thanks for sharing!",
-  //   text:
-  //     "Keep adding thoughts about your day by typing below or check out the Advice section for useful articles and resources.",
-  // });
-  // card.setButton({
-  //   text: "View Advice",
-  //   url: "/advice",
-  // });
-  // agent.add(card);
+  const adviceCard = new Card({
+    title: "View Advice",
+    text: "Check out useful articles and resources",
+  });
+  adviceCard.setButton({ text: "Select", url: "/advice" });
+  const convCard = new Card({
+    title: "Previous Conversations",
+    text: "Read previous conversations we've had to reflect on how you've been feeling",
+  });
+  convCard.setButton({ text: "Select", url: "/conversations" });
 
   agent.add(new Text("Thanks for sharing! I hope it was helpful. What would you like to do now?"));
-  agent.add(new Suggestion("View Advice"));
-  agent.add(new Suggestion("View previous conversations"));
   agent.add(new Suggestion("Add more thoughts"));
+  agent.add(adviceCard);
+  agent.add(convCard);
 };
 
 exports.extraThoughts = (agent) => {
@@ -35,7 +27,7 @@ exports.extraThoughts = (agent) => {
   const userFinished = finish.length > 0;
 
   if (userStarted && userFinished) {
-    // finalOptions(agent);
+    finalOptions(agent);
   } else if (userStarted && !userFinished) {
     agent.add(new Suggestion("Finished"));
   } else {
@@ -98,7 +90,7 @@ exports.newFinish = (agent) => {
     agent.add(new Text("Hopefully you feel better for doing that."));
     agent.add(
       new Text(
-        "Add any more thoughts you like below about this or anything else you like. And if you feel it is someting serious then never be afraid to talk to someone you trust",
+        "And if you feel it is something serious then never be afraid to talk to someone you trust",
       ),
     );
     finalOptions(agent);
