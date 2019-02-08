@@ -10,7 +10,7 @@ const storeMessages = require("./storeMessages");
 module.exports = async (req, res) => {
   // create responses object
   await dialogflowResponse(req.body.message)
-    .then((responses) => {
+    .then(async (responses) => {
       // grab the important stuff
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
@@ -22,7 +22,7 @@ module.exports = async (req, res) => {
       // check if result comes back defined and includes intent
       if (result && result.intent) {
         // send over array of fullfilment messages via pusher
-        pusher("bot", "bot-response", {
+        await pusher("bot", "bot-response", {
           message: messageArr,
         });
       } else {
