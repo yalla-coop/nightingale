@@ -20,7 +20,7 @@ exports[`SignUp must match the snapshots renders correctly 1`] = `
       className="sc-bdVaJa khUSez"
     >
       <h1
-        className="sc-bwzfXH dtARpq"
+        className="sc-bwzfXH gRYOTU"
       >
         Sign Up
       </h1>
