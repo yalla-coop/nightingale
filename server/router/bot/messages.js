@@ -10,7 +10,7 @@ const storeMessages = require("./storeMessages");
 module.exports = async (req, res) => {
   // create responses object
   await dialogflowResponse(req.body.message)
-    .then(async (responses) => {
+    .then((responses) => {
       // grab the important stuff
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
