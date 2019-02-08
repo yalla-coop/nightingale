@@ -2,6 +2,14 @@ const {
   WebhookClient, Suggestion, Payload, Card, Text,
 } = require("dialogflow-fulfillment");
 
+// list end of conversation options
+// const finalText = new Text(
+//   "Thanks for sharing! I hope it was helpful. What would you like to do now?",
+// );
+// const viewAdvice = new Suggestion("View Advice");
+// const prevConvs = new Suggestion("View previous conversations");
+// const addThoughts = new Suggestion("Add more thoughts");
+
 const finalOptions = (agent) => {
   // const card = new Card({
   //   title: "Thanks for sharing!",
@@ -93,7 +101,7 @@ exports.newFinish = (agent) => {
         "Add any more thoughts you like below about this or anything else you like. And if you feel it is someting serious then never be afraid to talk to someone you trust",
       ),
     );
-    // finalOptions(agent);
+    finalOptions(agent);
   } else if (userStarted && !userFinished) {
     agent.add(new Suggestion("Finished"));
   } else {
@@ -135,5 +143,3 @@ exports.pressure = (agent) => {
   agent.add(new Suggestion("Other students"));
   agent.add(new Suggestion("Other"));
 };
-
-module.exports = { finalOptions };
