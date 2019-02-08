@@ -1,11 +1,8 @@
 /* eslint-disable camelcase */
-// Imports the Dialogflow client library
 
-// load dialogflowClient
+// Import dialogflowClient and pusher library
 const Pusher = require("pusher");
 const dialogflowResponse = require("./dialogflowSessionClient");
-
-// load pusher
 
 // load database requests
 const storeUserMsg = require("../../database/queries/storeUserMsg");
@@ -22,13 +19,15 @@ module.exports = async (req, res) => {
     encrypted: true,
   });
 
-  // store the user's text
-  const responses = await dialogflowResponse(req.body.message);
+  // create responses object
+  const responses = await dialogflowResponse(req.body.message).catch(err => console.log(err));
 
+  // grab the important stuff
   const result = responses[0].queryResult;
   const messageArr = result.fulfillmentMessages;
 
   // STORAGE ----------------------------------------------------------------------------
+
   // this will be req.user.id once authentication all set up
   // currently using dummy Id from local database
   const dummyId = "5c5d271d34973405d0307df4";
@@ -37,20 +36,19 @@ module.exports = async (req, res) => {
   const conversationId = await checkConversation(dummyId).catch(err => console.log("conversationID error", err));
 
   // store the user's text
-  storeUserMsg(result.queryText, conversationId)
+  await storeUserMsg(result.queryText, conversationId)
     .then(msgResult => console.log("message stored", msgResult))
     .catch(err => console.log("message storage error", err));
 
   // store the bot's text
-  storeBotMsg(result.fulfillmentMessages, conversationId)
+  await storeBotMsg(result.fulfillmentMessages, conversationId)
     .then(msgResult => console.log("bot message storred", msgResult))
     .catch(err => console.log("bot message storage error", err));
 
   // RENDER-----------------------------------------------------------------------------
-
+  // check if result comes back defined and includes intent
   if (result && result.intent) {
-    // syntax: channel.trigger(eventName, data)
-    // send over array of fullfilment messages
+    // send over array of fullfilment messages via pusher
     await pusher.trigger("bot", "bot-response", {
       message: messageArr,
     });

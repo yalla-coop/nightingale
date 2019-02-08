@@ -8,8 +8,6 @@ const storeBotMsg = (messages, conversationId) => new Promise((resolve, reject) 
   const textMessages = messages.filter(message => message.message === "text");
 
   textMessages.map((message) => {
-    console.log("querrryyyy   ", message.text.text);
-
     const newMessage = new Message({
       conversation: conversationId,
       text: message.text.text,
