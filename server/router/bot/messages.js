@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 
-// Import dialogflowClient and pusher library
-const Pusher = require("pusher");
+// Import dialogflowClient and pusherClient
+const pusher = require("./pusherSessionClient");
 const dialogflowResponse = require("./dialogflowSessionClient");
 
 // load database requests
@@ -10,18 +10,8 @@ const storeBotMsg = require("../../database/queries/storeBotMsg");
 const checkConversation = require("../../database/queries/checkConversation");
 
 module.exports = async (req, res) => {
-  // setup pusher config
-  const pusher = new Pusher({
-    appId: process.env.PUSHER_APP_ID,
-    key: process.env.PUSHER_APP_KEY,
-    secret: process.env.PUSHER_APP_SECRET,
-    cluster: process.env.PUSHER_APP_CLUSTER,
-    encrypted: true,
-  });
-
   // create responses object
   const responses = await dialogflowResponse(req.body.message).catch(err => console.log(err));
-
   // grab the important stuff
   const result = responses[0].queryResult;
   const messageArr = result.fulfillmentMessages;
@@ -49,7 +39,7 @@ module.exports = async (req, res) => {
   // check if result comes back defined and includes intent
   if (result && result.intent) {
     // send over array of fullfilment messages via pusher
-    await pusher.trigger("bot", "bot-response", {
+    await pusher("bot", "bot-response", {
       message: messageArr,
     });
   } else {
