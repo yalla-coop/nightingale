@@ -2,6 +2,19 @@ const {
   WebhookClient, Suggestion, Payload, Card, Text,
 } = require("dialogflow-fulfillment");
 
+const finalOptions = (agent) => {
+  const card = new Card({
+    title: "Thanks for sharing!",
+    text:
+      "Keep adding thoughts about your day by typing below or check out the Advice section for useful articles and resources.",
+  });
+  card.setButton({
+    text: "View Advice",
+    url: "/advice",
+  });
+  agent.add(card);
+};
+
 exports.mood = (agent) => {
   agent.add(new Text("Hi! 👋"));
   agent.add(new Text("How was your school day?"));
@@ -53,14 +66,15 @@ exports.newFinish = (agent) => {
     agent.add(new Text("Hopefully you feel better for doing that."));
     agent.add(
       new Text(
-        "Add any more thoughts you like and if you feel it is someting serious then never be afraid to talk to someone you trust",
+        "Add any more thoughts you like below about this or anything else you like. And if you feel it is someting serious then never be afraid to talk to someone you trust",
       ),
     );
+    finalOptions(agent);
   } else if (userStarted && !userFinished) {
     agent.add(new Suggestion("Finished"));
   } else {
-    agent.add(new Text("You can type out how you feel below. Remember only you can see this..."))
-    agent.add(new Text("Whenever you're done, press the 'Finished' button"))
+    agent.add(new Text("You can type out how you feel below. Remember only you can see this..."));
+    agent.add(new Text("Whenever you're done, press the 'Finished' button"));
   }
 };
 
@@ -97,3 +111,5 @@ exports.pressure = (agent) => {
   agent.add(new Suggestion("Other students"));
   agent.add(new Suggestion("Other"));
 };
+
+module.exports = { finalOptions };
