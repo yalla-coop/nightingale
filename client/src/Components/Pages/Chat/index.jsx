@@ -42,8 +42,6 @@ class Chat extends Component {
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
     channel.bind("bot-response", data => {
-      console.log(data);
-
       // loop over fullfilment-array and create message objects
       data.message.map(e => {
         const botMsg = {
