@@ -42,7 +42,7 @@ class Chat extends Component {
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
     channel.bind("bot-response", data => {
-      console.log("mount message ", data.message[0].text.text);
+      console.log(data);
 
       // loop over fullfilment-array and create message objects
       data.message.map(e => {
@@ -88,11 +88,7 @@ class Chat extends Component {
     this.setState({ userMessage: event.target.value });
   };
 
-  // 1) post request to pusher route for rendering
-  // messageRender = async message =>
-  //   await axios.post("/api/bot/chat", { message });
-
-  // 2) post request to backend
+  // post request to backend for storage and rendering
   messagetoBackEnd = async message =>
     await axios.post("/api/bot/messages", { message });
 
@@ -119,14 +115,10 @@ class Chat extends Component {
     });
     let message = msgHuman.text;
 
-    // fires post requests
+    // fires post request
     this.messagetoBackEnd(message)
       .then(result => console.log("received by server"))
       .catch(err => console.log(err));
-    // axios
-    //   .all([this.messageRender(message), this.messageStorage(message)])
-    //   .then(result => console.log("received by server"))
-    //   .catch(err => console.log(err));
 
     // after clicking quick reply button disable all existing buttons
     this.disableQuickButtons();
@@ -149,23 +141,11 @@ class Chat extends Component {
     });
 
     let message = this.state.userMessage;
-    console.log("userMsg  ", this.state.userMessage);
-    console.log("botMsg  ", this.state.botMessage);
-    console.log("conversation ", this.state.conversation);
 
-    // post requests
+    // post request
     this.messagetoBackEnd(message)
       .then(result => console.log("received by server"))
       .catch(err => console.log(err));
-    // await axios
-    //   .all([this.messageRender(message), this.messageStorage(message)])
-    //   .then(result => {
-    //     console.log(
-    //       "array to be stored   ",
-    //       result[1].data[0].queryResult.fulfillmentMessages[0].text.text
-    //     );
-    //   })
-    //   .catch(err => console.log(err));
 
     // after POST requests, clear the input field
     this.setState({ userMessage: "" });

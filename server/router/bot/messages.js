@@ -31,10 +31,14 @@ module.exports = async (req, res) => {
     .catch(err => console.log("message storage error", err));
 
   // store the bot's text
-  await storeBotMsg(result.fulfillmentMessages, conversationId)
-    .then(msgResult => console.log("bot message storred", msgResult))
-    .catch(err => console.log("bot message storage error", err));
-
+  // check if text response is defined (we dont want to store quick reply options just the answers)
+  if (messageArr[0].text) {
+    await storeBotMsg(messageArr, conversationId)
+      .then(msgResult => console.log("bot message storred", msgResult))
+      .catch(err => console.log("bot message storage error", err));
+  } else {
+    console.log("error storing bot message");
+  }
   // RENDER-----------------------------------------------------------------------------
   // check if result comes back defined and includes intent
   if (result && result.intent) {
