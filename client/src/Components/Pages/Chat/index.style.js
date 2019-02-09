@@ -24,3 +24,23 @@ export const Form = styled.form`
     padding: 5px;
   }
 `;
+
+export const ReplyButton = styled.button.attrs({})`
+  background: rgba(248, 248, 248, 0.82);
+  border: none;
+  padding: 0.5rem;
+  width: 70%;
+  color: #925de5;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.1s;
+  cursor: pointer;
+
+  :hover {
+    transform: translateX(-3px);
+  }
+
+  :active {
+    transform: translateX(3px);
+  }
+`;

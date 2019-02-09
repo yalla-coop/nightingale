@@ -9,7 +9,13 @@ import axios from "axios";
 
 // import styles
 import "./index.css";
-import { ChatWindow, ConversationView, MessageBox, Form } from "./index.style";
+import {
+  ReplyButton,
+  ChatWindow,
+  ConversationView,
+  MessageBox,
+  Form
+} from "./index.style";
 
 class Chat extends Component {
   // STATE ---------------------------------------------------------------------------------------------
@@ -171,15 +177,32 @@ class Chat extends Component {
     // function that renders quickReply button as speech bubble
     const QuickReplyChatBubble = (text, i, className) => {
       return (
-        <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
-          <button
+        <div
+          key={`${className}-${i}`}
+          className={`${className} chat-bubble quickReply`}
+        >
+          <ReplyButton
             ref={el => this.btn.set(i, el)}
             disabled=""
             value={text}
             onClick={this.handleClick}
           >
             {text}
-          </button>
+          </ReplyButton>
+        </div>
+      );
+    };
+
+    // function that renders cardReply as a card style speech bubble
+    const CardReplyBubble = card => {
+      return (
+        <div>
+          {card.imgUri && <img src={card.imgUri} alt="card" />}
+          {card.title && <h4>{card.title}</h4>}
+          {card.subtitle && <p>{card.subtitle}</p>}
+          {card.buttons && (
+            <a href={card.buttons[0].postback}>{card.buttons[0].text}</a>
+          )}
         </div>
       );
     };
@@ -191,6 +214,8 @@ class Chat extends Component {
         return e1.quickReply.map((e2, index) => {
           return QuickReplyChatBubble(e2, index, "ai");
         });
+      } else if (e1.cardReply) {
+        return CardReplyBubble(e1.cardReply);
       }
       return ChatBubble(e1.text, index, e1.user);
     });
