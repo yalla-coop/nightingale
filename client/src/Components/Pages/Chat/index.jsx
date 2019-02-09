@@ -108,7 +108,8 @@ class Chat extends Component {
     Array.from(this.btn.values())
       .filter(btn => btn != null)
       .forEach(btn => {
-        return (btn.disabled = "disabled");
+        btn.style.display = "none";
+        btn.disabled = "disabled";
       });
   };
 
