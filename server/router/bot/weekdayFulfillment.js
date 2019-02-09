@@ -1,6 +1,6 @@
-const {
-  WebhookClient, Suggestion, Payload, Card, Text,
-} = require("dialogflow-fulfillment");
+// bespoke fulfillment requests for the weekday flow
+
+const { Suggestion, Card, Text } = require("dialogflow-fulfillment");
 
 const finalOptions = (agent) => {
   const adviceCard = new Card({
@@ -14,7 +14,7 @@ const finalOptions = (agent) => {
   });
   convCard.setButton({ text: "Select", url: "/conversations" });
 
-  agent.add(new Text("Thanks for sharing! I hope it was helpful. What would you like to do now?"));
+  agent.add(new Text("Thanks for chatting. I hope it was helpful. What would you like to do now?"));
   agent.add(new Suggestion("Add more thoughts"));
   agent.add(adviceCard);
   agent.add(convCard);
@@ -76,32 +76,6 @@ exports.negative = (agent) => {
   agent.add(new Suggestion("Other"));
 };
 
-exports.finish = (agent) => {
-  agent.add(new Suggestion("Finished"));
-};
-
-exports.newFinish = (agent) => {
-  const userInput = agent.parameters.any;
-  const finish = agent.parameters.finished;
-  const userStarted = userInput.length > 0;
-  const userFinished = finish.length > 0;
-
-  if (userStarted && userFinished) {
-    agent.add(new Text("Hopefully you feel better for doing that."));
-    agent.add(
-      new Text(
-        "And if you feel it is something serious then never be afraid to talk to someone you trust",
-      ),
-    );
-    finalOptions(agent);
-  } else if (userStarted && !userFinished) {
-    agent.add(new Suggestion("Finished"));
-  } else {
-    agent.add(new Text("You can type out how you feel below. Remember only you can see this..."));
-    agent.add(new Text("Whenever you're done, press the 'Finished' button"));
-  }
-};
-
 exports.dontlikeLesson = (agent) => {
   agent.add(new Text("What is it that you don't enjoy?"));
   agent.add(new Suggestion("It isn't interesting"));
@@ -134,4 +108,159 @@ exports.pressure = (agent) => {
   agent.add(new Suggestion("Exams"));
   agent.add(new Suggestion("Other students"));
   agent.add(new Suggestion("Other"));
+};
+
+exports.funTime = (agent) => {
+  agent.add(new Text("Awesome - make sure you keep having fun!"));
+  agent.add(
+    new Text(
+      "Remember you can write down your thoughts on anything you want... it's a good practice to get into!",
+    ),
+  );
+  finalOptions(agent);
+};
+
+exports.tryHardNo = (agent) => {
+  agent.add(new Text("If you tried hard you could do so well and you'd feel great about it!"));
+  agent.add(new Text("Maybe think about it for next time 😛"));
+  agent.add(
+    new Text(
+      "Feel free to write down your thoughts about anything else that's going on... it can help clear your head!",
+    ),
+  );
+  finalOptions(agent);
+};
+
+exports.tryHardYes = (agent) => {
+  agent.add(new Text("Hard work pays! 🙌"));
+  agent.add(new Text("Great you got your rewards. Keep up the good work!"));
+  agent.add(
+    new Text(
+      "Feel free to write down your thoughts about anything else that's going on... it can help clear your head!",
+    ),
+  );
+  finalOptions(agent);
+};
+
+exports.lessonUninteresting = (agent) => {
+  agent.add(new Text("Sorry to hear that, it's rare to find every lesson interesting."));
+  agent.add(
+    new Text(
+      "I'd suggest that you speak to your form tutor or teacher about this. They might be able to help you find it interesting.",
+    ),
+  );
+  agent.add(
+    new Text(
+      "Feel free though to add any more thoughts about it or anything else here. Writing down your thoughts is a good practice to get into.",
+    ),
+  );
+  finalOptions(agent);
+};
+
+exports.lessonDifficult = (agent) => {
+  agent.add(new Text("That's tough. It's hard to enjoy a difficult subject."));
+  agent.add(
+    new Text(
+      "I'd suggest that you speak to your form tutor or teacher about this. Trust me it will really help you out.",
+    ),
+  );
+  agent.add(
+    new Text(
+      "And feel free to add any more thoughts here about it or anything else. It's good practice.",
+    ),
+  );
+  finalOptions(agent);
+};
+
+exports.friendsNotThere = (agent) => {
+  agent.add(new Text("That's not ideal... if it's really troubling you then you should speak to your teacher or form tutor."));
+  agent.add(
+    new Text(
+      "I'm sure you could make friends with one person in that class, these things take time!",
+    ),
+  );
+  agent.add(
+    new Text(
+      "If you want to write down your thoughts about this then please do. I know this can be difficult.",
+    ),
+  );
+  finalOptions(agent);
+};
+
+// bespoke fulfillments if they want to talk
+
+exports.finish = (agent) => {
+  agent.add(new Suggestion("Finished"));
+};
+
+exports.negativeFinish = (agent) => {
+  const userInput = agent.parameters.any;
+  const finish = agent.parameters.finished;
+  const userStarted = userInput.length > 0;
+  const userFinished = finish.length > 0;
+
+  if (userStarted && userFinished) {
+    agent.add(new Text("Hopefully you feel better for doing that."));
+    agent.add(
+      new Text(
+        "And if you feel it is something serious then never be afraid to talk to someone you trust",
+      ),
+    );
+    finalOptions(agent);
+  } else if (userStarted && !userFinished) {
+    agent.add(new Suggestion("Finished"));
+  } else {
+    agent.add(new Text("You can type out how you feel below. Remember only you can see this..."));
+    agent.add(new Text("Whenever you're done, press the 'Finished' button"));
+  }
+};
+
+exports.neutralFinish = (agent) => {
+  const userInput = agent.parameters.any;
+  const finish = agent.parameters.finished;
+  const userStarted = userInput.length > 0;
+  const userFinished = finish.length > 0;
+
+  if (userStarted && userFinished) {
+    finalOptions(agent);
+  } else if (userStarted && !userFinished) {
+    agent.add(new Suggestion("Finished"));
+  } else {
+    agent.add(new Text("Great, go for it! And remember, only you can see this..."));
+    agent.add(new Text("Whenever you're done, press the 'Finished' button"));
+  }
+};
+
+exports.positiveFinish = (agent) => {
+  const userInput = agent.parameters.any;
+  const finish = agent.parameters.finished;
+  const userStarted = userInput.length > 0;
+  const userFinished = finish.length > 0;
+
+  if (userStarted && userFinished) {
+    finalOptions(agent);
+  } else if (userStarted && !userFinished) {
+    agent.add(new Suggestion("Finished"));
+  } else {
+    agent.add(new Text("Cool! Let loose! And remember, only you can see this..."));
+    agent.add(new Text("Whenever you're done, press the 'Finished' button"));
+  }
+};
+
+exports.negativeFinish = (agent) => {
+  const userInput = agent.parameters.any;
+  const finish = agent.parameters.finished;
+  const userStarted = userInput.length > 0;
+  const userFinished = finish.length > 0;
+
+  if (userStarted && userFinished) {
+    finalOptions(agent);
+  } else if (userStarted && !userFinished) {
+    agent.add(new Suggestion("Finished"));
+  } else {
+    agent.add(
+      new Text("OK. You can type out what happened below. And remember, only you can see this..."),
+    );
+    agent.add(new Text("Whenever you're done, press the 'Finished' button"));
+  }
 };
