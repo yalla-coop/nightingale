@@ -11,6 +11,7 @@ import axios from "axios";
 import "./index.css";
 import {
   ReplyButton,
+  CardReply,
   ChatWindow,
   ConversationView,
   MessageBox,
@@ -195,15 +196,21 @@ class Chat extends Component {
     };
 
     // function that renders cardReply as a card style speech bubble
-    const CardReplyBubble = card => {
+    const CardReplyBubble = (card, className) => {
+      console.log("CARD", card);
       return (
-        <div>
-          {card.imgUri && <img src={card.imgUri} alt="card" />}
-          {card.title && <h4>{card.title}</h4>}
-          {card.subtitle && <p>{card.subtitle}</p>}
-          {card.buttons && (
-            <a href={card.buttons[0].postback}>{card.buttons[0].text}</a>
-          )}
+        <div
+          key={`${className}`}
+          className={`${className} chat-bubble quickReply`}
+        >
+          <CardReply>
+            {card.imageUri && <img src={card.imageUri} alt="card" />}
+            {card.title && <h4>{card.title}</h4>}
+            {card.subtitle && <p>{card.subtitle}</p>}
+            {card.buttons && (
+              <a href={card.buttons[0].postback}>{card.buttons[0].text}</a>
+            )}
+          </CardReply>
         </div>
       );
     };
@@ -216,7 +223,7 @@ class Chat extends Component {
           return QuickReplyChatBubble(e2, index, "ai");
         });
       } else if (e1.cardReply) {
-        return CardReplyBubble(e1.cardReply);
+        return CardReplyBubble(e1.cardReply, "ai");
       }
       return ChatBubble(e1.text, index, e1.user);
     });
