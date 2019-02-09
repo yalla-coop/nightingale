@@ -18,10 +18,11 @@ export const MessageBox = styled.div`
 export const Form = styled.form`
   input {
     width: 100%;
-    border: 1px solid black;
-    font-size: 15px;
-    border-radius: 10px;
-    padding: 5px;
+    border: 1px solid #925de5;
+    font-size: 1rem;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
   }
 `;
 
