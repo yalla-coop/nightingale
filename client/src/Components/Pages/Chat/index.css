@@ -25,3 +25,9 @@
   letter-spacing: -0.016em;
   border-radius: 17.5px;
 }
+
+.quickReply {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}

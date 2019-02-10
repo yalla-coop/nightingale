@@ -1,8 +1,9 @@
 const {
-  WebhookClient, Suggestion, Payload, Card,
+  WebhookClient, Suggestion, Card,
 } = require("dialogflow-fulfillment");
 
 const weekday = require("./weekdayFulfillment");
+const general = require("./generalFulfillment");
 
 const hello = (phrase) => {
   console.log("hello", phrase);
@@ -118,7 +119,54 @@ module.exports = (req, res) => {
     intentMap.set("Bullied-Talk-Yes - fallback", weekday.finish);
     intentMap.set("Work-Issue-Talk - Fallback", weekday.finish);
     intentMap.set("Friend-Issue-Talk - fallback", weekday.finish);
-    intentMap.set("General-Other-Talk - fallback", weekday.finish);
+    intentMap.set("General-Other - yes", weekday.negativeFinish);
+    intentMap.set("Extra-Thoughts", weekday.extraThoughts);
+
+    // end of conversation fullfillments
+    // // neutral
+    intentMap.set("WeekdayNeutral - Yes", weekday.neutralFinish);
+    intentMap.set("WeekdayNeutral - no", general.dontTalk);
+    intentMap.set("General-Other - no", general.dontTalk);
+
+    // // positive
+    intentMap.set("DontWriteAboutChallenge", general.dontTalk);
+    intentMap.set("WriteAboutChallenge", weekday.positiveFinish);
+    intentMap.set("FunTime", weekday.funTime);
+    intentMap.set("TryHard-No", weekday.tryHardNo);
+    intentMap.set("TryHard-Yes", weekday.tryHardYes);
+    intentMap.set("Other", general.positiveOther);
+    intentMap.set("Lesson-DidWell", general.positiveGeneral);
+    intentMap.set("Lesson-NiceTeacher", general.positiveGeneral);
+    intentMap.set("Lesson-Interesting", general.positiveGeneral);
+    intentMap.set("Lesson-FunFriends", general.positiveGeneral);
+    intentMap.set("UsuallyEnjoy", general.positiveGeneral);
+
+    // // negative
+    intentMap.set("Talk-No", general.dontTalk);
+    intentMap.set("Negative-Work - no", general.negativeDontTalk);
+    intentMap.set("Negative-Work - yes", weekday.negativeFinish);
+    intentMap.set("Lesson-Uninteresting", weekday.lessonUninteresting);
+    intentMap.set("Lesson-Other - no", weekday.dontTalk);
+    intentMap.set("Lesson-Other - yes", weekday.negativeFinish);
+    intentMap.set("Lesson-Difficult", weekday.lessonDifficult);
+    intentMap.set("Friends-Not-There", weekday.friendsNotThere);
+    intentMap.set("LikeLesson-Other - no", general.dontTalk);
+    intentMap.set("LikeLession-Other - yes", weekday.negativeFinish);
+    intentMap.set("LikeLesson-Interesting", general.negativeGeneral);
+    intentMap.set("LikeLesson-Difficult", general.negativeGeneral);
+    intentMap.set("Friends-No", general.dontTalk);
+    intentMap.set("Friends-Yes", weekday.negativeFinish);
+    intentMap.set("Pressure-Exams - yes", weekday.negativeFinish);
+    intentMap.set("Pressure-Exams - no", weekday.negativeDontTalk);
+    intentMap.set("Friend-Issue - no", general.dontTalk);
+    intentMap.set("FriendIssue - yes", weekday.negativeFinish);
+    intentMap.set("Work-Issue - no", general.negativeDontTalk);
+    intentMap.set("Work-Issue - yes", weekday.negativeFinish);
+    intentMap.set("Bullied - Childline", general.bulliedChildline);
+    intentMap.set("Bullied - Childline - no", general.bulliedChildlineNo);
+    intentMap.set("Bullied-Talk-No", general.negativeDontTalk);
+    intentMap.set("Bullied-Talk-Yes", weekday.negativeFinish);
+
     agent.handleRequest(intentMap);
   }
 };

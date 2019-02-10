@@ -9,13 +9,21 @@ import axios from "axios";
 
 // import styles
 import "./index.css";
-import { ChatWindow, ConversationView, MessageBox, Form } from "./index.style";
+import {
+  ReplyButton,
+  CardReply,
+  ChatWindow,
+  ConversationView,
+  MessageBox,
+  Form
+} from "./index.style";
 
 class Chat extends Component {
   // STATE ---------------------------------------------------------------------------------------------
   state = {
     botMessage: "",
     botQuickReply: [],
+    botCardReply: null,
     userMessage: "",
     conversation: []
   };
@@ -47,11 +55,16 @@ class Chat extends Component {
         const botMsg = {
           text: "",
           quickReply: [],
+          cardReply: null,
           user: "ai"
         };
         //check if quickReply exist in array and update quick reply value
         if (e.message === "quickReplies") {
           botMsg.quickReply = e.quickReplies.quickReplies;
+          botMsg.text = "";
+        } else if (e.message === "card") {
+          console.log("CARD REACHED");
+          botMsg.cardReply = e.card;
           botMsg.text = "";
         } else {
           // if not only update bot response text
@@ -63,6 +76,7 @@ class Chat extends Component {
         return this.setState({
           botMessage: botMsg.text,
           botQuickReply: botMsg.quickReply,
+          botCardReply: botMsg.cardReply,
           conversation: [...this.state.conversation, botMsg]
         });
       });
@@ -95,7 +109,8 @@ class Chat extends Component {
     Array.from(this.btn.values())
       .filter(btn => btn != null)
       .forEach(btn => {
-        return (btn.disabled = "disabled");
+        btn.style.display = "none";
+        btn.disabled = "disabled";
       });
   };
 
@@ -164,15 +179,38 @@ class Chat extends Component {
     // function that renders quickReply button as speech bubble
     const QuickReplyChatBubble = (text, i, className) => {
       return (
-        <div key={`${className}-${i}`} className={`${className} chat-bubble`}>
-          <button
+        <div
+          key={`${className}-${i}`}
+          className={`${className} chat-bubble quickReply`}
+        >
+          <ReplyButton
             ref={el => this.btn.set(i, el)}
             disabled=""
             value={text}
             onClick={this.handleClick}
           >
             {text}
-          </button>
+          </ReplyButton>
+        </div>
+      );
+    };
+
+    // function that renders cardReply as a card style speech bubble
+    const CardReplyBubble = (card, className) => {
+      console.log("CARD", card);
+      return (
+        <div
+          key={`${className}`}
+          className={`${className} chat-bubble quickReply`}
+        >
+          <CardReply>
+            {card.imageUri && <img src={card.imageUri} alt="card" />}
+            {card.title && <h4>{card.title}</h4>}
+            {card.subtitle && <p>{card.subtitle}</p>}
+            {card.buttons && (
+              <a href={card.buttons[0].postback}>{card.buttons[0].text}</a>
+            )}
+          </CardReply>
         </div>
       );
     };
@@ -184,6 +222,8 @@ class Chat extends Component {
         return e1.quickReply.map((e2, index) => {
           return QuickReplyChatBubble(e2, index, "ai");
         });
+      } else if (e1.cardReply) {
+        return CardReplyBubble(e1.cardReply, "ai");
       }
       return ChatBubble(e1.text, index, e1.user);
     });

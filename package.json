@@ -18,7 +18,8 @@
       "!**/bot/weekdayFulfillment.js",
       "!**/bot/index.js",
       "!**/passport.js",
-      "!**/db_connection.js"
+      "!**/db_connection.js",
+      "!**/generalFulfillment.js"
     ]
   },
   "scripts": {
