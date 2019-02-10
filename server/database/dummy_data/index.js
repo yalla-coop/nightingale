@@ -4,6 +4,7 @@ const buildMood = require("./mood");
 const buildWeeklyEvent = require("./weekly_event");
 const buildNonSteadyEvent = require("./non_steady_event");
 const buildMessage = require("./message");
+const buildSupportKeyword = require("./support_keyword");
 const buildConversation = require("./conversation");
 const dbConnection = require("./../db_connection");
 const resetDb = require("./reset_DB");
@@ -19,6 +20,7 @@ const buildDummyData = () => new Promise((resolve, reject) => {
       await buildConversation();
       await buildNonSteadyEvent();
       await buildMessage();
+      await buildSupportKeyword();
     })
     .then(resolve)
     .catch(reject);
