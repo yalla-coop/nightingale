@@ -35,22 +35,54 @@ module.exports = query => new Promise((resolve, reject) => {
 
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+  
+  // set up our request body
+  let request = {}
+
+  // check if the user has sent a message - if so then set this up in the request otherwise, it'll be an event query to start a conversation
+  if (query.message) {
+    console.log("MESSAGE REACHED!")
+    request = {
+        session: sessionPath,
+        queryInput: {
+          text: {
+            text: query.message,
+            languageCode,
+          },
+        },
+        queryParams: {
+          sentimentAnalysisRequestConfig: {
+            analyzeQueryTextSentiment: true,
+          },
+        },
+      };
+  } else {
+    request = {
+         session: sessionPath,
+         queryInput: {
+           event: {
+             name: query.event,
+             languageCode,
+           },
+         },
+       }
+  }
 
   // The text query request.
-  const request = {
-    session: sessionPath,
-    queryInput: {
-      text: {
-        text: query,
-        languageCode,
-      },
-    },
-    queryParams: {
-      sentimentAnalysisRequestConfig: {
-        analyzeQueryTextSentiment: true,
-      },
-    },
-  };
+  // const request = {
+  //   session: sessionPath,
+  //   queryInput: {
+  //     text: {
+  //       text: query,
+  //       languageCode,
+  //     },
+  //   },
+  //   queryParams: {
+  //     sentimentAnalysisRequestConfig: {
+  //       analyzeQueryTextSentiment: true,
+  //     },
+  //   },
+  // };
 
   // Send request and log result
   const responses = sessionClient.detectIntent(request);

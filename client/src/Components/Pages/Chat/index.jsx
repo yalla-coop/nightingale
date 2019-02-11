@@ -81,6 +81,7 @@ class Chat extends Component {
         });
       });
     });
+    this.getIntent().then(result => console.log("result to server", result)).catch(err => console.log(err))
   }
 
   componentDidUpdate() {
@@ -89,6 +90,12 @@ class Chat extends Component {
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------
+
+  // function to get the initial intent when the user first loads this page
+  getIntent = async () => {
+     await axios.post("/api/bot/startChat", { event: "my-event"})
+  }
+
 
   // function to scroll to bottom of the page (target: dummy div called messagesEnd)
   scrollToBottom = () => {

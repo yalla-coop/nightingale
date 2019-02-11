@@ -9,7 +9,7 @@ const storeMessages = require("./storeMessages");
 
 module.exports = async (req, res) => {
   // create responses object
-  await dialogflowResponse(req.body.message)
+  await dialogflowResponse(req.body)
     .then((responses) => {
       // grab the important stuff
       const result = responses[0].queryResult;
