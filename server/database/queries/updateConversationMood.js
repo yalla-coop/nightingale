@@ -3,7 +3,7 @@ const mongoos = require("mongoose");
 
 module.exports = (id, mood) => new Promise((resolve, reject) => {
   conversation.updateOne(
-    { user: mongoos.Types.ObjectId(id),, completed: false },
+    { user: mongoos.Types.ObjectId(id), completed: false },
     { $set: { mood } },
   )
     .then((result) => {
