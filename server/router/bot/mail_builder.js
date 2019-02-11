@@ -12,7 +12,7 @@ module.exports = (userInfo, messages, keywords) => {
     ${message.text.reduce((accu2, curVal) => `
       ${accu2}
       <div class="tableX2 messages">
-        <span class="heading">${message.sender}</span>
+        <span class="heading">${message.sender}:</span>
         <span>${curVal}</span>
       </div>
     `, "")}
@@ -91,7 +91,7 @@ module.exports = (userInfo, messages, keywords) => {
       <h4>Hi there,</h4>
       <p>I've detected that there is a student maybe need an immediate help.
         I figure out that from his/her chating with me:
-        threat type: {category}</p>
+        threat type:</p>
       <div class="table">
         <div class="tableX2">
           <span class="heading">Threat type:</span>
