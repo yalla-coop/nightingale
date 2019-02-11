@@ -77,7 +77,7 @@ exports.mood = (agent) => {
 };
 
 exports.positive = (agent) => {
-  storeInDB(agent.queryResult.queryText);
+  storeInDB(agent.query);
 
   agent.add(new Text("I am really happy to hear that! 🤗 It's always nice to have a good day."));
   agent.add(new Text("So come on spill, why was it a good day?"));
@@ -89,7 +89,7 @@ exports.positive = (agent) => {
 };
 
 exports.dontUsuallyEnjoyLesson = (agent) => {
-  storeInDB(agent.queryResult.queryText);
+  storeInDB(agent.query);
 
   agent.add(new Text("What was it about this lesson that made you enjoy it this time?"));
   agent.add(new Suggestion("It was interesting"));
@@ -99,7 +99,7 @@ exports.dontUsuallyEnjoyLesson = (agent) => {
 };
 
 exports.negative = (agent) => {
-  storeInDB(agent.queryResult.queryText);
+  storeInDB(agent.query);
 
   agent.add(new Text("So, what was it about today that didn't go well?"));
   agent.add(new Suggestion("Bad lesson"));
