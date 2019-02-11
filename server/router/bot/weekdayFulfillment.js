@@ -16,14 +16,14 @@ const storeInDB = (agent) => {
   console.log("Mood", mood);
   switch (mood) {
   case "Amazing":
-    updateMood( userId, mood = 0)
+    updateMood( mood = 0, userId)
       .catch((error) => {
         console.log(error);
       });
     console.log("mood Amazing", mood);
     break;
   case "Good":
-    updateMood(mood === 1, userId);
+    updateMood(mood = 1, userId);
     console.log("mood Good", mood);
     break;
   case "Meh":
