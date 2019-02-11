@@ -7,6 +7,8 @@ const updateMood = require("../../database/queries/updateConversationMood");
 
 const storeInDB = (agent) => {
   console.log("asaaala hi")
+  console.log("agent", agent)
+  console.log("session", agent.session)
   const { session } = agent;
   const userId = (session.split("/")[session.split("/").length - 1]);
   const mood = agent.query;
