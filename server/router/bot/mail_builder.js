@@ -19,6 +19,7 @@ module.exports = (userInfo, messages, keywords) => {
   `, "");
 
   const threatSection = keywords.reduce((accu, keyword) => `
+    ${accu}
     <div class="tableX2">
       <span>${keyword.category}</span>
       <span>${keyword.score}</span>
