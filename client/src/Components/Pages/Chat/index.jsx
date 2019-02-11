@@ -93,7 +93,11 @@ class Chat extends Component {
 
   // function to get the initial intent when the user first loads this page
   getIntent = async () => {
-     await axios.post("/api/bot/startChat", { event: "my-event"})
+     // currently 4 flows: weekday, weekend, best-subject, worst-subject
+      
+
+
+     await axios.post("/api/bot/startChat", { event: "event"})
   }
 
 

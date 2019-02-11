@@ -5,6 +5,9 @@
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 
+// Import decideFlow function to decide the event trigger
+const decideFlow = require("../../database/queries/decideFlow")
+
 module.exports = query => new Promise((resolve, reject) => {
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
@@ -57,11 +60,13 @@ module.exports = query => new Promise((resolve, reject) => {
         },
       };
   } else {
+    // decide which event should be sent in the query
+    const event = decideFlow(query.event)
     request = {
          session: sessionPath,
          queryInput: {
            event: {
-             name: query.event,
+             name: event,
              languageCode,
            },
          },
