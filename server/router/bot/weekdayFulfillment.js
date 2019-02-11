@@ -12,7 +12,7 @@ const storeInDB = (agent) => {
   const { session } = agent;
   const userId = (session.split("/")[session.split("/").length - 1]);
   const mood = agent.query;
-  console.log("User ID", userId);
+  console.log("User ID is", userId);
   console.log("Mood", mood);
   switch (mood) {
   case "Amazing":
