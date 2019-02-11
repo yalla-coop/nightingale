@@ -10,5 +10,6 @@ module.exports = (id, mood) => new Promise((resolve, reject) => {
     .then((result) => {
       resolve(result);
     })
-    .catch(error => reject(error));
+    .catch(error => reject("ERRROR",error));
 });
+
