@@ -7,23 +7,30 @@ const updateMood = require("../../database/queries/updateConversationMood");
 
 const storeInDB = (agent) => {
   const { session } = agent;
-  const userId = session.split("/")[session.split("/").length - 1];
+  const userId = (session.split("/")[session.split("/").length - 1]);
   const mood = agent.query;
+  console.log("User ID",userId);
+  console.log("Mood", mood);
   switch (mood) {
   case "Amazing":
     updateMood(mood === 0, userId);
+    console.log("mood Amazing", mood)
     break;
   case "Good":
     updateMood(mood === 1, userId);
+    console.log("mood Good", mood)
     break;
   case "Meh":
     updateMood(mood === 2, userId);
+    console.log("mood Meh", mood)
     break;
   case "Not great":
     updateMood(mood === 3, userId);
+    console.log("mood Not Great", mood)
     break;
   default:
     updateMood(mood === 4, userId);
+    console.log("mood Terrible", mood)
     break;
   }
 };
