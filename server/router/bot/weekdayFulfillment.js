@@ -8,7 +8,7 @@ const updateMood = require("../../database/queries/updateConversationMood");
 const storeInDB = (agent) => {
   const { session } = agent;
   const userId = session.split("/")[session.split("/").length - 1];
-  const mood = agent.queryResult.queryText;
+  const mood = agent.query;
   switch (mood) {
   case "Amazing":
     updateMood(mood === 0, userId);
