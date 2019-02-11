@@ -8,8 +8,12 @@ const decideFlow = event => {
   if (!weekday) {
     return "weekend"
   } else {
+    // next thing to do here would be to check if we have information
+    // about fave subject or least fave subject
     return "weekday"
   }
+
+
 
 }
 
