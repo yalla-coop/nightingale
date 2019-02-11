@@ -5,7 +5,7 @@ module.exports = (id, mood) => new Promise((resolve, reject) => {
   console.log("ID Q", id, "MOOD Q", mood);
   console.log("type off", typeof mongoos.Types.ObjectId(id), "type off", typeof id);
   conversation.updateOne(
-    { user: mongoos.Types.ObjectId(id) },
+    { user: id },
     { $set: { mood } },
   )
     .then((result) => {
