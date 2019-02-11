@@ -11,19 +11,19 @@ const storeInDB = (agent) => {
   console.log("session", agent.session);
   const { session } = agent;
   const userId = (session.split("/")[session.split("/").length - 1]);
-  const mood = agent.query;
+  let mood = agent.query;
   console.log("User ID is", userId);
   console.log("Mood", mood);
   switch (mood) {
   case "Amazing":
-    updateMood(userId, mood = "0")
+    updateMood(userId, mood = 0)
       .catch((error) => {
         console.log(error);
       });
     console.log("mood Amazing", mood);
     break;
   case "Good":
-    updateMood(mood = 1, userId);
+    updateMood(userId, mood = 1);
     console.log("mood Good", mood);
     break;
   case "Meh":
