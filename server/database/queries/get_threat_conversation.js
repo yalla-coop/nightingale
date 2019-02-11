@@ -46,7 +46,9 @@ module.exports = userId => new Promise((resolve, reject) => {
     },
   }, {
     $project: {
-      userInfo: { _id: 0, password: 0, birthDate: 0 },
+      userInfo: {
+        _id: 0, password: 0, birthDate: 0, __v: 0,
+      },
     },
   },
   ])
