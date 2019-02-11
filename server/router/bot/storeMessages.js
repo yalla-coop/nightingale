@@ -12,9 +12,13 @@ module.exports = async (message, messageArr) => {
   const conversationId = await checkConversation(dummyId).catch(err => console.log("conversationID error", err));
 
   // store the user's text
-  await storeUserMsg(message, conversationId)
+  // check if the user has sent anything (if empty string it means that this is an event starting the conversation)
+  if (message.length > 0) {
+    await storeUserMsg(message, conversationId)
     .then(msgResult => console.log("message stored", msgResult))
     .catch(err => console.log("message storage error", err));
+  }
+  
 
   // store the bot's text
   // check if text response is defined (we dont want to store quick reply options just the answers)

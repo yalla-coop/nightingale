@@ -1,9 +1,13 @@
+/* eslint-disable camelcase */
+
 const pusher = require("./pusherSessionClient")
 const dialogflowResponse = require("./dialogflowSessionClient");
 
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 
+// load storeMessages controller
+const storeMessages = require("./storeMessages");
 
 module.exports = async (req, res) => {
   await dialogflowResponse(req.body)
@@ -13,6 +17,8 @@ module.exports = async (req, res) => {
     const result = responses[0].queryResult;
     const messageArr = result.fulfillmentMessages;
 
+    // STORAGE -------------------------------
+    storeMessages("", messageArr).catch(err => console.log(err))
 
     console.log("EVENT", result)
     console.log("MESSAGES", messageArr)
