@@ -16,7 +16,7 @@ const storeInDB = (agent) => {
   console.log("Mood", mood);
   switch (mood) {
   case "Amazing":
-    updateMood(userId, mood = 0)
+    updateMood(userId, mood === "0")
       .catch((error) => {
         console.log(error);
       });
