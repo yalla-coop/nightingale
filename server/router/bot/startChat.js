@@ -7,6 +7,7 @@ const dialogflowResponse = require("./dialogflowSessionClient");
 const storeMessages = require("./storeMessages");
 
 module.exports = async (req, res) => {
+  const { id } = req.user;
   await dialogflowResponse(req.body)
     .then((responses) => {
       // grab the important stuff
@@ -15,7 +16,10 @@ module.exports = async (req, res) => {
       const messageArr = result.fulfillmentMessages;
 
       // STORAGE -------------------------------
-      storeMessages("", messageArr).catch(err => console.log(err));
+
+      storeMessages("", messageArr, id)
+        .then(storedMsg => console.log("stored messages: ", storedMsg))
+        .catch(err => console.log(err));
 
       // RENDER----------------------------------
       // check if result comes back defined and includes intent
