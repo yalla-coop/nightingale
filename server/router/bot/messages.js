@@ -47,7 +47,7 @@ module.exports = async (req, res) => {
             console.log("No sentiment Analysis Found");
           }
           return res.sendStatus(200);
-        }).catch(() => res.sendStatus(500));
+        }).catch((error) => { res.sendStatus(500); console.log("ERROR 33333333", error); });
     })
     .catch(() => res.sendStatus(500));
 };
