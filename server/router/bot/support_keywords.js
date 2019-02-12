@@ -40,7 +40,7 @@ module.exports = (userMessage, userId) => new Promise((resolve, reject) => {
             },
           );
 
-          const receptors = process.env.NODE_ENV === "test" ? process.env.STAFF : process.env.STAFF_TEST;
+          const receptors = process.env.NODE_ENV === "test" ? process.env.STAFF_TEST : process.env.STAFF;
 
           // Message object
           const message = {

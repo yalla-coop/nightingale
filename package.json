@@ -33,8 +33,8 @@
     "init:both": "npm i && npm run client:init",
     "coverage": "codecov",
     "test:coverage": "NODE_ENV=test jest --coverage --runInBand --detectOpenHandles --forceExit",
-    "test:client:coverage": "cd client && npm run test:coverage",
-    "test": "npm run test:coverage && npm run test:client:coverage",
+    "test:client:coverage": "NODE_ENV=test cd client && npm run test:coverage",
+    "test": "NODE_ENV=test  npm run test:coverage && npm run test:client:coverage",
     "build:data": "node server/database/dummy_data/index.js",
     "heroku-postbuild": "npm run client:init && npm run client:build"
   },
