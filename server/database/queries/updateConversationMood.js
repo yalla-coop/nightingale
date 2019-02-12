@@ -24,5 +24,9 @@ module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
       resolve(result);
       console.log("UPDATE RESULT", result);
     })
-    .catch(error => reject(error));
+    .catch((error) => {
+      console.log(error, "FIRST ERROR");
+
+      reject(error);
+    });
 });

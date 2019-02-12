@@ -55,6 +55,8 @@ app.use(passport().initialize());
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   // render the error page
+  console.log(err, "SECOND ERROR ______________");
+
   res.status(err.status || 500);
   res.json({ error: err.message });
 });
