@@ -12,6 +12,11 @@ module.exports = (userMessage, userId) => new Promise((resolve, reject) => {
       // get the conversation that which help detected
       return getThreatConversation(userId)
         .then((result) => {
+          // if no results that mens no need for support
+          if (result.length === 0) {
+            return resolve(false);
+          }
+
           const { userInfo, messages } = result[0];
 
           // build the email body
