@@ -3,9 +3,11 @@ const conversation = require("../models/Conversation");
 
 module.exports = (id, mood) => new Promise((resolve, reject) => {
   console.log("ID Q", id, "MOOD Q", mood);
-  console.log("type off", typeof mongoos.Types.ObjectId(id), "type off", typeof id);
+  console.log("type off", typeof id);
+  conversation.findOne()
+    .then(res => console.log("resss", res));
   conversation.updateOne(
-    { user: id },
+    { user: mongoos.Types.ObjectId(id) },
     { $set: { mood } },
   )
     .then((result) => {
