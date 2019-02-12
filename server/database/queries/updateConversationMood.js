@@ -9,7 +9,7 @@ module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
   console.log("MOOD index 11111 ", moodIndex);
 
   Mood.find().then((res) => {
-    console.log(res, "moods 22222222222222");
+    console.log(res, "moods 22222222222");
   });
 
   // console.log("moodIndex Q", moodIndex);
