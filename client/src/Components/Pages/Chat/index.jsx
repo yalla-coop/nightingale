@@ -57,7 +57,7 @@ class Chat extends Component {
       if (data.needImmediateSupport) {
         swal({
           title: `Hey ${this.props.name}`,
-          text: `I think maybe you need to take to the psychological counselling in your school.`,
+          text: `I think maybe you need to talk to the psychological counselling in your school.`,
           icon: "info",
           button: {
             text: "Yes sure!"

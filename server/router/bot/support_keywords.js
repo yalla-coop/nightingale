@@ -12,6 +12,11 @@ module.exports = (userMessage, userId) => new Promise((resolve, reject) => {
       // get the conversation that which help detected
       return getThreatConversation(userId)
         .then((result) => {
+          // if no results that mens no need for support
+          if (result.length === 0) {
+            return resolve(false);
+          }
+
           const { userInfo, messages } = result[0];
 
           // build the email body
@@ -35,10 +40,12 @@ module.exports = (userMessage, userId) => new Promise((resolve, reject) => {
             },
           );
 
+          const receptors = process.env.NODE_ENV === "test" ? process.env.STAFF_TEST : process.env.STAFF;
+
           // Message object
           const message = {
             // Comma separated list of recipients
-            to: process.env.STAFF,
+            to: receptors,
 
             // Subject of the message
             subject: "Support needed",
