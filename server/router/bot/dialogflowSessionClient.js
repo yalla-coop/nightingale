@@ -6,11 +6,7 @@
 const dialogflow = require("dialogflow");
 const decideFlow = require("../../database/queries/decideFlow");
 
-<<<<<<< HEAD
-module.exports = (query, id) => new Promise((resolve, reject) => {
-=======
 module.exports = (query, userId) => new Promise((resolve, reject) => {
->>>>>>> 4d535036e345a9353976b4b8d8c737f785a5c3e9
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
     .replace("\"", "");
@@ -35,11 +31,7 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
   const sessionClient = new dialogflow.SessionsClient(config);
 
   const projectId = config.credentials.project_id;
-<<<<<<< HEAD
-  const sessionId = id;
-=======
   const sessionId = userId;
->>>>>>> 4d535036e345a9353976b4b8d8c737f785a5c3e9
   const languageCode = "BCP-47 language code, e.g. en-US";
 
   // Define session path
