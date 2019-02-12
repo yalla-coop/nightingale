@@ -7,7 +7,7 @@ module.exports = (id, mood) => new Promise((resolve, reject) => {
   conversation.findOne()
     .then(res => console.log("resss", res));
   conversation.updateOne(
-    { user: mongoos.Types.ObjectId(id) },
+    { completed: false },
     { $set: { mood } },
   )
     .then((result) => {
