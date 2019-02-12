@@ -1,9 +1,8 @@
 const mongoos = require("mongoose");
 const conversation = require("../models/Conversation");
 
-module.exports = (id, mood) => new Promise((resolve, reject) => {
-  console.log("ID Q", id, "MOOD Q", mood);
-  console.log("type off", typeof id);
+module.exports = mood => new Promise((resolve, reject) => {
+  console.log("MOOD Q", mood);
   conversation.findOne()
     .then(res => console.log("resss", res));
   conversation.updateOne(
@@ -14,5 +13,5 @@ module.exports = (id, mood) => new Promise((resolve, reject) => {
       resolve(result);
       console.log("UPDATE RESULT", result);
     })
-    .catch(error => reject("ERRROR", error));
+    .catch(error => reject(error));
 });
