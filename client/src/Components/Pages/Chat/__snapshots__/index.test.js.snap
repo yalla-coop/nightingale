@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Chat renders correctly 1`] = `
+<div>
+  <div
+    className="sc-bdVaJa dzaoIy"
+  >
+    <div
+      className="sc-bwzfXH bHHejb"
+    />
+    <div
+      className="sc-htpNat hMeeIy"
+    >
+      <form
+        className="sc-bxivhb hmqJnS"
+        onSubmit={[Function]}
+      >
+        <input
+          autoFocus={true}
+          className="text-input"
+          onChange={[Function]}
+          placeholder="Type your message and hit enter to send"
+          type="text"
+          value=""
+        />
+      </form>
+      <div
+        style={
+          Object {
+            "clear": "both",
+            "float": "left",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;

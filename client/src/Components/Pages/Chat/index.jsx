@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Pusher from "pusher-js";
 import axios from "axios";
 import swal from "sweetalert";
+import * as Scroll from "react-scroll";
 
 // about pusher
 // WebSockets enable a client and a server to communicate in both directions. It lets a server send messages to the client, and vice-versa.
@@ -18,6 +19,8 @@ import {
   MessageBox,
   Form
 } from "./index.style";
+
+const scroll = Scroll.animateScroll;
 
 class Chat extends Component {
   // STATE ---------------------------------------------------------------------------------------------
@@ -103,7 +106,7 @@ class Chat extends Component {
 
   componentDidUpdate() {
     // scroll to bottom every time the component updates
-    this.scrollToBottom();
+    scroll.scrollToBottom();
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------
@@ -113,11 +116,6 @@ class Chat extends Component {
     // currently 4 flows: weekday, weekend, best-subject, worst-subject
 
     await axios.post("/api/bot/startChat", { event: "event" });
-  };
-
-  // function to scroll to bottom of the page (target: dummy div called messagesEnd)
-  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   };
 
   // allows the displayed value to update as the user types
@@ -268,12 +266,7 @@ class Chat extends Component {
                 placeholder="Type your message and hit enter to send"
               />
             </Form>
-            <div
-              style={{ float: "left", clear: "both" }}
-              ref={el => {
-                this.messagesEnd = el;
-              }}
-            />
+            <div style={{ float: "left", clear: "both" }} />
           </MessageBox>
         </ChatWindow>
       </div>
