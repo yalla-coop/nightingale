@@ -19,7 +19,9 @@
       "!**/bot/index.js",
       "!**/passport.js",
       "!**/db_connection.js",
-      "!**/generalFulfillment.js"
+      "!**/generalFulfillment.js",
+      "!**/dialogflowSessionClient.js",
+      "!**/pusherSessionClient.js"
     ]
   },
   "scripts": {
