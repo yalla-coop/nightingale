@@ -5,7 +5,7 @@
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 
-module.exports = query => new Promise((resolve, reject) => {
+module.exports = (query, id) => new Promise((resolve, reject) => {
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
     .replace("\"", "");
@@ -30,7 +30,7 @@ module.exports = query => new Promise((resolve, reject) => {
   const sessionClient = new dialogflow.SessionsClient(config);
 
   const projectId = config.credentials.project_id;
-  const sessionId = "123456";
+  const sessionId = id;
   const languageCode = "BCP-47 language code, e.g. en-US";
 
   // Define session path
