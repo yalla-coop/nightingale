@@ -6,7 +6,7 @@
 const dialogflow = require("dialogflow");
 
 // Import decideFlow function to decide the event trigger
-const decideFlow = require("../../database/queries/decideFlow")
+const decideFlow = require("../../database/queries/decideFlow");
 
 module.exports = query => new Promise((resolve, reject) => {
   const private_key = process.env.private_key
@@ -38,56 +38,40 @@ module.exports = query => new Promise((resolve, reject) => {
 
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
-  
+
   // set up our request body
-  let request = {}
+  let request = {};
 
   // check if the user has sent a message - if so then set this up in the request otherwise, it'll be an event query to start a conversation
   if (query.message) {
-    console.log("MESSAGE REACHED!")
+    console.log("MESSAGE REACHED!");
     request = {
-        session: sessionPath,
-        queryInput: {
-          text: {
-            text: query.message,
-            languageCode,
-          },
+      session: sessionPath,
+      queryInput: {
+        text: {
+          text: query.message,
+          languageCode,
         },
-        queryParams: {
-          sentimentAnalysisRequestConfig: {
-            analyzeQueryTextSentiment: true,
-          },
+      },
+      queryParams: {
+        sentimentAnalysisRequestConfig: {
+          analyzeQueryTextSentiment: true,
         },
-      };
+      },
+    };
   } else {
     // decide which event should be sent in the query
-    const event = decideFlow(query.event)
+    const event = decideFlow(query.event);
     request = {
-         session: sessionPath,
-         queryInput: {
-           event: {
-             name: event,
-             languageCode,
-           },
-         },
-       }
+      session: sessionPath,
+      queryInput: {
+        event: {
+          name: event,
+          languageCode,
+        },
+      },
+    };
   }
-
-  // The text query request.
-  // const request = {
-  //   session: sessionPath,
-  //   queryInput: {
-  //     text: {
-  //       text: query,
-  //       languageCode,
-  //     },
-  //   },
-  //   queryParams: {
-  //     sentimentAnalysisRequestConfig: {
-  //       analyzeQueryTextSentiment: true,
-  //     },
-  //   },
-  // };
 
   // Send request and log result
   const responses = sessionClient.detectIntent(request);
