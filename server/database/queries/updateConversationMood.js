@@ -5,8 +5,7 @@ const Mood = require("../models/Mood");
 module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
   const moods = await Mood.find();
   console.log("MOODS", moods);
-  console.log("MOOD index", moods[moodIndex]);
-  console.log("MOOD index 11111 ", moodIndex);
+  console.log("MOOD index", moods[moodIndex]._id);
 
   Mood.find().then((res) => {
     console.log(res, "moods 22222222222");
@@ -17,7 +16,7 @@ module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
   //   .then(res => console.log("resss", res));
   conversation.updateOne(
     { user: mongoos.Types.ObjectId(id), completed: false },
-    { $set: { mood: moods[moodIndex].id } },
+    { $set: { mood: moods[moodIndex]._id } },
   )
     .then((result) => {
       resolve(result);
