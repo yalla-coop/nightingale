@@ -6,7 +6,11 @@
 const dialogflow = require("dialogflow");
 const decideFlow = require("../../database/queries/decideFlow");
 
+<<<<<<< HEAD
 module.exports = (query, id) => new Promise((resolve, reject) => {
+=======
+module.exports = (query, userId) => new Promise((resolve, reject) => {
+>>>>>>> 4d535036e345a9353976b4b8d8c737f785a5c3e9
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
     .replace("\"", "");
@@ -31,7 +35,11 @@ module.exports = (query, id) => new Promise((resolve, reject) => {
   const sessionClient = new dialogflow.SessionsClient(config);
 
   const projectId = config.credentials.project_id;
+<<<<<<< HEAD
   const sessionId = id;
+=======
+  const sessionId = userId;
+>>>>>>> 4d535036e345a9353976b4b8d8c737f785a5c3e9
   const languageCode = "BCP-47 language code, e.g. en-US";
 
   // Define session path
@@ -40,7 +48,8 @@ module.exports = (query, id) => new Promise((resolve, reject) => {
   // set up our request body
   let request = {};
 
-  // check if the user has sent a message - if so then set this up in the request otherwise, it'll be an event query to start a conversation
+  // check if the user has sent a message - if so then set this up in the request otherwise,
+  // it'll be an event query to start a conversation
   if (query.message) {
     console.log("MESSAGE REACHED!");
     request = {
@@ -57,7 +66,7 @@ module.exports = (query, id) => new Promise((resolve, reject) => {
         },
       },
     };
-  } else {
+  } else if (query.event) {
     // decide which event should be sent in the query
     const event = decideFlow(query.event);
     request = {
