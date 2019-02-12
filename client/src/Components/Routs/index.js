@@ -18,45 +18,87 @@ export default function index(props) {
   const { handleChangeState, isLogin } = props;
   return (
     <>
-      {isLogin && <Header />}
+      {isLogin && <Header handleChangeState={handleChangeState} />}
       <Container>
         <Switch>
           {/* Private Routes Here */}
-          {isLogin && (
-            <Route
-              exact
-              path="/conversations"
-              render={RouteProps => (
+          <Route
+            exact
+            path="/conversations"
+            render={Linkprops =>
+              isLogin ? (
                 <Conversations
                   {...props}
-                  {...RouteProps}
+                  {...Linkprops}
                   handleChangeState={handleChangeState}
                 />
-              )}
-            />
-          )}
-          {isLogin && <Route exact path="/advice" component={Advice} />}
-          {isLogin && (
-            <Route
-              exact
-              path="/conversations/:conversation"
-              component={Messages}
-            />
-          )}
-          {isLogin && (
-            <Route
-              exact
-              path="/dashboard"
-              render={Linkprops => <Dashboard {...props} {...Linkprops} />}
-            />
-          )}
-          {isLogin && (
-            <Route
-              exact
-              path="/chat"
-              render={Linkprops => <Chat {...props} {...Linkprops} />}
-            />
-          )}
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/advice"
+            render={Linkprops =>
+              isLogin ? (
+                <Advice
+                  {...props}
+                  {...Linkprops}
+                  handleChangeState={handleChangeState}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
+          <Route
+            exact
+            path="/conversations/:conversation"
+            render={Linkprops =>
+              isLogin ? (
+                <Messages
+                  {...props}
+                  {...Linkprops}
+                  handleChangeState={handleChangeState}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
+
+          <Route
+            exact
+            path="/dashboard"
+            render={Linkprops =>
+              isLogin ? (
+                <Dashboard
+                  {...props}
+                  {...Linkprops}
+                  handleChangeState={handleChangeState}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
+
+          <Route
+            exact
+            path="/chat"
+            render={Linkprops =>
+              isLogin ? (
+                <Chat
+                  {...props}
+                  {...Linkprops}
+                  handleChangeState={handleChangeState}
+                />
+              ) : (
+                <Redirect to="/login" />
+              )
+            }
+          />
 
           {/* Public Routes Here */}
           <Route path="/home" exact component={Home} />
