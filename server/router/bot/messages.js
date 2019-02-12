@@ -20,7 +20,9 @@ module.exports = async (req, res) => {
         const messageArr = result.fulfillmentMessages;
 
         // STORAGE ------------------------------------
-        storeMessages(result.queryText, messageArr, id).catch(err => console.log(err));
+        storeMessages(result.queryText, messageArr, id)
+          .then(storedMsg => console.log("stored messages: ", storedMsg))
+          .catch(err => console.log(err));
 
         // RENDER---------------------------------------
         // check if result comes back defined and includes intent
