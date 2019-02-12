@@ -4,8 +4,9 @@ const moodT = require("../models/Mood");
 
 module.exports = mood => new Promise((resolve, reject) => {
   console.log("MOOD Q", mood);
-  moodT.findOne()
+  conversation.findOne()
     .then(res => console.log("resss", res));
+
   conversation.updateOne(
     { completed: false },
     { $set: { mood } },
