@@ -5,7 +5,14 @@
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
 
+<<<<<<< HEAD
 module.exports = (query, id) => new Promise((resolve, reject) => {
+=======
+// Import decideFlow function to decide the event trigger
+const decideFlow = require("../../database/queries/decideFlow");
+
+module.exports = query => new Promise((resolve, reject) => {
+>>>>>>> dd16ee742aba8e99acfe647d66a928330a96d45c
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
     .replace("\"", "");
@@ -36,21 +43,39 @@ module.exports = (query, id) => new Promise((resolve, reject) => {
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
-  // The text query request.
-  const request = {
-    session: sessionPath,
-    queryInput: {
-      text: {
-        text: query,
-        languageCode,
+  // set up our request body
+  let request = {};
+
+  // check if the user has sent a message - if so then set this up in the request otherwise, it'll be an event query to start a conversation
+  if (query.message) {
+    console.log("MESSAGE REACHED!");
+    request = {
+      session: sessionPath,
+      queryInput: {
+        text: {
+          text: query.message,
+          languageCode,
+        },
       },
-    },
-    queryParams: {
-      sentimentAnalysisRequestConfig: {
-        analyzeQueryTextSentiment: true,
+      queryParams: {
+        sentimentAnalysisRequestConfig: {
+          analyzeQueryTextSentiment: true,
+        },
       },
-    },
-  };
+    };
+  } else {
+    // decide which event should be sent in the query
+    const event = decideFlow(query.event);
+    request = {
+      session: sessionPath,
+      queryInput: {
+        event: {
+          name: event,
+          languageCode,
+        },
+      },
+    };
+  }
 
   // Send request and log result
   const responses = sessionClient.detectIntent(request);
