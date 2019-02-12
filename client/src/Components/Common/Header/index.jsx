@@ -5,10 +5,12 @@ import Img from "../../../assets/header.png";
 
 export default class Logo extends Component {
   render() {
+    const { handleChangeState } = this.props;
+
     return (
       <Header>
         <img src={Img} alt="logo" />
-        <Menu />
+        <Menu handleChangeState={handleChangeState} />
       </Header>
     );
   }

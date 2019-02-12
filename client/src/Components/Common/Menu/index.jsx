@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import axios from "axios";
+import { withRouter } from "react-router-dom";
+
 import {
   MenuDiv,
   Menu,
@@ -8,7 +11,7 @@ import {
   MenuIcon
 } from "./index.style";
 
-export default class HumburgerMenu extends Component {
+class HumburgerMenu extends Component {
   state = {
     toggleShow: false
   };
@@ -16,6 +19,13 @@ export default class HumburgerMenu extends Component {
   onClick = () => {
     const { toggleShow } = this.state;
     this.setState({ toggleShow: !toggleShow });
+  };
+
+  handleLogout = () => {
+    axios.post("./api/user/logout").then(() => {
+      this.props.handleChangeState({ isLogin: false });
+      this.props.history.push("/");
+    });
   };
 
   render() {
@@ -45,9 +55,9 @@ export default class HumburgerMenu extends Component {
                 <MenuItem to="/dashboard">
                   <i class="fas fa-smile-beam" /> Dashboard
                 </MenuItem>
-                <MenuItem to="/">
-                  {" "}
-                  <i class="fas fa-sign-out-alt" /> LogOut
+                <MenuItem onClick={this.handleLogout} as="p">
+                  <i class="fas fa-sign-out-alt" />
+                  LogOut
                 </MenuItem>
               </MainDiv>
             </Menu>
@@ -57,3 +67,5 @@ export default class HumburgerMenu extends Component {
     );
   }
 }
+
+export default withRouter(HumburgerMenu);
