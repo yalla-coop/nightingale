@@ -4,7 +4,6 @@ const User = require("./../../database/models/User");
 const Message = require("./../../database/models/Message");
 const Conversation = require("./../../database/models/Conversation");
 
-
 const buildDB = require("./../../database/dummy_data");
 
 describe("Testing the storeMessages function", () => {
@@ -29,13 +28,15 @@ describe("Testing the storeMessages function", () => {
     // before we store the new message
     expect(userMessages).toHaveLength(5);
 
-    storeMessages("this is a message from Nadia", [{}], user.id)
-      .then(async () => {
-        const userMessagesNew = await Message.find({ conversation: currentConversation, sender: "user" });
-        // after we stored the new message
-        expect(userMessagesNew).toHaveLength(6);
-        done();
+    storeMessages("this is a message from Nadia", [{}], user.id).then(async () => {
+      const userMessagesNew = await Message.find({
+        conversation: currentConversation,
+        sender: "user",
       });
+      // after we stored the new message
+      expect(userMessagesNew).toHaveLength(6);
+      done();
+    });
   });
 
   test("test with bot messages", async (done) => {
@@ -46,7 +47,6 @@ describe("Testing the storeMessages function", () => {
 
     // before we store the new message
     expect(botMessages).toHaveLength(6);
-
 
     // 2 messages from bot
     const messages = [
@@ -66,14 +66,16 @@ describe("Testing the storeMessages function", () => {
       },
     ];
 
-    storeMessages("", messages, user.id)
-      .then(async () => {
-        const botMessagesNew = await Message.find({ conversation: currentConversation, sender: "bot" });
-
-        // after we stored the new message
-        expect(botMessagesNew).toHaveLength(8);
-
-        done();
+    storeMessages("", messages, user.id).then(async () => {
+      const botMessagesNew = await Message.find({
+        conversation: currentConversation,
+        sender: "bot",
       });
+
+      // after we stored the new message
+      expect(botMessagesNew).toHaveLength(8);
+
+      done();
+    });
   });
 });
