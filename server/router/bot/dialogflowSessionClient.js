@@ -4,6 +4,7 @@
 
 // Imports the Dialogflow client library
 const dialogflow = require("dialogflow");
+const decideFlow = require("../../database/queries/decideFlow");
 
 module.exports = (query, id) => new Promise((resolve, reject) => {
   const private_key = process.env.private_key
