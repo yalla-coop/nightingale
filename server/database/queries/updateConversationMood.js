@@ -4,6 +4,8 @@ const Mood = require("../models/Mood");
 
 module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
   const moods = await Mood.find();
+  console.log("MOODS", moods);
+  console.log("MOOD index", moods[moodIndex]);
 
   // console.log("moodIndex Q", moodIndex);
   // conversation.findOne()
