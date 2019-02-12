@@ -16,7 +16,7 @@ module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
   // conversation.findOne()
   //   .then(res => console.log("resss", res));
   conversation.updateOne(
-    { user: id, completed: false },
+    { user: mongoos.Types.ObjectId(id), completed: false },
     { $set: { mood: moods[moodIndex].id } },
   )
     .then((result) => {
