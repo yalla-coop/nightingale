@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Pusher from "pusher-js";
 import axios from "axios";
+import swal from "sweetalert";
 
 // about pusher
 // WebSockets enable a client and a server to communicate in both directions. It lets a server send messages to the client, and vice-versa.
@@ -50,6 +51,18 @@ class Chat extends Component {
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
     channel.bind("bot-response", data => {
+      // if immediat support detected show a popup message
+      if (data.needImmediateSupport) {
+        swal({
+          title: `Hey ${this.props.name}`,
+          text: `I think maybe you need to take to the psychological counselling in your school.`,
+          icon: "info",
+          button: {
+            text: "Yes sure!"
+          }
+        });
+      }
+
       // loop over fullfilment-array and create message objects
       data.message.map(e => {
         const botMsg = {
