@@ -40,10 +40,12 @@ module.exports = (userMessage, userId) => new Promise((resolve, reject) => {
             },
           );
 
+          const receptors = process.env.NODE_ENV === "test" ? process.env.STAFF : process.env.STAFF_TEST;
+
           // Message object
           const message = {
             // Comma separated list of recipients
-            to: process.env.STAFF,
+            to: receptors,
 
             // Subject of the message
             subject: "Support needed",
