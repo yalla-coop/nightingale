@@ -20,7 +20,7 @@ module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
   )
     .then((result) => {
       conversation.findOne({ completed: false }).then((results) => {
-        console.log("ramy"results);
+        console.log("ramy", results);
       });
       resolve(result);
       console.log("UPDATE RESULT", result);
