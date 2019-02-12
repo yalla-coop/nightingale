@@ -1,15 +1,17 @@
 const mongoos = require("mongoose");
 const conversation = require("../models/Conversation");
-const moodT = require("../models/Mood");
+const Mood = require("../models/Mood");
 
-module.exports = mood => new Promise((resolve, reject) => {
-  console.log("MOOD Q", mood);
-  conversation.findOne()
-    .then(res => console.log("resss", res));
+module.exports = moodIndex => new Promise(async (resolve, reject) => {
+  const moods = await Mood.find();
+
+  // console.log("moodIndex Q", moodIndex);
+  // conversation.findOne()
+  //   .then(res => console.log("resss", res));
 
   conversation.updateOne(
     { completed: false },
-    { $set: { mood } },
+    { $set: { mood: moods[moodIndex].id } },
   )
     .then((result) => {
       resolve(result);
