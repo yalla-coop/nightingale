@@ -8,7 +8,7 @@ const storeMessages = require("./storeMessages");
 
 module.exports = async (req, res) => {
   const { id } = req.user;
-  await dialogflowResponse(req.body)
+  await dialogflowResponse(req.body, id)
     .then((responses) => {
       // grab the important stuff
 

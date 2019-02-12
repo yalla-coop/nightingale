@@ -44,13 +44,13 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
 
   // check if the user has sent a message - if so then set this up in the request otherwise,
   // it'll be an event query to start a conversation
-  if (query) {
+  if (query.message) {
     console.log("MESSAGE REACHED!");
     request = {
       session: sessionPath,
       queryInput: {
         text: {
-          text: query,
+          text: query.message,
           languageCode,
         },
       },
@@ -60,7 +60,7 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
         },
       },
     };
-  } else {
+  } else if (query.event) {
     // decide which event should be sent in the query
     const event = decideFlow(query.event);
     request = {

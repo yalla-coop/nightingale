@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
 
 
   // create responses object
-  await dialogflowResponse(req.body.message, id)
+  await dialogflowResponse(req.body, id)
     .then((responses) => {
       // grab the important stuff
       const result = responses[0].queryResult;
