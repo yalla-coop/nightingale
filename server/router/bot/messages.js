@@ -46,5 +46,8 @@ module.exports = async (req, res) => {
       }
       return res.sendStatus(200);
     })
-    .catch(err => res.sendStatus(500));
+    .catch((err) => {
+      console.log("ERROR 33333333", err);
+      res.sendStatus(500);
+    });
 };
