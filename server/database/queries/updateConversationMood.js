@@ -16,7 +16,7 @@ module.exports = (id, moodIndex) => new Promise(async (resolve, reject) => {
   //   .then(res => console.log("resss", res));
   conversation.updateOne(
     { user: mongoos.Types.ObjectId(id), completed: false },
-    { $set: { mood: moods[moodIndex]._id } },
+    { $set: { mood: mongoos.Types.ObjectId(moods[moodIndex]._id) } },
   )
     .then((result) => {
       resolve(result);
