@@ -10,8 +10,15 @@ class App extends Component {
     username: "",
     id: "",
     name: "",
-    isLogin: false
+    isLogin: false,
+    bdate: "",
+    faveSubj: "",
+    leastFaveSubj: "",
+    token: ""
   };
+
+  // make a copy for the initial state
+  baseState = this.state;
 
   handleChangeState = object => {
     // store the incomming oject into state and store the new state inot loacal storage
@@ -39,13 +46,7 @@ class App extends Component {
 
   handleLogout = () => {
     localStorage.removeItem("AppState");
-    this.handleChangeState({
-      isLogin: false,
-      id: "",
-      username: "",
-      name: "",
-      token: ""
-    });
+    this.handleChangeState(this.baseState);
   };
 
   render() {
