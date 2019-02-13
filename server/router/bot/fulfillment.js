@@ -168,7 +168,8 @@ module.exports = (req, res) => {
     intentMap.set("Bullied-Talk-Yes", weekday.negativeFinish);
 
     // FAVE SUBJECT INTENTS------------------------------
-    intentMap.set("faveSubj", subject.favourite);
+    intentMap.set("faveSubject", subject.favourite);
+    intentMap.set("leastFaveSubject", subject.favourite);
 
     agent.handleRequest(intentMap);
   }
