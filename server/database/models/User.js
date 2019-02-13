@@ -28,6 +28,7 @@ const userSchema = new Schema({
   birthDate: {
     type: Date,
     required: false,
+    default: null,
   },
 });
 
@@ -36,9 +37,10 @@ function hashPassword(next) {
   const plainPassword = this.password;
   // only hash the password if it has been modified (or is new)
   if (!this.isModified("password")) return next();
-  return bcrypt.hash(plainPassword, 8)
+  return bcrypt
+    .hash(plainPassword, 8)
     .then((hash) => {
-    // store the hashed password
+      // store the hashed password
       this.password = hash;
       next();
     })

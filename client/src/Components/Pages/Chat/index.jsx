@@ -51,8 +51,6 @@ class Chat extends Component {
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
     channel.bind("bot-response", data => {
-      console.log(data);
-
       // if immediat support detected show a popup message
       if (data.needImmediateSupport) {
         swal({
@@ -96,10 +94,6 @@ class Chat extends Component {
         });
       });
     });
-    axios
-      .post("/api/user/check")
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
 
     this.getIntent()
       .then(result => console.log("result to server", result))
@@ -110,11 +104,10 @@ class Chat extends Component {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
   }
-  componentWillMount() {
-    axios
-      .get("/api/user/check")
-      .then(res => console.log(res))
-      .catch(err => console.log(err));
+
+  async componentWillMount() {
+    const AppState = await JSON.parse(localStorage.getItem("AppState"));
+    console.log(AppState.bdate);
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------

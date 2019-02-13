@@ -9,7 +9,6 @@ const messages = require("./messages");
 const dashboard = require("./dashboard");
 const auth = require("./../../passport")();
 const logout = require("./logout");
-const checkUser = require("./check_user");
 
 router.post("/user/register", register);
 router.post("/user/login", login);
@@ -19,6 +18,5 @@ router.get("/user/:id/conversations/:conversationId", messages);
 // authenticated routes
 router.get("/user/dashboard", auth.authenticate(), dashboard);
 router.get("/user/conversations", auth.authenticate(), conversations);
-router.get("/user/check", auth.authenticate(), checkUser);
 
 module.exports = router;
