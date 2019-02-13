@@ -6,13 +6,15 @@ exports[`Header renders correctly 1`] = `
 >
   <img
     alt="logo"
+    className="sc-bwzfXH kZUMPF"
+    onClick={[Function]}
     src="header.png"
   />
   <div
-    className="sc-bwzfXH cFwRmr"
+    className="sc-htpNat hbkyLO"
   >
     <i
-      className="fas fa-bars sc-EHOje gascYv"
+      className="fas fa-bars sc-bZQynM cvpdQh"
       onClick={[Function]}
     />
   </div>

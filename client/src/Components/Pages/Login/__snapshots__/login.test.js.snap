@@ -2,18 +2,20 @@
 
 exports[`Login must match the snapshots renders correctly 1`] = `
 <div
-  className="sc-EHOje kHDAue"
+  className="sc-EHOje dhLwGS"
 >
   <img
-    className="sc-bZQynM iCtEDl"
-    src="header.png"
+    alt="logo"
+    className="sc-bZQynM eJLwbu"
+    src="title.png"
   />
   <img
-    className="sc-gzVnrw hPXWJT"
+    alt="logo"
+    className="sc-bZQynM eJLwbu"
     src="logo.png"
   />
   <form
-    className="sc-htoDjs QlDZz"
+    className="sc-gzVnrw iaPOQO"
     onSubmit={[Function]}
   >
     <div
@@ -74,12 +76,12 @@ exports[`Login must match the snapshots renders correctly 1`] = `
       Login
     </button>
     <p
-      className="sc-dnqmqq fXmtAI"
+      className="sc-htoDjs hiIbiZ"
     >
       don't have an account?
        
       <a
-        className="sc-iwsKbI hTGocj"
+        className="sc-dnqmqq hbhjDi"
         href="/signup"
         onClick={[Function]}
       >
