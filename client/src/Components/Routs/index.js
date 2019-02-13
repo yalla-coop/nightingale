@@ -18,7 +18,7 @@ export default function index(props) {
   const { handleChangeState, isLogin } = props;
   return (
     <>
-      {isLogin && <Header handleChangeState={handleChangeState} />}
+      {isLogin && <Header {...props} handleChangeState={handleChangeState} />}
       <Container>
         <Switch>
           {/* Private Routes Here */}
