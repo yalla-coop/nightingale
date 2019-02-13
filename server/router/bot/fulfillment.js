@@ -1,9 +1,8 @@
-const {
-  WebhookClient, Suggestion, Card,
-} = require("dialogflow-fulfillment");
+const { WebhookClient, Suggestion, Card } = require("dialogflow-fulfillment");
 
 const weekday = require("./weekdayFulfillment");
 const general = require("./generalFulfillment");
+const subject = require("./subjectFulfillment");
 
 const hello = (phrase) => {
   console.log("hello", phrase);
@@ -100,6 +99,7 @@ module.exports = (req, res) => {
   if (req.body.queryResult.intent.displayName === "TestFulfillment") {
     customAction(req, res);
   } else {
+    // WEEKDAY INTENTS--------------------------------
     intentMap.set("CardTemplate", cardReply);
     intentMap.set("QuickTemplate", quickReply);
     intentMap.set("MultiCardsTemplate", multiCards);
@@ -166,6 +166,9 @@ module.exports = (req, res) => {
     intentMap.set("Bullied - Childline - no", general.bulliedChildlineNo);
     intentMap.set("Bullied-Talk-No", general.negativeDontTalk);
     intentMap.set("Bullied-Talk-Yes", weekday.negativeFinish);
+
+    // FAVE SUBJECT INTENTS------------------------------
+    intentMap.set("faveSubj", subject.favourite);
 
     agent.handleRequest(intentMap);
   }
