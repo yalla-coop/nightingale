@@ -77,5 +77,7 @@ module.exports = id => new Promise((resolve, reject) => {
     .then((response) => {
       resolve(response);
     })
-    .catch(((error => reject(error)));
+    .catch((error) => {
+      reject(error);
+    });
 });
