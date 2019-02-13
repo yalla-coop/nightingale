@@ -16,3 +16,7 @@ export const Header = styled.header`
     padding-top: 60px;
   }
 `;
+
+export const LogoHeader = styled.img`
+  cursor: pointer;
+`;
