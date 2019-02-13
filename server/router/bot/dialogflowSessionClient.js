@@ -61,7 +61,7 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
     };
   } else if (query.event) {
     // decide which event should be sent in the query
-    const event = decideFlow(query.event);
+    const event = decideFlow(query.event, userId);
     request = {
       session: sessionPath,
       queryInput: {
