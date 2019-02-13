@@ -42,4 +42,22 @@ describe("Testing the storeInitParams function", () => {
       done();
     });
   });
+  test("test with invalid data", async (done) => {
+    // create test user
+    await User.create(defaultUser);
+    // get the id
+    const testUser = await User.findOne({ username: "tester-2009" });
+    const testUserID = testUser._id;
+
+    // mock params
+    const key = "invalid";
+    let val;
+    // run function
+    await storeInitParams(testUserID, key, val).catch(err => console.log(err));
+    // test if correctly updated
+    await User.findOne({ username: "tester-2009" }).then((user) => {
+      expect(user[key]).toBeUndefined();
+      done();
+    });
+  });
 });
