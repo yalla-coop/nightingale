@@ -15,10 +15,10 @@ import Conversations from "../Pages/Conversations";
 import Chat from "../Pages/Chat";
 
 export default function index(props) {
-  const { handleChangeState, isLogin } = props;
+  const { handleChangeState, isLogin, handleLogout } = props;
   return (
     <>
-      {isLogin && <Header handleChangeState={handleChangeState} />}
+      {isLogin && <Header handleLogout={handleLogout} />}
       <Container>
         <Switch>
           {/* Private Routes Here */}
