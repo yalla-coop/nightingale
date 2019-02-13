@@ -21,6 +21,7 @@ module.exports = async (req, res) => {
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
 
+      console.log("ressss", result.parameters.fields);
       // STORAGE ------------------------------------
       storeMessages(result.queryText, messageArr, id)
         .then(storedMsg => console.log("stored messages: ", storedMsg))
@@ -33,7 +34,7 @@ module.exports = async (req, res) => {
           // check if result comes back defined and includes intent
           if (result && result.intent) {
             // send over array of fullfilment messages via pusher
-            pusher("bot", "bot-response", {
+            pusher(`bot_${id}`, "bot-response", {
               message: messageArr,
               needImmediateSupport,
             }).catch(err => console.log(err));

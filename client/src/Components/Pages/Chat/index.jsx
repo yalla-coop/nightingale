@@ -41,7 +41,8 @@ class Chat extends Component {
 
   // LIFECYCLE METHODS ---------------------------------------------------------------------------------------------
 
-  componentDidMount() {
+  async componentDidMount() {
+    const AppState = await JSON.parse(localStorage.getItem("AppState"));
     // create new Pusher
     const pusher = new Pusher("42ea50bcb339ed764a4e", {
       cluster: "eu",
@@ -49,7 +50,7 @@ class Chat extends Component {
     });
     // listening for the bot-response event on the bot channel
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
-    const channel = pusher.subscribe("bot");
+    const channel = pusher.subscribe(`bot_${AppState.id}`);
     channel.bind("bot-response", data => {
       // if immediat support detected show a popup message
       if (data.needImmediateSupport) {
