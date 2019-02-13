@@ -2,19 +2,8 @@
 
 const User = require("../models/User");
 
-const storeInitParams = (userId, birthday, faveSubj, leastFaveSubj) => newPromise((resolve, reject) => {
-  const updateUser = param => User.findOneAndUpdate({ _id: userId }, { $set: { param } });
+module.exports = (userId, key, val) => new Promise((resolve, reject) => {
+  const updateUser = User.findOneAndUpdate({ _id: userId }, { $set: { [key]: val } });
 
-  switch (true) {
-  case birthday:
-    resolve(updateUser(birthday));
-    break;
-  case faveSubj:
-    resolve(updateUser(faveSubj));
-    break;
-  case leastFaveSubj:
-    resolve(updateUser(leastFaveSubj));
-    break;
-      // no default
-  }
+  resolve(updateUser);
 });

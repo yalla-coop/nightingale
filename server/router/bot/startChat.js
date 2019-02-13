@@ -17,9 +17,9 @@ module.exports = async (req, res) => {
 
       // STORAGE -------------------------------
 
-      storeMessages("", messageArr, id)
-        .then(storedMsg => console.log("stored messages: ", storedMsg))
-        .catch(err => console.log(err));
+      // storeMessages("", messageArr, id)
+      //   .then(storedMsg => console.log("stored messages: ", storedMsg))
+      //   .catch(err => console.log(err));
 
       // RENDER----------------------------------
       // check if result comes back defined and includes intent
