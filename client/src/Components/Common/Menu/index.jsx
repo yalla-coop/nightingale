@@ -23,6 +23,7 @@ class HumburgerMenu extends Component {
 
   handleLogout = () => {
     axios.post("./api/user/logout").then(() => {
+      localStorage.clear();
       this.props.handleChangeState({ isLogin: false });
       this.props.history.push("/");
     });
