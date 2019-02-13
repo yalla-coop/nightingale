@@ -19,6 +19,6 @@ router.get("/user/conversations/:conversationId", auth.authenticate(), messages)
 // authenticated routes
 router.get("/user/dashboard", auth.authenticate(), dashboard);
 router.get("/user/conversations", auth.authenticate(), conversations);
-router.get("/user/get-current-conversation", auth.authenticate(), currentConversation);
+router.get("/user/current-conversation", auth.authenticate(), currentConversation);
 
 module.exports = router;

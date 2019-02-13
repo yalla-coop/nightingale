@@ -51,7 +51,7 @@ class Chat extends Component {
 
     // get the current conversation if exist
     axios
-      .get("/api/user/get-current-conversation")
+      .get("/api/user/current-conversation")
       .then(res => {
         const { data } = res;
         this.setState({ conversation: data }, () => {
