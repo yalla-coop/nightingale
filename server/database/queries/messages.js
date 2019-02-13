@@ -46,7 +46,7 @@ module.exports = id => new Promise((resolve, reject) => {
 
         },
         date: {
-          $concat: [{ $toString: { $dayOfMonth: "$time" } }, " ", {
+          $concat: [{ $substr: [{ $dayOfMonth: "$time" }, 0, -1] }, " ", {
             $switch: {
               branches: [
                 { case: { $eq: [{ $month: "$time" }, 1] }, then: "Jan" },
@@ -77,5 +77,7 @@ module.exports = id => new Promise((resolve, reject) => {
     .then((response) => {
       resolve(response);
     })
-    .catch(error => reject(error));
+    .catch((error) => {
+      reject(error);
+    });
 });

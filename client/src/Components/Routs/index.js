@@ -15,7 +15,7 @@ import Conversations from "../Pages/Conversations";
 import Chat from "../Pages/Chat";
 
 export default function index(props) {
-  const { handleChangeState, isLogin } = props;
+  const { handleChangeState, isLogin, handleLogout } = props;
   return (
     <>
       {isLogin && <Header {...props} handleChangeState={handleChangeState} />}

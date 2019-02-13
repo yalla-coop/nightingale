@@ -2,6 +2,33 @@
 
 const { Suggestion, Card, Text } = require("dialogflow-fulfillment");
 
+
+const updateMood = require("../../database/queries/update_mood");
+
+const storeInDB = (agent) => {
+  const { session } = agent;
+  const userId = (session.split("/")[session.split("/").length - 1]);
+  let mood = agent.query;
+  switch (mood) {
+  case "Amazing":
+    updateMood(userId, mood = 0);
+    break;
+  case "Good":
+    updateMood(userId, mood = 1);
+    break;
+  case "Meh":
+    updateMood(mood === 2, userId);
+    break;
+  case "Not great":
+    updateMood(mood === 3, userId);
+    break;
+  default:
+    updateMood(mood === 4, userId);
+    break;
+  }
+};
+
+
 const finalOptions = (agent) => {
   const adviceCard = new Card({
     title: "View Advice",
@@ -50,6 +77,8 @@ exports.mood = (agent) => {
 };
 
 exports.positive = (agent) => {
+  storeInDB(agent);
+
   agent.add(new Text("I am really happy to hear that! 🤗 It's always nice to have a good day."));
   agent.add(new Text("So come on spill, why was it a good day?"));
   agent.add(new Suggestion("Good lessons"));
@@ -60,6 +89,8 @@ exports.positive = (agent) => {
 };
 
 exports.dontUsuallyEnjoyLesson = (agent) => {
+  storeInDB(agent);
+
   agent.add(new Text("What was it about this lesson that made you enjoy it this time?"));
   agent.add(new Suggestion("It was interesting"));
   agent.add(new Suggestion("I did well!"));
@@ -68,6 +99,8 @@ exports.dontUsuallyEnjoyLesson = (agent) => {
 };
 
 exports.negative = (agent) => {
+  storeInDB(agent);
+
   agent.add(new Text("So, what was it about today that didn't go well?"));
   agent.add(new Suggestion("Bad lesson"));
   agent.add(new Suggestion("Friends"));

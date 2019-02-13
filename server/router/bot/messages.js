@@ -14,7 +14,6 @@ module.exports = async (req, res) => {
 
   const { id } = req.user;
 
-
   // create responses object
   await dialogflowResponse(req.body, id)
     .then((responses) => {
@@ -23,7 +22,9 @@ module.exports = async (req, res) => {
       const messageArr = result.fulfillmentMessages;
 
       // STORAGE ------------------------------------
-      storeMessages(result.queryText, messageArr, id).catch(err => console.log(err));
+      storeMessages(result.queryText, messageArr, id)
+        .then(storedMsg => console.log("stored messages: ", storedMsg))
+        .catch(err => console.log(err));
 
       // check for support keywords
       supportKeywordsChecker(req.body.message, id)
@@ -42,12 +43,15 @@ module.exports = async (req, res) => {
           if (result.sentimentAnalysisResult) {
             console.log("Detected sentiment");
             console.log(`  Score: ${result.sentimentAnalysisResult.queryTextSentiment.score}`);
-            console.log(`  Magnitude: ${result.sentimentAnalysisResult.queryTextSentiment.magnitude}`);
+            console.log(
+              `  Magnitude: ${result.sentimentAnalysisResult.queryTextSentiment.magnitude}`,
+            );
           } else {
             console.log("No sentiment Analysis Found");
           }
           return res.sendStatus(200);
-        }).catch(() => res.sendStatus(500));
+        })
+        .catch(() => res.sendStatus(500));
     })
     .catch(() => res.sendStatus(500));
 };

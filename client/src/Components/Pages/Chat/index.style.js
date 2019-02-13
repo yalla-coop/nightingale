@@ -13,6 +13,7 @@ export const ConversationView = styled.div`
 export const MessageBox = styled.div`
   width: 100%;
   padding: 20px 20px;
+  display: ${props => props.hide ? "none" : "block"};
 `;
 
 export const Form = styled.form`

@@ -13,11 +13,10 @@ const logout = require("./logout");
 router.post("/user/register", register);
 router.post("/user/login", login);
 router.use("/user/logout", logout);
-router.get("/user/:id/conversations/:conversationId", messages);
+router.get("/user/conversations/:conversationId", auth.authenticate(), messages);
 
 // authenticated routes
 router.get("/user/dashboard", auth.authenticate(), dashboard);
 router.get("/user/conversations", auth.authenticate(), conversations);
-
 
 module.exports = router;

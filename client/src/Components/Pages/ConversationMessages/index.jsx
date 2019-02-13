@@ -19,8 +19,9 @@ class Messages extends Component {
   };
 
   getMessages = async () => {
-    const { id, conversation } = this.props.match.params;
-    const data = await axios(`/api/user/${id}/conversations/${conversation}`);
+    const { conversation } = this.props.match.params;
+
+    const data = await axios(`/api/user/conversations/${conversation}`);
     const messages = data.data;
     const { msg } = this.state;
     if (messages.length === 0) {

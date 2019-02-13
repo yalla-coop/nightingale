@@ -45,7 +45,6 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
   // check if the user has sent a message - if so then set this up in the request otherwise,
   // it'll be an event query to start a conversation
   if (query.message) {
-    console.log("MESSAGE REACHED!");
     request = {
       session: sessionPath,
       queryInput: {
