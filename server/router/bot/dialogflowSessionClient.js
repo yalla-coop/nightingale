@@ -8,7 +8,7 @@ const dialogflow = require("dialogflow");
 // Import decideFlow function to decide the event trigger
 const decideFlow = require("../../database/queries/decideFlow");
 
-module.exports = (query, userId) => new Promise((resolve, reject) => {
+module.exports = async (query, userId) => {
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
     .replace("\"", "");
@@ -61,7 +61,9 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
     };
   } else if (query.event) {
     // decide which event should be sent in the query
-    const event = decideFlow(query.event, userId);
+    console.log("EVENT1", query.event);
+    const event = await decideFlow(query.event, userId);
+    console.log("EVENT2", event);
     request = {
       session: sessionPath,
       queryInput: {
@@ -76,5 +78,5 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
   // Send request and log result
   const responses = sessionClient.detectIntent(request);
 
-  resolve(responses);
-});
+  return responses;
+};
