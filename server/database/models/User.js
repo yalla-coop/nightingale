@@ -30,6 +30,14 @@ const userSchema = new Schema({
     required: false,
     default: null,
   },
+  faveSubj: {
+    type: String,
+    required: false,
+  },
+  leastFaveSubj: {
+    type: String,
+    required: false,
+  },
 });
 
 function hashPassword(next) {

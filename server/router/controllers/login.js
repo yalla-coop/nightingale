@@ -20,7 +20,9 @@ module.exports = (req, res, next) => {
             id: user.id,
             name: user.name,
             username: user.username,
-            bdate: user.birthDate,
+            // bdate: user.birthDate,
+            // faveSubj: user.faveSubj,
+            // leastFaveSubj: user.leastFaveSubj,
           });
           res.cookie("token", token);
           return res.json({
@@ -28,6 +30,8 @@ module.exports = (req, res, next) => {
             name: user.name,
             username: user.username,
             bdate: user.birthDate,
+            faveSubj: user.faveSubj,
+            leastFaveSubj: user.leastFaveSubj,
             token,
           });
         })
