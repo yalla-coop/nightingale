@@ -7,6 +7,9 @@ const decideFlow = (event) => {
 
   if (event === "start") {
     return "start";
+  }
+  if (event === "moreThoughts") {
+    return "moreThoughts";
   } if (!weekday) {
     return "weekend";
   }
