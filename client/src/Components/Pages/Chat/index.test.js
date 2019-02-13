@@ -15,7 +15,7 @@ describe("Chat", () => {
     expect(tree).toMatchSnapshot();
   });
 
-  it("mounts correctly", () => {
+  it("mounts correctly", done => {
     const wrapper = mount(<Conversations />);
     expect(1).toBe(1);
     // mock the data
@@ -65,5 +65,6 @@ describe("Chat", () => {
 
     //the new reply should be stored in the state
     expect(newState - oldState).toBe(1);
+    done();
   });
 });
