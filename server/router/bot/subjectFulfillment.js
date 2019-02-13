@@ -36,6 +36,8 @@ const getWeeklyEvent = async (agent, eventType) => {
 
   const events = await weeklyEvents(userId);
   console.log("EVENTS", events);
+  console.log("ASYNC", await weeklyEvents(userId));
+  console.log("TYPE", typeof events);
   if (events.length > 0) {
     console.log("EVENTS REACHED");
     const filteredEvent = events.filter(event => event.text.split(":")[0] === eventType);
