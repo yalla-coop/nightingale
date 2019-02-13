@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import Conversations from "./index.jsx";
 import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
+import Pusher from "pusher-js";
 
 import { ReplyButton } from "./index.style";
 
@@ -65,7 +66,11 @@ describe("Chat", () => {
 
     //the new reply should be stored in the state
     expect(newState - oldState).toBe(1);
-    window.location = "/";
+    const pusher = new Pusher("42ea50bcb339ed764a4e", {
+      cluster: "eu",
+      encrypted: true
+    });
+    pusher.disconnect();
     done();
   });
 });
