@@ -2,6 +2,7 @@
   "name": "server",
   "version": "0.0.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "jest": {
     "testRegex": "__test__/*",
     "coverageDirectory": "./coverage/",
