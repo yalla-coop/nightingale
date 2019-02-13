@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Pusher from "pusher-js";
 import axios from "axios";
 import swal from "sweetalert";
+import * as Scroll from "react-scroll";
 
 // about pusher
 // WebSockets enable a client and a server to communicate in both directions. It lets a server send messages to the client, and vice-versa.
@@ -18,6 +19,8 @@ import {
   MessageBox,
   Form
 } from "./index.style";
+
+const scroll = Scroll.animateScroll;
 
 class Chat extends Component {
   // STATE ---------------------------------------------------------------------------------------------
@@ -97,7 +100,7 @@ class Chat extends Component {
 
   componentDidUpdate() {
     // scroll to bottom every time the component updates
-    this.scrollToBottom();
+    scroll.scrollToBottom();
   }
 
   async componentWillMount() {
@@ -123,11 +126,6 @@ class Chat extends Component {
   getIntent = async dfEvent => {
     // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
-  };
-
-  // function to scroll to bottom of the page (target: dummy div called messagesEnd)
-  scrollToBottom = () => {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
   };
 
   // allows the displayed value to update as the user types
@@ -202,16 +200,17 @@ class Chat extends Component {
 
   // RENDER -------------------------------------------------------------------------------------------------------------------------------
   render() {
-    const { botQuickReply, botCardReply } = this.state
+    const { botQuickReply, botCardReply } = this.state;
 
     // function that checks if it's a quick reply or card reply
     // to decide if we should hide the message box
     const checkReply = (botQuickReply, botCardReply) => {
-      // check if it's a 
-      if (botQuickReply.length > 0 && !botQuickReply.includes("Finished")) return true;
-      if (botCardReply) return true
-      else return false
-    }
+      // check if it's a
+      if (botQuickReply.length > 0 && !botQuickReply.includes("Finished"))
+        return true;
+      if (botCardReply) return true;
+      else return false;
+    };
 
     // function that renders text by human or bot (ai) (defined as className) as speech bubble
     const ChatBubble = (text, i, className) => {
@@ -289,12 +288,7 @@ class Chat extends Component {
                 placeholder="Type your message and hit enter to send"
               />
             </Form>
-            <div
-              style={{ float: "left", clear: "both" }}
-              ref={el => {
-                this.messagesEnd = el;
-              }}
-            />
+            <div style={{ float: "left", clear: "both" }} />
           </MessageBox>
         </ChatWindow>
       </div>
