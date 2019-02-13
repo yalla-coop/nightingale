@@ -5,7 +5,9 @@ const decideFlow = (event) => {
 
   const weekday = moment().weekday() > 0 && moment().weekday() < 6;
 
-  if (!weekday) {
+  if (event === "start") {
+    return "start";
+  } if (!weekday) {
     return "weekend";
   }
   // next thing to do here would be to check if we have information
