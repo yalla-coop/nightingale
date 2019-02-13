@@ -31,6 +31,8 @@ const storeInDB = (agent) => {
 const getWeeklyEvent = async (agent, eventType) => {
   const { session } = agent;
   const userId = session.split("/")[session.split("/").length - 1];
+  console.log("user", userId);
+  console.log("sesh", session);
 
   const events = await weeklyEvents(userId);
   console.log("EVENTS", events);
