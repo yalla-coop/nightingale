@@ -33,9 +33,11 @@ const getWeeklyEvent = async (agent, eventType) => {
   const userId = session.split("/")[session.split("/").length - 1];
 
   const events = await weeklyEvents(userId);
-
+  console.log("EVENTS", events);
   if (events.length > 0) {
+    console.log("EVENTS REACHED");
     const filteredEvent = events.filter(event => event.text.split(":")[0] === eventType);
+    console.log("FILTERED", filteredEvent);
     const eventTitle = filteredEvent[0].split(":")[1];
     return eventTitle;
   }
