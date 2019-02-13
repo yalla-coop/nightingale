@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router } from "react-router-dom";
+import jwt from "jsonwebtoken";
+
 import "./App.css";
 import Routes from "./Components/Routs";
 
@@ -22,7 +24,29 @@ class App extends Component {
     // get the App state from the loal storage
     const AppState = localStorage.getItem("AppState");
     this.setState(JSON.parse(AppState));
+
+    // decode the token
+    if (JSON.parse(AppState) && JSON.parse(AppState).token) {
+      const token = JSON.parse(AppState).token;
+      var decoded = jwt.decode(token);
+
+      // check if the the token expired
+      if (Date.now() / 1000 > decoded.exp) {
+        this.handleLogout();
+      }
+    }
   }
+
+  handleLogout = () => {
+    localStorage.removeItem("AppState");
+    this.handleChangeState({
+      isLogin: false,
+      id: "",
+      username: "",
+      name: "",
+      token: ""
+    });
+  };
 
   render() {
     return (
@@ -31,6 +55,7 @@ class App extends Component {
           <>
             <Routes
               handleChangeState={this.handleChangeState}
+              handleLogout={this.handleLogout}
               isLogin={this.state.isLogin}
               {...this.state}
             />
