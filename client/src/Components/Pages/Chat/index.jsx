@@ -103,11 +103,13 @@ class Chat extends Component {
 
   async componentWillMount() {
     // checks what event to be sent to dialogflow
-    // if no Bday value for user -> first time login hence event needs to be 'start'
+    // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
     const AppState = await JSON.parse(localStorage.getItem("AppState"));
     const Bdate = AppState.bdate;
+    const Fsubj = AppState.faveSubj;
+    const LFsubj = AppState.leastFaveSubj;
 
-    return Bdate
+    return Bdate && Fsubj && LFsubj
       ? this.getIntent("event")
           .then(result => console.log("result to server", result))
           .catch(err => console.log(err))
