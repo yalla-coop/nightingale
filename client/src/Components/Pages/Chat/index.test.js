@@ -22,7 +22,7 @@ describe("Chat", () => {
     const state = {
       botCardReply: null,
       botMessage: null,
-      botQuickReply: ["Amazing", "Good", "Meh", "Not great", "Terrible"],
+      botQuickReply: ["Amazing", "Good2", "Meh", "Not great", "Terrible"],
       conversation: [
         { cardReply: null, quickReply: [], text: "Hi! 👋", user: "ai" },
         {
