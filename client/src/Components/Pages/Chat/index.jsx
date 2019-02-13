@@ -51,8 +51,6 @@ class Chat extends Component {
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
     const channel = pusher.subscribe("bot");
     channel.bind("bot-response", data => {
-      console.log(data);
-
       // if immediat support detected show a popup message
       if (data.needImmediateSupport) {
         swal({
@@ -96,9 +94,6 @@ class Chat extends Component {
         });
       });
     });
-    this.getIntent()
-      .then(result => console.log("result to server", result))
-      .catch(err => console.log(err));
   }
 
   componentDidUpdate() {
@@ -106,13 +101,29 @@ class Chat extends Component {
     this.scrollToBottom();
   }
 
+  async componentWillMount() {
+    // checks what event to be sent to dialogflow
+    // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
+    const AppState = await JSON.parse(localStorage.getItem("AppState"));
+    const Bdate = AppState.bdate;
+    const Fsubj = AppState.faveSubj;
+    const LFsubj = AppState.leastFaveSubj;
+
+    return Bdate && Fsubj && LFsubj
+      ? this.getIntent("event")
+          .then(result => console.log("result to server", result))
+          .catch(err => console.log(err))
+      : this.getIntent("start")
+          .then(result => console.log("result to server", result))
+          .catch(err => console.log(err));
+  }
+
   // FUNCTIONS ---------------------------------------------------------------------------------------------
 
   // function to get the initial intent when the user first loads this page
-  getIntent = async () => {
-    // currently 4 flows: weekday, weekend, best-subject, worst-subject
-
-    await axios.post("/api/bot/startChat", { event: "event" });
+  getIntent = async dfEvent => {
+    // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
+    await axios.post("/api/bot/startChat", { event: dfEvent });
   };
 
   // function to scroll to bottom of the page (target: dummy div called messagesEnd)
