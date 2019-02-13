@@ -33,8 +33,6 @@ class Login extends Component {
       axios
         .post("/api/user/login", this.state)
         .then(res => {
-          console.log(res);
-
           // store user's data into the App state
           handleChangeState({ ...res.data, isLogin: true });
 
