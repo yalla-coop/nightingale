@@ -16,10 +16,19 @@ module.exports = (req, res, next) => {
           // if password not valid return Forbidden error
           if (!result) return next(createError(403, "Incorrect username or password."));
           // is the password matched create token and resonse with user data
-          const token = createToken({ id: user.id, name: user.name, username: user.username });
+          const token = createToken({
+            id: user.id,
+            name: user.name,
+            username: user.username,
+            bdate: user.birthDate,
+          });
           res.cookie("token", token);
           return res.json({
-            id: user.id, name: user.name, username: user.username, token,
+            id: user.id,
+            name: user.name,
+            username: user.username,
+            bdate: user.birthDate,
+            token,
           });
         })
         .catch(() => next(createError(500)));

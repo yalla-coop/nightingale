@@ -96,6 +96,11 @@ class Chat extends Component {
         });
       });
     });
+    axios
+      .post("/api/user/check")
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
+
     this.getIntent()
       .then(result => console.log("result to server", result))
       .catch(err => console.log(err));
@@ -104,6 +109,12 @@ class Chat extends Component {
   componentDidUpdate() {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
+  }
+  componentWillMount() {
+    axios
+      .get("/api/user/check")
+      .then(res => console.log(res))
+      .catch(err => console.log(err));
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------
