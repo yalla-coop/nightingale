@@ -65,6 +65,7 @@ describe("Chat", () => {
 
     //the new reply should be stored in the state
     expect(newState - oldState).toBe(1);
+    window.location = "/";
     done();
   });
 });
