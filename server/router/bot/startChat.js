@@ -25,7 +25,7 @@ module.exports = async (req, res) => {
       // check if result comes back defined and includes intent
       if (result && result.intent) {
         // send over array of fulfillment messages via pusher
-        pusher("bot", "bot-response", {
+        pusher(`bot_${id}`, "bot-response", {
           message: messageArr,
         }).catch(err => console.log(err));
       } else {
