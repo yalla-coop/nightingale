@@ -23,6 +23,7 @@ class Messages extends Component {
 
     const data = await axios(`/api/user/conversations/${conversation}`);
     const messages = data.data;
+    console.log(messages);
     const { msg } = this.state;
     if (messages.length === 0) {
       const msg = " There is no messages yet !!";
