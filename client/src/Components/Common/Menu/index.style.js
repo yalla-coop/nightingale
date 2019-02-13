@@ -10,7 +10,7 @@ export const MenuDiv = styled.div`
 `;
 export const Menu = styled.div`
   position: absolute;
-  background: #ecebeb85;
+  background: #e3e3ea;
   z-index: 100;
   top: 0;
   right: 0;

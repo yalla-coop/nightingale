@@ -24,7 +24,6 @@ export default class Pie extends Component {
 
   render() {
     const { sections, id, width, title } = this.props;
-    console.log(sections);
     if (!sections) return;
     return (
       <PieChart>

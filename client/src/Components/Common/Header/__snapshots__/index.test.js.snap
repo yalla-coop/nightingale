@@ -2,7 +2,7 @@
 
 exports[`Header renders correctly 1`] = `
 <header
-  className="sc-bdVaJa jyvac"
+  className="sc-bdVaJa bEcSms"
 >
   <img
     alt="logo"
@@ -18,5 +18,40 @@ exports[`Header renders correctly 1`] = `
       onClick={[Function]}
     />
   </div>
+  <ul>
+    <li>
+      <a
+        href="/chat"
+        onClick={[Function]}
+      >
+        chat
+      </a>
+    </li>
+    <li>
+      <a
+        href="/conversations"
+        onClick={[Function]}
+      >
+        conversations
+      </a>
+    </li>
+    <li>
+      <a
+        href="/dashboard"
+        onClick={[Function]}
+      >
+        dashboard
+      </a>
+    </li>
+    <li>
+       
+      <a
+        href="/advice"
+        onClick={[Function]}
+      >
+        advices
+      </a>
+    </li>
+  </ul>
 </header>
 `;
