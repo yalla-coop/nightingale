@@ -7,6 +7,8 @@ const dialogflowResponse = require("./dialogflowSessionClient");
 const storeMessages = require("./storeMessages");
 
 module.exports = async (req, res) => {
+  console.log(req.body);
+
   const { id } = req.user;
   await dialogflowResponse(req.body, id)
     .then((responses) => {
