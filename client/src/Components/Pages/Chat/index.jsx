@@ -42,6 +42,38 @@ class Chat extends Component {
   // LIFECYCLE METHODS ---------------------------------------------------------------------------------------------
 
   componentDidMount() {
+    // checks what event to be sent to dialogflow
+    // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
+    const AppState = JSON.parse(localStorage.getItem("AppState"));
+    const Bdate = AppState.bdate;
+    const Fsubj = AppState.faveSubj;
+    const LFsubj = AppState.leastFaveSubj;
+
+    // get the current conversation if exist
+    axios
+      .get("/api/user/get-current-conversation")
+      .then(res => {
+        const { data } = res;
+        this.setState({ conversation: data }, () => {
+          if (data.length) {
+            this.getIntent("moreThoughts")
+              .then(result => console.log("result to server", result))
+              .catch(err => console.log(err));
+          } else {
+            Bdate && Fsubj && LFsubj
+              ? this.getIntent("event")
+                  .then(result => console.log("result to server", result))
+                  .catch(err => console.log(err))
+              : this.getIntent("start")
+                  .then(result => console.log("result to server", result))
+                  .catch(err => console.log(err));
+          }
+        });
+      })
+      .catch(() => {
+        this.props.history.push("/server-error");
+      });
+
     // create new Pusher
     const pusher = new Pusher("42ea50bcb339ed764a4e", {
       cluster: "eu",
@@ -98,23 +130,6 @@ class Chat extends Component {
   componentDidUpdate() {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
-  }
-
-  async componentWillMount() {
-    // checks what event to be sent to dialogflow
-    // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
-    const AppState = await JSON.parse(localStorage.getItem("AppState"));
-    const Bdate = AppState.bdate;
-    const Fsubj = AppState.faveSubj;
-    const LFsubj = AppState.leastFaveSubj;
-
-    return Bdate && Fsubj && LFsubj
-      ? this.getIntent("event")
-          .then(result => console.log("result to server", result))
-          .catch(err => console.log(err))
-      : this.getIntent("start")
-          .then(result => console.log("result to server", result))
-          .catch(err => console.log(err));
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------
@@ -202,16 +217,17 @@ class Chat extends Component {
 
   // RENDER -------------------------------------------------------------------------------------------------------------------------------
   render() {
-    const { botQuickReply, botCardReply } = this.state
+    const { botQuickReply, botCardReply } = this.state;
 
     // function that checks if it's a quick reply or card reply
     // to decide if we should hide the message box
     const checkReply = (botQuickReply, botCardReply) => {
-      // check if it's a 
-      if (botQuickReply.length > 0 && !botQuickReply.includes("Finished")) return true;
-      if (botCardReply) return true
-      else return false
-    }
+      // check if it's a
+      if (botQuickReply.length > 0 && !botQuickReply.includes("Finished"))
+        return true;
+      if (botCardReply) return true;
+      else return false;
+    };
 
     // function that renders text by human or bot (ai) (defined as className) as speech bubble
     const ChatBubble = (text, i, className) => {
