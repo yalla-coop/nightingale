@@ -47,7 +47,7 @@ class Messages extends Component {
       <>
         <Head>
           <i
-            class="fa fa-angle-left"
+            className="fa fa-angle-left"
             onClick={this.goBack}
             aria-hidden="true"
           />

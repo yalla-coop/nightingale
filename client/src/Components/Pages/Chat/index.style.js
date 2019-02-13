@@ -22,6 +22,7 @@ export const Form = styled.form`
     font-size: 1rem;
     border-radius: 1rem;
     padding: 0.5rem;
+    outline: none;
     padding-left: 1rem;
   }
 `;
