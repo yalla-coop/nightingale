@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import Chart from "../../Common/Chart";
-import { withRouter } from "react-router-dom";
 import uuid from "uuid";
 import axios from "axios";
 import Chat from "../../../assets/chat.png";
