@@ -1,4 +1,4 @@
-const decideFlow = require("./../../../database/queries/decideFlow")
+const decideFlow = require("./../../../database/queries/decideFlow");
 const buildDB = require("./../../../database/dummy_data/index");
 
 describe("Tesing for decideFlow query", () => {
@@ -16,14 +16,18 @@ describe("Tesing for decideFlow query", () => {
     await buildDB();
   });
 
-  test("Function returns a string", (done) => {
-
-    const result = decideFlow("event")
+  test("Function returns a string", async (done) => {
+    const result = await decideFlow("event");
     expect(result).toBeDefined();
-    expect(typeof result).toBe("string")
+    expect(typeof result).toBe("string");
     done();
-
   });
 
-
+  test("Event returns start if fed in", async (done) => {
+    const result = await decideFlow("start");
+    expect(result).toBeDefined();
+    expect(typeof result).toBe("string");
+    expect(result).toEqual("start");
+    done();
+  });
 });
