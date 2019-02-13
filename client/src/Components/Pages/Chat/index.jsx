@@ -94,10 +94,6 @@ class Chat extends Component {
         });
       });
     });
-
-    // this.getIntent()
-    //   .then(result => console.log("result to server", result))
-    //   .catch(err => console.log(err));
   }
 
   componentDidUpdate() {
@@ -106,6 +102,8 @@ class Chat extends Component {
   }
 
   async componentWillMount() {
+    // checks what event to be sent to dialogflow
+    // if no Bday value for user -> first time login hence event needs to be 'start'
     const AppState = await JSON.parse(localStorage.getItem("AppState"));
     const Bdate = AppState.bdate;
 
@@ -122,7 +120,7 @@ class Chat extends Component {
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {
-    // currently 4 flows: weekday, weekend, best-subject, worst-subject
+    // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
   };
 
