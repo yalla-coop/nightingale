@@ -170,6 +170,42 @@ module.exports = async (req, res) => {
     // FAVE SUBJECT INTENTS------------------------------
     intentMap.set("faveSubject", await subject.subjectMood);
     intentMap.set("leastFaveSubject", await subject.subjectMood);
+    intentMap.set("fave-positiveLesson", subject.positive);
+    intentMap.set("positiveLesson-Interesting", subject.interestingLesson);
+    intentMap.set("taughtWell-yes", subject.tellTeacherYes);
+    intentMap.set("taughtWell-no", subject.tellTeacherNo);
+    intentMap.set("subjectMatterFun", subject.funSubject);
+    intentMap.set("Interesting-Other-yes", subject.positiveFinish);
+    intentMap.set("Interesting-Other-no", general.dontTalk);
+    intentMap.set("niceTeacher-talk", subject.positiveFinish);
+    intentMap.set("niceTeacher-donttalk", subject.dontTalk);
+    intentMap.set("niceTeacher-behaved-no", subject.wontBehaveAgain);
+    intentMap.set("niceTeacher-behaved-yes", subject.behaveAgain);
+    intentMap.set("niceTeacher-grades", subject.goodGrades);
+    intentMap.set("niceTeacher-hardwork-yes", subject.positiveFinish);
+    intentMap.set("niceTeacher-hardwork-no", general.dontTalk);
+    intentMap.set("positiveLesson-Friends", subject.friends);
+    intentMap.set("positiveLesson-didwell", subject.didWell);
+    intentMap.set("didWell-Other", subject.didWellOther);
+    intentMap.set("didWell-Challenge", subject.challenge);
+    intentMap.set("Challenge-Other", subject.challengeOther);
+    intentMap.set("Challenge-HardWork-no-no", general.dontTalk);
+    intentMap.set("Challenge-HardWork-no-yes", subject.positiveChallengeFinish);
+    intentMap.set("Challenge-HardWork-yes-no", general.dontTalk);
+    intentMap.set("Challenge-HardWork-yes-yes", subject.positiveChallengeFinish);
+    intentMap.set("Challenge-Concentrating", subject.favouriteConcentrating);
+    intentMap.set("Challenge-Anxiety-no", subject.dontTalkAnxiety);
+    intentMap.set("Challenge-Anxiety-yes", subject.talkAnxiety);
+    intentMap.set("didWell-Work", subject.didWellWork);
+    intentMap.set("fave-neutral-no", general.dontTalk);
+    intentMap.set("fave-neutral-yes", subject.positiveFinish);
+    intentMap.set("fave-negativeLesson", subject.negative);
+    intentMap.set("negativeLesson-Uninteresting", subject.uninteresting);
+    intentMap.set("negativeLesson-Difficult-yes", subject.faveDifficulties);
+    intentMap.set("negativeLesson-Difficult-no", subject.faveDifficultNo);
+    intentMap.set("negativeLesson-Classmates", subject.negativeClassmates);
+    intentMap.set("friendsNotThere-no", general.negativeDontTalk);
+    intentMap.set("friendsNotThere-yes", weekday.negativeFinish);
 
     agent.handleRequest(intentMap);
   }
