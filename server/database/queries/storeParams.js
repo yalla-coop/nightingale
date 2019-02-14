@@ -4,6 +4,7 @@
 // load storeInitParams query
 const updateUserParams = require("./updateUserParams");
 
+const daysArray = [];
 module.exports = (array, object, id) => new Promise((resolve, reject) => {
   if (
     array
@@ -13,7 +14,9 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
     array.map((e) => {
       // dialogfow terms....
       const param = e.parameters.fields;
-      const { birthDate, leastFaveSubj, faveSubj } = param;
+      const {
+        birthDate, leastFaveSubj, faveSubj, faveSubjDays, leastFaveSubjDays,
+      } = param;
 
       if (birthDate) {
         resolve(updateUserParams(id, "birthDate", birthDate.stringValue));
@@ -23,6 +26,17 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
       }
       if (leastFaveSubj) {
         resolve(updateUserParams(id, "leastFaveSubj", leastFaveSubj.stringValue));
+      }
+      if (faveSubjDays && faveSubjDays.listValue.values.length > 0) {
+        faveSubjDays.listValue.values.forEach((day) => {
+          daysArray.push(day.stringValue);
+        });
+        const unique = [...new Set(daysArray)];
+        console.log(unique);
+        // console.log(faveSubjDays.listValue.values);
+      }
+      if (leastFaveSubjDays) {
+        console.log(leastFaveSubjDays.listValue.values);
       }
     });
   }
