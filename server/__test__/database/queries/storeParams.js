@@ -52,13 +52,13 @@ describe("Testing the updateUserParams function", () => {
 
     const dataArray = [];
     // run function
-    await storeParams(dataArray, testUserID).catch(err => console.log(err));
-    // test if correctly updated
-    // await User.findOne({ username: "nadia-2009" }).then((user) => {
-    //   expect(user).toBeDefined();
-    //   expect(user.faveSubj).toEqual("Geography");
-    //   expect(user.leastFaveSubj).toEqual("Music");
-    //   done();
-    // });
+    await storeParams(dataArray, testUserID);
+
+    await User.findOne({ username: "nadia-2009" }).then((user) => {
+      expect(user).toBeDefined();
+      expect(user.faveSubj).toEqual("Maths");
+      expect(user.leastFaveSubj).toEqual("History");
+      done();
+    });
   });
 });

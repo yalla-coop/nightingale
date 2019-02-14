@@ -23,5 +23,4 @@ module.exports = (array, id) => new Promise(async (resolve, reject) => {
     });
     resolve("sucess updating user info");
   }
-  reject();
 });
