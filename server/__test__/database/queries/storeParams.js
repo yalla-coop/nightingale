@@ -85,7 +85,6 @@ describe("Testing the updateUserParams function", () => {
       expect(events.slice(-1)[0].user).toEqual(testUserID);
       expect(events).toHaveLength(2);
       expect(events.slice(-1)[0].days[0]).toEqual(1);
-      expect(events.slice(-1)[0].text).toEqual("favourite subject: Geography");
       done();
     });
   });
