@@ -32,7 +32,7 @@ const getWeeklyEvent = async (agent, eventType) => {
   const { session } = agent;
   const userId = session.split("/")[session.split("/").length - 1];
   console.log("user", userId);
-  console.log("sesh", agent);
+  console.log("sesh", agent.body);
 
   const events = await weeklyEvents(userId);
   console.log("EVENTS", events);
@@ -48,9 +48,10 @@ const getWeeklyEvent = async (agent, eventType) => {
 };
 
 exports.favourite = async (agent) => {
-  const subject = await getWeeklyEvent(agent, "faveSubj");
+  const { originalRequest } = agent;
+  console.log("ORIG", originalRequest);
   agent.add(new Text("Hi! 👋"));
-  agent.add(new Text(`How was ${subject} today?`));
+  agent.add(new Text(`How was ${originalRequest.payload.eventTitle} today?`));
   agent.add(new Suggestion("Amazing"));
   agent.add(new Suggestion("Good"));
   agent.add(new Suggestion("It was OK"));

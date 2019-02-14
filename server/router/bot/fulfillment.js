@@ -93,7 +93,7 @@ const customAction = (req, res) => {
   });
 };
 
-module.exports = (req, res) => {
+module.exports = async (req, res) => {
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
   if (req.body.queryResult.intent.displayName === "TestFulfillment") {
@@ -168,8 +168,8 @@ module.exports = (req, res) => {
     intentMap.set("Bullied-Talk-Yes", weekday.negativeFinish);
 
     // FAVE SUBJECT INTENTS------------------------------
-    intentMap.set("faveSubject", subject.favourite);
-    intentMap.set("leastFaveSubject", subject.favourite);
+    intentMap.set("faveSubject", await subject.favourite);
+    intentMap.set("leastFaveSubject", await subject.favourite);
 
     agent.handleRequest(intentMap);
   }

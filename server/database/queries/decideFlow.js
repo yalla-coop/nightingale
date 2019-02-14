@@ -29,11 +29,14 @@ const decideFlow = async (event, userId) => {
           || weeklyEvent.text.split(":")[0] === "leastFaveSubj")
         && weeklyEvent.days.includes(moment().weekday()),
     )
-    .forEach(weeklyEvent => flowOptions.push(weeklyEvent.text.split(":")[0]));
+    .forEach(weeklyEvent => flowOptions.push(weeklyEvent.text));
 
   // pick one of the flow options at random
   const random = Math.floor(Math.random() * flowOptions.length);
-  return flowOptions[random];
+  const intent = flowOptions[random].split(":")[0];
+  const eventTitle = flowOptions[random].split(":")[1];
+
+  return { intent, eventTitle };
 };
 
 module.exports = decideFlow;

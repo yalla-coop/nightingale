@@ -68,8 +68,18 @@ module.exports = async (query, userId) => {
       session: sessionPath,
       queryInput: {
         event: {
-          name: event,
+          name: event.intent,
           languageCode,
+        },
+      },
+      queryParams: {
+        payload: {
+          fields: {
+            eventTitle: {
+              stringValue: event.eventTitle,
+              kind: "stringValue",
+            },
+          },
         },
       },
     };
