@@ -5,6 +5,12 @@ const WeeklyEvent = require("../../../database/models/WeeklyEvent");
 
 const buildDB = require("../../../database/dummy_data/index");
 
+const defaultUser = {
+  username: "tester-2009",
+  name: "Test",
+  password: "123456",
+};
+
 const validDataArray = [
   {
     parameters: {
@@ -63,19 +69,23 @@ describe("Testing the updateUserParams function", () => {
   });
 
   test("test it successfully handles valid request and creates weekly event", async (done) => {
-    const testUser = await User.findOne({ username: "nadia-2009" });
+    // create test user (simulate registration)
+    await User.create(defaultUser);
+    // get the id
+    const testUser = await User.findOne({ username: "tester-2009" });
     const testUserID = testUser._id;
 
     // run function
     await storeParams(validDataArray, validDataArray[0], testUserID);
     // check if user is defined
-    await User.findOne({ username: "nadia-2009" }).then(user => expect(user).toBeDefined());
-    // check if last event in collection is defined and created correctly based on input array
-    await WeeklyEvent.find().then((event) => {
-      expect(event.slice(-1)[0]).toBeDefined();
-      expect(event.slice(-1)[0].user).toEqual(testUserID);
-      expect(event.slice(-1)[0].text).toEqual("least favourite subject: Music");
-      expect(event.slice(-1)[0].days[0]).toEqual(1);
+    await User.findOne({ username: "tester-2009" }).then(user => expect(user).toBeDefined());
+    // check if the first and last event in collection is defined and created correctly based on input array
+    await WeeklyEvent.find({ user: testUserID }).then((events) => {
+      expect(events[0]).toBeDefined();
+      expect(events.slice(-1)[0].user).toEqual(testUserID);
+      expect(events).toHaveLength(2);
+      expect(events.slice(-1)[0].days[0]).toEqual(1);
+      expect(events.slice(-1)[0].text).toEqual("favourite subject: Geography");
       done();
     });
   });
