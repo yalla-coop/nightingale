@@ -27,7 +27,7 @@ describe("Testing the updateUserParams function", () => {
       { stringValue: "Tuesday", kind: "stringValue" },
       { stringValue: "Wednesday", kind: "stringValue" },
     ];
-    await storeWeeklyEvents(id, request).then(res => console.log(res));
+    await storeWeeklyEvents(id, request, "favourite subject", testUser.faveSubj).then(res => console.log(res));
 
     done();
   });
