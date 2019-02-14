@@ -24,17 +24,38 @@ describe("Testing the updateUserParams function", () => {
     const id = testUser._id;
     const moods = await Mood.find();
 
-    const request = [
+    const inputArray = [
       { stringValue: "Monday", kind: "stringValue" },
       { stringValue: "Tuesday", kind: "stringValue" },
       { stringValue: "Wednesday", kind: "stringValue" },
     ];
-    await storeWeeklyEvents(id, request, "favourite subject", testUser.faveSubj, 0).then((event) => {
-      expect(event).toBeDefined();
-      expect(event.user).toEqual(id);
-      expect(event.days[0]).toEqual(1);
-      expect(event.text).toEqual("favourite subject: Maths");
-      expect(event.eventEmotion).toEqual(moods[0]._id);
+    await storeWeeklyEvents(id, inputArray, "favourite subject", testUser.faveSubj, 0).then(
+      (event) => {
+        expect(event).toBeDefined();
+        expect(event.user).toEqual(id);
+        expect(event.days[0]).toEqual(1);
+        expect(event.text).toEqual("favourite subject: Maths");
+        expect(event.eventEmotion).toEqual(moods[0]._id);
+      },
+    );
+    done();
+  });
+
+  test("test with invalid user request", async (done) => {
+    const id = "invalid";
+    const inputArray = [];
+    await storeWeeklyEvents(id, inputArray, "favourite subject", "anything", 0).catch((error) => {
+      expect(error).toBeDefined();
+    });
+    done();
+  });
+  test("test with invalid text request", async (done) => {
+    const testUser = await User.findOne({ username: "nadia-2009" });
+    const id = testUser._id;
+    const inputArray = [];
+    let text;
+    await storeWeeklyEvents(id, inputArray, "favourite subject", text, 0).catch((error) => {
+      expect(error).toBeDefined();
     });
     done();
   });
