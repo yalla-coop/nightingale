@@ -4,7 +4,7 @@
 // load storeInitParams query
 const updateUserParams = require("./updateUserParams");
 
-module.exports = (array, object, id) => new Promise(async (resolve, reject) => {
+module.exports = (array, object, id) => new Promise((resolve, reject) => {
   if (
     array
       && array.includes(object)
