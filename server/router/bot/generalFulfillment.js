@@ -3,6 +3,8 @@
 const { Suggestion, Card, Text } = require("dialogflow-fulfillment");
 
 const finalOptions = (agent) => {
+  const { originalRequest } = agent;
+  const { name } = originalRequest.payload;
   const adviceCard = new Card({
     title: "View Advice",
     text: "Check out useful articles and resources",
@@ -14,7 +16,9 @@ const finalOptions = (agent) => {
   });
   convCard.setButton({ text: "Select", url: "/conversations" });
 
-  agent.add(new Text("Thanks for chatting. I hope it was helpful. What would you like to do now?"));
+  agent.add(
+    new Text(`Thanks for chatting, ${name}. I hope it was helpful. What would you like to do now?`),
+  );
   agent.add(new Suggestion("Add more thoughts"));
   agent.add(adviceCard);
   agent.add(convCard);
@@ -26,9 +30,11 @@ exports.dontTalk = (agent) => {
 };
 
 exports.negativeDontTalk = (agent) => {
+  const { originalRequest } = agent;
+  const { name } = originalRequest.payload;
   agent.add(
     new Text(
-      "OK, that's fine, but I'd suggest you talk to your form tutor or teacher about this. It will really help you.",
+      `OK, that's fine, ${name}, but I'd suggest you talk to your form tutor or teacher about this. It will really help you.`,
     ),
   );
   agent.add(
@@ -60,7 +66,9 @@ exports.positiveGeneral = (agent) => {
 };
 
 exports.negativeGeneral = (agent) => {
-  agent.add(new Text("Sorry to hear that"));
+  const { originalRequest } = agent;
+  const { name } = originalRequest.payload;
+  agent.add(new Text(`Sorry to hear that, ${name}.`));
   agent.add(
     new Text(
       "If it continues being a problem, I'd recommend speaking to your teacher about it... they might be able to help!",

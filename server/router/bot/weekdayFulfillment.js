@@ -2,19 +2,18 @@
 
 const { Suggestion, Card, Text } = require("dialogflow-fulfillment");
 
-
 const updateMood = require("../../database/queries/update_mood");
 
 const storeInDB = (agent) => {
   const { session } = agent;
-  const userId = (session.split("/")[session.split("/").length - 1]);
+  const userId = session.split("/")[session.split("/").length - 1];
   let mood = agent.query;
   switch (mood) {
   case "Amazing":
-    updateMood(userId, mood = 0);
+    updateMood(userId, (mood = 0));
     break;
   case "Good":
-    updateMood(userId, mood = 1);
+    updateMood(userId, (mood = 1));
     break;
   case "Meh":
     updateMood(mood === 2, userId);
@@ -28,8 +27,9 @@ const storeInDB = (agent) => {
   }
 };
 
-
 const finalOptions = (agent) => {
+  const { originalRequest } = agent;
+  const { name } = originalRequest.payload;
   const adviceCard = new Card({
     title: "View Advice",
     text: "Check out useful articles and resources",
@@ -41,7 +41,9 @@ const finalOptions = (agent) => {
   });
   convCard.setButton({ text: "Select", url: "/conversations" });
 
-  agent.add(new Text("Thanks for chatting. I hope it was helpful. What would you like to do now?"));
+  agent.add(
+    new Text(`Thanks for chatting, ${name}. I hope it was helpful. What would you like to do now?`),
+  );
   agent.add(new Suggestion("Add more thoughts"));
   agent.add(adviceCard);
   agent.add(convCard);
@@ -67,7 +69,9 @@ exports.extraThoughts = (agent) => {
 };
 
 exports.mood = (agent) => {
-  agent.add(new Text("Hi! 👋"));
+  const { originalRequest } = agent;
+  const { name } = originalRequest.payload;
+  agent.add(new Text(`Hi ${name}! 👋`));
   agent.add(new Text("How was your school day?"));
   agent.add(new Suggestion("Amazing"));
   agent.add(new Suggestion("Good"));
@@ -206,7 +210,11 @@ exports.lessonDifficult = (agent) => {
 };
 
 exports.friendsNotThere = (agent) => {
-  agent.add(new Text("That's not ideal... if it's really troubling you then you should speak to your teacher or form tutor."));
+  agent.add(
+    new Text(
+      "That's not ideal... if it's really troubling you then you should speak to your teacher or form tutor.",
+    ),
+  );
   agent.add(
     new Text(
       "I'm sure you could make friends with one person in that class, these things take time!",
