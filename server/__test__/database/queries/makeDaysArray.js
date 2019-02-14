@@ -29,4 +29,21 @@ describe("Testing the updateUserParams function", () => {
     expect(numbersArray).toEqual([1, 2, 3]);
     done();
   });
+
+  test("test it successfully erases duplicates", (done) => {
+    const request = [
+      { stringValue: "Monday", kind: "stringValue" },
+      { stringValue: "Tuesday", kind: "stringValue" },
+      { stringValue: "Wednesday", kind: "stringValue" },
+      { stringValue: "Monday", kind: "stringValue" },
+      { stringValue: "Tuesday", kind: "stringValue" },
+      { stringValue: "Wednesday", kind: "stringValue" },
+    ];
+    const numbersArray = makeDaysArray(request);
+    expect(numbersArray).toBeDefined();
+    expect(numbersArray).toEqual([1, 2, 3]);
+    done();
+  });
 });
+
+//
