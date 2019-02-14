@@ -1,8 +1,6 @@
 // stores birthday, favourite subject and least favourite subject for user
 
 module.exports = (daysArray) => {
-  console.log("dayyys", daysArray);
-
   const daysNumberArray = [];
   // ref day to integer
   const weekday = new Array(7);
