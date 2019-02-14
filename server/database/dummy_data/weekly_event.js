@@ -14,13 +14,13 @@ const buildWeeklyEvents = async () => {
       user: Nadia,
       days: [1, 3, 5],
       eventEmotion: moods[0],
-      text: "leastFaveSubj: Math lesson",
+      text: "leastFaveSubj: Math",
     },
     {
       user: Nadia,
       days: [2, 4],
       eventEmotion: moods[5],
-      text: "faveSubj: History lesson",
+      text: "faveSubj: History",
     },
   ];
 

@@ -33,6 +33,9 @@ const decideFlow = async (event, userId) => {
 
   // pick one of the flow options at random
   const random = Math.floor(Math.random() * flowOptions.length);
+
+  // set up an object which has the event to trigger the title
+  // and information about that weeklyevent
   const intent = flowOptions[random].split(":")[0];
   const eventTitle = flowOptions[random].split(":")[1];
 

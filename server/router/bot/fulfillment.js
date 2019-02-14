@@ -168,8 +168,8 @@ module.exports = async (req, res) => {
     intentMap.set("Bullied-Talk-Yes", weekday.negativeFinish);
 
     // FAVE SUBJECT INTENTS------------------------------
-    intentMap.set("faveSubject", await subject.favourite);
-    intentMap.set("leastFaveSubject", await subject.favourite);
+    intentMap.set("faveSubject", await subject.subjectMood);
+    intentMap.set("leastFaveSubject", await subject.subjectMood);
 
     agent.handleRequest(intentMap);
   }

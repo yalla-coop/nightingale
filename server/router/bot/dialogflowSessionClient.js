@@ -8,6 +8,9 @@ const dialogflow = require("dialogflow");
 // Import decideFlow function to decide the event trigger
 const decideFlow = require("../../database/queries/decideFlow");
 
+// Import userDetails to get userdetails
+const getUserDetails = require("../../database/queries/getUserDetails");
+
 module.exports = async (query, userId) => {
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
@@ -39,6 +42,9 @@ module.exports = async (query, userId) => {
   // Define session path
   const sessionPath = sessionClient.sessionPath(projectId, sessionId);
 
+  // get user details for message personalisation
+  const name = await getUserDetails(userId);
+
   // set up our request body
   let request = {};
 
@@ -56,6 +62,14 @@ module.exports = async (query, userId) => {
       queryParams: {
         sentimentAnalysisRequestConfig: {
           analyzeQueryTextSentiment: true,
+        },
+        payload: {
+          fields: {
+            name: {
+              stringValue: name,
+              kind: "stringValue",
+            },
+          },
         },
       },
     };
@@ -77,6 +91,10 @@ module.exports = async (query, userId) => {
           fields: {
             eventTitle: {
               stringValue: event.eventTitle,
+              kind: "stringValue",
+            },
+            name: {
+              stringValue: name,
               kind: "stringValue",
             },
           },

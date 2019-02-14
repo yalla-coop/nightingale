@@ -47,11 +47,12 @@ const getWeeklyEvent = async (agent, eventType) => {
   return "lesson";
 };
 
-exports.favourite = async (agent) => {
+exports.subjectMood = async (agent) => {
   const { originalRequest } = agent;
+  const { eventTitle, name } = originalRequest.payload;
   console.log("ORIG", originalRequest);
-  agent.add(new Text("Hi! 👋"));
-  agent.add(new Text(`How was ${originalRequest.payload.eventTitle} today?`));
+  agent.add(new Text(`Hi ${name}! 👋`));
+  agent.add(new Text(`How was ${eventTitle} today?`));
   agent.add(new Suggestion("Amazing"));
   agent.add(new Suggestion("Good"));
   agent.add(new Suggestion("It was OK"));
