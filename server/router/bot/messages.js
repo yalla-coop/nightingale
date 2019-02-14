@@ -9,8 +9,8 @@ const supportKeywordsChecker = require("./support_keywords");
 // load storeMessages controller
 const storeMessages = require("./storeMessages");
 
-// load storeInitParams query
-const storeInitParams = require("../../database/queries/storeInitParams");
+// load storeInitParams controller
+const storeParams = require("../../database/queries/storeParams");
 
 module.exports = async (req, res) => {
   // get user info
@@ -23,31 +23,15 @@ module.exports = async (req, res) => {
       // grab the important stuff
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
+      const paramArr = result.outputContexts;
 
       // STORAGE ------------------------------------
-      // storeMessages(result.queryText, messageArr, id)
-      //   .then(storedMsg => console.log("stored messages: ", storedMsg))
-      //   .catch(err => console.log(err));
-
-      // check if parameters are being send over
-      if (result && result.outputContexts) {
-        result.outputContexts.map((e) => {
-          const param = e.parameters.fields;
-
-          if (param.birthDate) {
-            const bday = param.birthDate.stringValue;
-            storeInitParams(id, "birthDate", bday).catch(err => console.log(err));
-          }
-          if (param.faveSubj) {
-            const faveSubj = param.faveSubj.stringValue;
-            storeInitParams(id, "faveSubj", faveSubj).catch(err => console.log(err));
-          }
-          if (param.leastFaveSubj) {
-            const leastFaveSubj = param.leastFaveSubj.stringValue;
-            storeInitParams(id, "leastFaveSubj", leastFaveSubj).catch(err => console.log(err));
-          }
-        });
-      }
+      // stores messages
+      storeMessages(result.queryText, messageArr, id)
+        .then(storedMsg => console.log("stored messages: ", storedMsg))
+        .catch(err => console.log(err));
+      // updates key information for user (subjects, birthday ..)
+      storeParams(paramArr, id).catch(err => console.log(err));
 
       // check for support keywords
       supportKeywordsChecker(req.body.message, id)

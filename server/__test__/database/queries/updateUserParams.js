@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const User = require("./../../../database/models/User");
+const User = require("../../../database/models/User");
 
 const defaultUser = {
   username: "tester-2009",
@@ -7,11 +7,11 @@ const defaultUser = {
   password: "123456",
 };
 // load function to test
-const storeInitParams = require("./../../../database/queries/storeInitParams");
+const updateUserParams = require("./../../../database/queries/updateUserParams");
 
-const buildDB = require("./../../../database/dummy_data/index");
+const buildDB = require("../../../database/dummy_data/index");
 
-describe("Testing the storeInitParams function", () => {
+describe("Testing the updateUserParams function", () => {
   beforeAll(async () => {
     await buildDB();
   });
@@ -34,7 +34,7 @@ describe("Testing the storeInitParams function", () => {
     const key = "faveSubj";
     const val = "History";
     // run function
-    await storeInitParams(testUserID, key, val).catch(err => console.log(err));
+    await updateUserParams(testUserID, key, val).catch(err => console.log(err));
     // test if correctly updated
     await User.findOne({ username: "tester-2009" }).then((user) => {
       expect(user[key]).toBeDefined();
@@ -53,7 +53,7 @@ describe("Testing the storeInitParams function", () => {
     const key = "invalid";
     let val;
     // run function
-    await storeInitParams(testUserID, key, val).catch(err => console.log(err));
+    await updateUserParams(testUserID, key, val).catch(err => console.log(err));
     // test if correctly updated
     await User.findOne({ username: "tester-2009" }).then((user) => {
       expect(user[key]).toBeUndefined();

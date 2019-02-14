@@ -97,18 +97,21 @@ class Chat extends Component {
     });
   }
 
-  componentDidUpdate() {
+  async componentDidUpdate() {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
+    //   const AppState = await JSON.parse(localStorage.getItem("AppState"));
+
+    //   const { bdate } = AppState;
+
+    //  await localStorage.setItem("AppState", JSON.stringify(UserObject));
   }
 
   async componentWillMount() {
     // checks what event to be sent to dialogflow
     // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
     const AppState = await JSON.parse(localStorage.getItem("AppState"));
-    const Bdate = AppState.bdate;
-    const Fsubj = AppState.faveSubj;
-    const LFsubj = AppState.leastFaveSubj;
+    const { Bdate, Fsubj, LFsubj } = AppState;
 
     return Bdate && Fsubj && LFsubj
       ? this.getIntent("event")
