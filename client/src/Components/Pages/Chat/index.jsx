@@ -98,14 +98,9 @@ class Chat extends Component {
     });
   }
 
-  async componentDidUpdate() {
+  componentDidUpdate() {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
-    //   const AppState = await JSON.parse(localStorage.getItem("AppState"));
-
-    //   const { bdate } = AppState;
-
-    //  await localStorage.setItem("AppState", JSON.stringify(UserObject));
   }
 
   async componentWillMount() {
