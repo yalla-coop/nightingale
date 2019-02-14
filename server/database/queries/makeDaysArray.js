@@ -1,6 +1,8 @@
 // stores birthday, favourite subject and least favourite subject for user
 
-module.exports = daysArray => new Promise((resolve, reject) => {
+module.exports = (daysArray) => {
+  console.log("dayyys", daysArray);
+
   const daysNumberArray = [];
   // ref day to integer
   const weekday = new Array(7);
@@ -16,8 +18,7 @@ module.exports = daysArray => new Promise((resolve, reject) => {
   daysArray.forEach((day) => {
     daysNumberArray.push(weekday[day.stringValue]);
   });
-  // clear all duplicates
+  // clear all duplicates and return
   const uniqueDays = [...new Set(daysNumberArray)];
-
-  resolve(uniqueDays);
-});
+  return uniqueDays;
+};
