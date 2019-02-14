@@ -2,9 +2,10 @@
 // calls update function as soon as the parameter is part of the response
 
 // load storeInitParams query
-const updateUserParams = require("./updateUserParams");
 
-const daysArray = [];
+const updateUserParams = require("./updateUserParams");
+const makeDaysArray = require("./makeDaysArray");
+
 module.exports = (array, object, id) => new Promise((resolve, reject) => {
   if (
     array
@@ -28,12 +29,7 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
         resolve(updateUserParams(id, "leastFaveSubj", leastFaveSubj.stringValue));
       }
       if (faveSubjDays && faveSubjDays.listValue.values.length > 0) {
-        faveSubjDays.listValue.values.forEach((day) => {
-          daysArray.push(day.stringValue);
-        });
-        const unique = [...new Set(daysArray)];
-        console.log(unique);
-        // console.log(faveSubjDays.listValue.values);
+        console.log(makeDaysArray(faveSubjDays.listValue.values));
       }
       if (leastFaveSubjDays) {
         console.log(leastFaveSubjDays.listValue.values);
