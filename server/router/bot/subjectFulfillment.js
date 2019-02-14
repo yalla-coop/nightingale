@@ -174,7 +174,9 @@ exports.friends = (agent) => {
 };
 
 exports.didWell = (agent) => {
-  agent.add(new Text("Well done! You must feel proud about doing well in class! "));
+  agent.add(
+    new Text("Well done! You must feel proud about doing well in class! What did you do so well?"),
+  );
   agent.add(new Text("My work"));
   agent.add(new Suggestion("I overcame a challenge"));
   agent.add(new Suggestion("Other"));
@@ -365,3 +367,94 @@ exports.friendsNotThere = (agent) => {
     ),
   );
 };
+
+exports.leastFaveNegative = (agent) => {
+  agent.add(new Text("Sorry to hear that, what was it about the lesson that didn't go well?"));
+  agent.add(new Suggestion("It wasn't interesting"));
+  agent.add(new Suggestion("It was difficult"));
+  agent.add(new Suggestion("I had a bad time with my classmates"));
+  agent.add(new Suggestion("Other"));
+};
+
+exports.leastFaveUninteresting = (agent) => {
+  agent.add(new Text("Sorry to hear that, it's rare to find every lesson interesting."));
+  agent.add(
+    new Text(
+      "If this is often the case I'd speak to your form tutor or teacher. They might be able to help you find it interesting.",
+    ),
+  );
+  finalOptions(agent);
+};
+
+exports.leastFaveDifficult = (agent) => {
+  agent.add(new Text("That is tough.. it's hard to enjoy a difficult subject."));
+  agent.add(
+    new Text(
+      "If you normally find the lessons difficult I would suggest that you speak to your form tutor or teacher about this. Trust me it will really help you out!",
+    ),
+  );
+  finalOptions(agent);
+};
+
+exports.leastFavePositive = (agent) => {
+  agent.add(new Text("That's great to hear! What made it different this time?"));
+  agent.add(new Suggestion("The lesson was interesting"));
+  agent.add(new Suggestion("I did well!"));
+  agent.add(new Suggestion("I had fun with my friends in the lesson"));
+  agent.add(new Suggestion("My teacher was very nice today"));
+};
+
+exports.leastFaveDidWell = (agent) => {
+  agent.add(new Text("That's great to hear! What made it different this time?"));
+  agent.add(new Text("My work"));
+  agent.add(new Suggestion("I overcame a challenge"));
+  agent.add(new Suggestion("Other"));
+};
+
+exports.didWellTellTeacher = (agent) => {
+  agent.add(new Text("That good! I'm sure that they were pleased to hear this!"));
+  agent.add(
+    new Text(
+      "If you wanna put down some thoughts on this, it can really help you capture what you are thinking... Want to give it a go?",
+    ),
+  );
+};
+
+exports.leastFaveChallenge = (agent) => {
+  agent.add(
+    new Text(
+      "That must feel awesome, it's always great to overcome a challenge in a subject that is your least favourite. What was the challenge this time?",
+    ),
+  );
+  agent.add(new Suggestion("Work that's been hard"));
+  agent.add(new Suggestion("Concentrating"));
+  agent.add(new Suggestion("Anxiety"));
+  agent.add(new Suggestion("Other"));
+};
+
+
+exports.favouriteConcentrating = (agent) => {
+  agent.add(new Text("Thats good! It's not always easy to stay alert, especially if you don't love the subject"));
+  agent.add(new Text("But its great to hear that you did!"));
+  agent.add(new Text("What do you think was different this time?"));
+  agent.add(new Suggestion("The lesson was interesting"));
+  agent.add(new Suggestion("I understood the topic"));
+  agent.add(new Suggestion("Other"));
+};
+
+exports.concentratingOther = (agent) => {
+  const userInput = agent.parameters.any;
+  const finish = agent.parameters.finished;
+  const userStarted = userInput.length > 0;
+  const userFinished = finish.length > 0;
+
+  if (userStarted && userFinished) {
+    finalOptions(agent);
+  } else if (userStarted && !userFinished) {
+    agent.add(new Suggestion("Finished"));
+  } else {
+    agent.add(new Text("Tell me what it was that made you concentrate in your lesson today"));
+    agent.add(new Text("Whenever you're done, press the 'Finished' button"));
+  }
+}
+

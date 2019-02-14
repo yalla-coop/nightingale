@@ -206,6 +206,30 @@ module.exports = async (req, res) => {
     intentMap.set("negativeLesson-Classmates", subject.negativeClassmates);
     intentMap.set("friendsNotThere-no", general.negativeDontTalk);
     intentMap.set("friendsNotThere-yes", weekday.negativeFinish);
+    intentMap.set("leastfave-neutral-yes", subject.positiveFinish);
+    intentMap.set("leastfave-neutral-no", general.dontTalk);
+    intentMap.set("leastFave-NegativeLesson", subject.leastFaveNegative);
+    intentMap.set("leastFave-Negative-Uninteresting", subject.leastFaveUninteresting);
+    intentMap.set("leastFave-Negative-Difficult", subject.leastFaveDifficult);
+    intentMap.set("leastFave-PositiveLesson", subject.leastFavePositive);
+    intentMap.set("leastFave-Positive-DidWell", subject.leastFaveDidWell);
+    intentMap.set("leastFave-DidWell-Work-yes-talk", subject.positiveChallengeFinish);
+    intentMap.set("leastFave-DidWell-Work-yes-donttalk", general.dontTalk);
+    intentMap.set("leastFave-DidWell-Work-no-talk", subject.positiveChallengeFinish);
+    intentMap.set("leastFave-DidWell-Work-no-donttalk", general.dontTalk);
+    intentMap.set("leastFave-DidWell-Other", subject.didWellOther);
+    intentMap.set("leastFave-DidWell-Challenge", subject.leastFaveChallenge);
+    intentMap.set("leastFave-Challenge-Other", subject.challengeOther);
+    intentMap.set("leastFave-Challenge-Work-yes-talk", subject.positiveChallengeFinish);
+    intentMap.set("leastFave-Challenge-Work-yes-donttalk", general.dontTalk);
+    intentMap.set("leastFave-Challenge-Work-no-talk", subject.positiveChallengeFinish);
+    intentMap.set("leastFave-Challenge-Work-no-donttalk", general.dontTalk);
+    intentMap.set("leastFave-DidWell-Concentrating", subject.favouriteConcentrating);
+    intentMap.set("Concentrating-Other", subject.concentratingOther);
+    intentMap.set("Concentrating-Understood-yes", subject.positiveChallengeFinish);
+    intentMap.set("Concentrating-Understood-no", general.dontTalk);
+    intentMap.set("leastFave-Challenge-Anxiety-no", subject.dontTalkAnxiety);
+    intentMap.set("leastFave-Challenge-Anxiety-yes", subject.talkAnxiety);
 
     agent.handleRequest(intentMap);
   }
