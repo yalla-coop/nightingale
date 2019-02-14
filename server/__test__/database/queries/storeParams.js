@@ -36,7 +36,7 @@ describe("Testing the updateUserParams function", () => {
       },
     ];
     // run function
-    await storeParams(dataArray, testUserID);
+    await storeParams(dataArray, dataArray[0], testUserID);
     // test if correctly updated
     await User.findOne({ username: "nadia-2009" }).then((user) => {
       expect(user).toBeDefined();
@@ -50,14 +50,9 @@ describe("Testing the updateUserParams function", () => {
     const testUser = await User.findOne({ username: "nadia-2009" });
     const testUserID = testUser._id;
 
-    const dataArray = [];
     // run function
-    await storeParams(dataArray, testUserID);
-
-    await User.findOne({ username: "nadia-2009" }).then((user) => {
-      expect(user).toBeDefined();
-      expect(user.faveSubj).toEqual("Maths");
-      expect(user.leastFaveSubj).toEqual("History");
+    storeParams(["anything"], {}, testUserID).catch((err) => {
+      expect(err).toBeDefined();
       done();
     });
   });

@@ -4,8 +4,12 @@
 // load storeInitParams query
 const updateUserParams = require("./updateUserParams");
 
-module.exports = (array, id) => new Promise(async (resolve, reject) => {
-  if (array) {
+module.exports = (array, object, id) => new Promise(async (resolve, reject) => {
+  if (
+    array
+      && array.includes(object)
+      && Object.prototype.hasOwnProperty.call(object, "parameters")
+  ) {
     array.map((e) => {
       // dialogfow terms....
       const param = e.parameters.fields;
@@ -21,6 +25,10 @@ module.exports = (array, id) => new Promise(async (resolve, reject) => {
         resolve(updateUserParams(id, "leastFaveSubj", leastFaveSubj.stringValue));
       }
     });
-    resolve("sucess updating user info");
+  }
+  try {
+    throw Error();
+  } catch (e) {
+    reject(e);
   }
 });
