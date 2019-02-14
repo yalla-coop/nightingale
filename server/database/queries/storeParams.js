@@ -1,43 +1,70 @@
-// loops over array of dialogflow parameters
-// calls update function as soon as the parameter is part of the response
+// acts like a controller to handle the dialogflow response madness
+// if no one understands wtf is going on here I don't neither
 
-// load storeInitParams query
+// loops over array of dialogflow parameters
+// waits until respecitve values are coming in
+// calls update function as soon as the parameter is part of the response
+// creates weekly event as soon as user answered the question of subject and days...
+
+// load queries
 
 const updateUserParams = require("./updateUserParams");
-const makeDaysArray = require("./makeDaysArray");
+const storeWeeklyEvents = require("./storeWeeklyEvents");
+
+// array is the overall response from dialogflow
+// object is the object inside the array made of more objects
 
 module.exports = (array, object, id) => new Promise((resolve, reject) => {
   if (
+  // check if everything is there
     array
       && array.includes(object)
       && Object.prototype.hasOwnProperty.call(object, "parameters")
   ) {
     array.map((e) => {
-      // dialogfow terms....
+      // those dialogfow terms....
       const param = e.parameters.fields;
+      // destructure the values set in dialogflow
       const {
         birthDate, leastFaveSubj, faveSubj, faveSubjDays, leastFaveSubjDays,
       } = param;
-
-      if (birthDate) {
+        // wait until all data came through
+      if (
+        birthDate
+          && faveSubj
+          && leastFaveSubj
+          && faveSubjDays
+          && faveSubjDays.listValue.values.length > 0
+          && leastFaveSubjDays
+          && leastFaveSubjDays.listValue.values.length > 0
+      ) {
+        // run functions
         resolve(updateUserParams(id, "birthDate", birthDate.stringValue));
-      }
-      if (faveSubj) {
         resolve(updateUserParams(id, "faveSubj", faveSubj.stringValue));
-      }
-      if (leastFaveSubj) {
         resolve(updateUserParams(id, "leastFaveSubj", leastFaveSubj.stringValue));
-      }
-      if (faveSubjDays && faveSubjDays.listValue.values.length > 0) {
-        console.log(makeDaysArray(faveSubjDays.listValue.values));
-      }
-      if (leastFaveSubjDays) {
-        console.log(leastFaveSubjDays.listValue.values);
+        resolve(
+          storeWeeklyEvents(
+            id,
+            faveSubjDays.listValue.values,
+            "favourite subject",
+            faveSubj.stringValue,
+            4,
+          ),
+        );
+        resolve(
+          storeWeeklyEvents(
+            id,
+            leastFaveSubjDays.listValue.values,
+            "least favourite subject",
+            leastFaveSubj.stringValue,
+            1,
+          ),
+        );
       }
     });
   }
   try {
-    throw Error();
+    throw Error;
   } catch (e) {
     reject(e);
   }
