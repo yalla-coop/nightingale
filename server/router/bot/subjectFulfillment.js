@@ -28,25 +28,27 @@ const storeInDB = (agent) => {
   }
 };
 
-const getWeeklyEvent = async (agent, eventType) => {
+const getWeeklyEvent = (agent, eventType) => new Promise((resolve, reject) => {
   const { session } = agent;
   const userId = session.split("/")[session.split("/").length - 1];
   console.log("user", userId);
   console.log("sesh", session);
 
-  const events = await weeklyEvents(userId);
-  console.log("EVENTS", events);
-  console.log("ASYNC", await weeklyEvents(userId));
-  console.log("TYPE", typeof events);
-  if (events.length > 0) {
-    console.log("EVENTS REACHED");
-    const filteredEvent = events.filter(event => event.text.split(":")[0] === eventType);
-    console.log("FILTERED", filteredEvent);
-    const eventTitle = filteredEvent[0].split(":")[1];
-    return eventTitle;
-  }
-  return "lesson";
-};
+  weeklyEvents(userId)
+    .then((events) => {
+      console.log("EVENTS", events);
+      console.log("TYPE", typeof events);
+      if (events.length > 0) {
+        console.log("EVENTS REACHED");
+        const filteredEvent = events.filter(event => event.text.split(":")[0] === eventType);
+        console.log("FILTERED", filteredEvent);
+        const eventTitle = filteredEvent[0].split(":")[1];
+        return eventTitle;
+      }
+      return "lesson";
+    })
+    .catch(err => reject(err));
+});
 
 exports.favourite = async (agent) => {
   const subject = await getWeeklyEvent(agent, "faveSubj");
