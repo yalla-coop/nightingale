@@ -25,9 +25,9 @@ module.exports = async (req, res) => {
 
       // STORAGE ------------------------------------
       // stores messages
-      // storeMessages(result.queryText, messageArr, id)
-      //   .then(storedMsg => console.log("stored messages: ", storedMsg))
-      //   .catch(err => console.log(err));
+      storeMessages(result.queryText, messageArr, id)
+        .then(storedMsg => console.log("stored messages: ", storedMsg))
+        .catch(err => console.log(err));
       // updates key information for user (subjects, birthday ..)
       // creates new weekly events
       storeParams(paramArr, paramArr[0], id)
