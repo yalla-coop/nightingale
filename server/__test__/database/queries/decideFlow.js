@@ -19,15 +19,15 @@ describe("Tesing for decideFlow query", () => {
   test("Function returns a string", async (done) => {
     const result = await decideFlow("event");
     expect(result).toBeDefined();
-    expect(typeof result).toBe("string");
+    expect(typeof result).toBe("object");
     done();
   });
 
   test("Event returns start if fed in", async (done) => {
     const result = await decideFlow("start");
     expect(result).toBeDefined();
-    expect(typeof result).toBe("string");
-    expect(result).toEqual("start");
+    expect(typeof result).toBe("object");
+    expect(result.intent).toEqual("start");
     done();
   });
 });
