@@ -31,7 +31,7 @@ module.exports = async (req, res) => {
         .then(storedMsg => console.log("stored messages: ", storedMsg))
         .catch(err => console.log(err));
       // updates key information for user (subjects, birthday ..)
-      storeParams(paramArr, id).catch(err => console.log(err));
+      storeParams(paramArr, paramArr[0], id).catch(err => console.log(err));
 
       // check for support keywords
       supportKeywordsChecker(req.body.message, id)
