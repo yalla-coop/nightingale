@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import swal from "sweetalert";
 import axios from "axios";
-
 import validate from "./validation";
-
 import Title from "./../../Common/Title";
-import AppTitleImage from "./../../../assets/header.png";
-import AppLogoImage from "./../../../assets/logo.png";
+import ImgTitle from "../../../assets/title.png";
+import ImgLogo from "../../../assets/logo.png";
 import Button from "./../../Common/Button";
 
 import {
-  AppTitle,
-  AppLogo,
+  MainLogo,
   Form,
   InputWrapper,
   Input,
@@ -102,8 +99,8 @@ export default class SignUp extends Component {
   render() {
     return (
       <SignUpWrapper>
-        <AppTitle src={AppTitleImage} />
-        <AppLogo img src={AppLogoImage} />
+        <MainLogo src={ImgTitle} alt="logo" />
+        <MainLogo src={ImgLogo} alt="logo" />
         <Form onSubmit={this.handleSubmit}>
           <Title value="Sign Up" />
           <InputWrapper>
