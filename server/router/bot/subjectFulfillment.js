@@ -177,7 +177,7 @@ exports.didWell = (agent) => {
   agent.add(
     new Text("Well done! You must feel proud about doing well in class! What did you do so well?"),
   );
-  agent.add(new Text("My work"));
+  agent.add(new Suggestion("My work"));
   agent.add(new Suggestion("I overcame a challenge"));
   agent.add(new Suggestion("Other"));
 };
