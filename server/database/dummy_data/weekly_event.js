@@ -14,7 +14,7 @@ const buildWeeklyEvents = async () => {
       user: Nadia,
       days: [1, 3, 5],
       eventEmotion: moods[0],
-      text: "leastFaveSubj: Math",
+      text: "leastFaveSubj: Maths",
     },
     {
       user: Nadia,

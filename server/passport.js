@@ -21,8 +21,6 @@ module.exports = () => {
 
   // JWT strategy
   const strategy = new JwtStrategy(opts, (jwtPayload, done) => {
-    console.log(jwtPayload);
-
     User.findById(jwtPayload.id, { password: 0 })
       .then((user) => {
         if (user) return done(null, user);

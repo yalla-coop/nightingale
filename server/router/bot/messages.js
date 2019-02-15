@@ -9,21 +9,29 @@ const supportKeywordsChecker = require("./support_keywords");
 // load storeMessages controller
 const storeMessages = require("./storeMessages");
 
+// load storeParams controller
+const storeParams = require("../../database/queries/storeParams");
+
 module.exports = async (req, res) => {
   // get user info
-
   const { id } = req.user;
-
   // create responses object
   await dialogflowResponse(req.body, id)
     .then((responses) => {
       // grab the important stuff
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
+      const paramArr = result.outputContexts;
 
       // STORAGE ------------------------------------
+      // stores messages
       storeMessages(result.queryText, messageArr, id)
         .then(storedMsg => console.log("stored messages: ", storedMsg))
+        .catch(err => console.log(err));
+      // updates key information for user (subjects, birthday ..)
+      // creates new weekly events
+      storeParams(paramArr, paramArr[0], id)
+        .then(resu => console.log(resu))
         .catch(err => console.log(err));
 
       // check for support keywords

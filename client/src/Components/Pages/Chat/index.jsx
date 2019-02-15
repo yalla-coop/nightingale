@@ -49,7 +49,7 @@ class Chat extends Component {
     });
     // listening for the bot-response event on the bot channel
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
-    
+
     // get the userid from state
     const appState = await JSON.parse(localStorage.getItem("AppState"));
     const channel = pusher.subscribe(`bot_${appState.id}`);
@@ -107,11 +107,10 @@ class Chat extends Component {
     // checks what event to be sent to dialogflow
     // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
     const AppState = await JSON.parse(localStorage.getItem("AppState"));
-    const Bdate = AppState.bdate;
-    const Fsubj = AppState.faveSubj;
-    const LFsubj = AppState.leastFaveSubj;
+    const { bdate, faveSubj, leastFaveSubj } = AppState;
+    console.log(AppState);
 
-    return Bdate && Fsubj && LFsubj
+    return bdate && faveSubj && leastFaveSubj
       ? this.getIntent("event")
           .then(result => console.log("result to server", result))
           .catch(err => console.log(err))
@@ -124,6 +123,8 @@ class Chat extends Component {
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {
+    console.log("evenst", dfEvent);
+
     // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
   };
@@ -205,16 +206,17 @@ class Chat extends Component {
 
   // RENDER -------------------------------------------------------------------------------------------------------------------------------
   render() {
-    const { botQuickReply, botCardReply } = this.state
+    const { botQuickReply, botCardReply } = this.state;
 
     // function that checks if it's a quick reply or card reply
     // to decide if we should hide the message box
     const checkReply = (botQuickReply, botCardReply) => {
-      // check if it's a 
-      if (botQuickReply.length > 0 && !botQuickReply.includes("Finished")) return true;
-      if (botCardReply) return true
-      else return false
-    }
+      // check if it's a
+      if (botQuickReply.length > 0 && !botQuickReply.includes("Finished"))
+        return true;
+      if (botCardReply) return true;
+      else return false;
+    };
 
     // function that renders text by human or bot (ai) (defined as className) as speech bubble
     const ChatBubble = (text, i, className) => {
