@@ -9,17 +9,20 @@ const buildWeeklyEvents = async () => {
   // get default user "Nadia"
   const Nadia = await User.findOne();
 
-  const weeklyEvents = [{
-    user: Nadia,
-    days: [1, 3, 5],
-    eventEmotion: moods[0],
-    text: "Math lesson",
-  }, {
-    user: Nadia,
-    days: [2, 4],
-    eventEmotion: moods[5],
-    text: "History lesson",
-  }];
+  const weeklyEvents = [
+    {
+      user: Nadia,
+      days: [1, 3, 5],
+      eventEmotion: moods[0],
+      text: "leastFaveSubj: Math",
+    },
+    {
+      user: Nadia,
+      days: [2, 4],
+      eventEmotion: moods[5],
+      text: "faveSubj: History",
+    },
+  ];
 
   return WeeklyEvents.insertMany(weeklyEvents);
 };
