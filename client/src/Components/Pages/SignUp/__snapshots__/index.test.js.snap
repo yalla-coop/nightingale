@@ -2,18 +2,20 @@
 
 exports[`SignUp must match the snapshots renders correctly 1`] = `
 <div
-  className="sc-bxivhb hqlsQb"
+  className="sc-bxivhb bcEgtQ"
 >
   <img
-    className="sc-ifAKCX djVFOV"
-    src="header.png"
+    alt="logo"
+    className="sc-ifAKCX lkFcpx"
+    src="title.png"
   />
   <img
-    className="sc-EHOje lbgmuu"
+    alt="logo"
+    className="sc-ifAKCX lkFcpx"
     src="logo.png"
   />
   <form
-    className="sc-bZQynM ggoioL"
+    className="sc-EHOje kOeQRB"
     onSubmit={[Function]}
   >
     <div
@@ -26,11 +28,11 @@ exports[`SignUp must match the snapshots renders correctly 1`] = `
       </h1>
     </div>
     <div
-      className="sc-gzVnrw ekbgNh"
+      className="sc-bZQynM hkvUef"
     >
       <input
         autoFocus={true}
-        className="sc-htoDjs ekjgyT"
+        className="sc-gzVnrw hAUdgt"
         name="name"
         onBlur={[Function]}
         onChange={[Function]}
@@ -40,10 +42,10 @@ exports[`SignUp must match the snapshots renders correctly 1`] = `
       
     </div>
     <div
-      className="sc-gzVnrw ekbgNh"
+      className="sc-bZQynM hkvUef"
     >
       <input
-        className="sc-htoDjs ekjgyT"
+        className="sc-gzVnrw hAUdgt"
         name="username"
         onBlur={[Function]}
         onChange={[Function]}
@@ -53,10 +55,10 @@ exports[`SignUp must match the snapshots renders correctly 1`] = `
       
     </div>
     <div
-      className="sc-gzVnrw ekbgNh"
+      className="sc-bZQynM hkvUef"
     >
       <input
-        className="sc-htoDjs ekjgyT"
+        className="sc-gzVnrw hAUdgt"
         name="password"
         onBlur={[Function]}
         onChange={[Function]}
@@ -67,10 +69,10 @@ exports[`SignUp must match the snapshots renders correctly 1`] = `
       
     </div>
     <div
-      className="sc-gzVnrw ekbgNh"
+      className="sc-bZQynM hkvUef"
     >
       <input
-        className="sc-htoDjs ekjgyT"
+        className="sc-gzVnrw hAUdgt"
         name="rePassword"
         onChange={[Function]}
         placeholder="Re-Password"
@@ -91,11 +93,11 @@ exports[`SignUp must match the snapshots renders correctly 1`] = `
       Sign Up
     </button>
     <p
-      className="sc-dnqmqq fXmtAI"
+      className="sc-htoDjs dLESzS"
     >
       Have an account? 
       <a
-        className="sc-iwsKbI hTGocj"
+        className="sc-dnqmqq hbhjDi"
         href="/login"
         onClick={[Function]}
       >

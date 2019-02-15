@@ -7,7 +7,7 @@ Array [
   >
     <i
       aria-hidden="true"
-      class="fa fa-angle-left"
+      className="fa fa-angle-left"
       onClick={[Function]}
     />
     <p
@@ -24,7 +24,7 @@ Array [
   >
     
     <div
-      className="sc-bxivhb jANfsG"
+      className="sc-bxivhb bKWutK"
     >
       <div>
         <p

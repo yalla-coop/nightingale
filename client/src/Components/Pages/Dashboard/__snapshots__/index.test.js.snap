@@ -1,25 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Dashboard renders correctly 1`] = `
-Array [
+<div
+  className="sc-gzVnrw EFEtm"
+>
   <div
-    className="sc-gzVnrw iRVTRi"
+    className="sc-htoDjs gmfqSo"
   >
     <h1
-      className="sc-htoDjs louLhm"
+      className="sc-dnqmqq hTpVIo"
     >
       Hi 
        !
     </h1>
     <h2
-      className="sc-dnqmqq hTpVIo"
+      className="sc-iwsKbI jpysfj"
     >
       It’s great to see you again
     </h2>
     
-  </div>,
+  </div>
   <div
-    className="sc-gZMcBi dJGste"
-  />,
-]
+    className="sc-gqjmRU bvdSzw"
+  />
+  <img
+    alt="start chat"
+    onClick={[Function]}
+    src="chat.png"
+  />
+</div>
 `;
