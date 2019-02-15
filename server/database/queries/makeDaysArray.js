@@ -12,6 +12,8 @@ module.exports = (daysArray) => {
   weekday.Friday = 5;
   weekday.Saturday = 6;
 
+  console.log("heeeey", weekday);
+
   // loop over array of day-strings and push related integer
   daysArray.forEach((day) => {
     daysNumberArray.push(weekday[day.stringValue]);

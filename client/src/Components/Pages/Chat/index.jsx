@@ -107,9 +107,10 @@ class Chat extends Component {
     // checks what event to be sent to dialogflow
     // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
     const AppState = await JSON.parse(localStorage.getItem("AppState"));
-    const { Bdate, Fsubj, LFsubj } = AppState;
+    const { bdate, faveSubj, leastFaveSubj } = AppState;
+    console.log(AppState);
 
-    return Bdate && Fsubj && LFsubj
+    return bdate && faveSubj && leastFaveSubj
       ? this.getIntent("event")
           .then(result => console.log("result to server", result))
           .catch(err => console.log(err))
@@ -122,6 +123,8 @@ class Chat extends Component {
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {
+    console.log("evenst", dfEvent);
+
     // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
   };
