@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import swal from "sweetalert";
 import axios from "axios";
-
 import Title from "./../../Common/Title";
-import AppTitleImage from "./../../../assets/header.png";
-import AppLogoImage from "./../../../assets/logo.png";
+import ImgTitle from "../../../assets/title.png";
+import ImgLogo from "../../../assets/logo.png";
 import Input from "./../../Common/Input";
 import Button from "./../../Common/Button";
 
 import {
-  AppTitle,
-  AppLogo,
+  MainLogo,
+  View,
   Form,
-  LoginWrapper,
   LoginWrapperText,
   LoginWrapperLink
 } from "./index.style";
@@ -35,8 +33,6 @@ class Login extends Component {
       axios
         .post("/api/user/login", this.state)
         .then(res => {
-          console.log(res);
-
           // store user's data into the App state
           handleChangeState({ ...res.data, isLogin: true });
 
@@ -59,9 +55,9 @@ class Login extends Component {
 
   render() {
     return (
-      <LoginWrapper>
-        <AppTitle src={AppTitleImage} />
-        <AppLogo img src={AppLogoImage} />
+      <View>
+        <MainLogo src={ImgTitle} alt="logo" />
+        <MainLogo src={ImgLogo} alt="logo" />
         <Form onSubmit={this.handleSubmit}>
           <Title value="Login" />
           <Input
@@ -83,7 +79,7 @@ class Login extends Component {
             <LoginWrapperLink to="/signup">sign up now!</LoginWrapperLink>
           </LoginWrapperText>
         </Form>
-      </LoginWrapper>
+      </View>
     );
   }
 }

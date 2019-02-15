@@ -9,14 +9,16 @@ const dialogflow = require("dialogflow");
 const decideFlow = require("../../database/queries/decideFlow");
 
 const getContext = require("./../../database/queries/get_context");
+// Import userDetails to get userdetails
+const getUserDetails = require("../../database/queries/getUserDetails");
 
-module.exports = (query, userId) => new Promise((resolve, reject) => {
+module.exports = async (query, userId) => {
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
     .replace("\"", "");
 
   // get the latest context for the user
-  getContext(userId).then((data) => {
+  getContext(userId).then(async (data) => {
     const context = data && data.context;
     // setup the configuration
     const config = {
@@ -43,6 +45,9 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
 
     // Define session path
     const sessionPath = sessionClient.sessionPath(projectId, sessionId);
+
+    // get user details for message personalisation
+    const name = await getUserDetails(userId);
 
     // set up our request body
     let request = {};
@@ -79,6 +84,14 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
             analyzeQueryTextSentiment: true,
           },
           contexts: context,
+          payload: {
+            fields: {
+              name: {
+                stringValue: name,
+                kind: "stringValue",
+              },
+            },
+          },
         },
       };
     } else if (query.event) {
@@ -86,13 +99,25 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
       const event = decideFlow(query.event);
       request = {
         session: sessionPath,
-        queryParams: {
-          contexts: context,
-        },
         queryInput: {
           event: {
             name: event,
             languageCode,
+          },
+        },
+        queryParams: {
+          contexts: context,
+          payload: {
+            fields: {
+              eventTitle: {
+                stringValue: event.eventTitle,
+                kind: "stringValue",
+              },
+              name: {
+                stringValue: name,
+                kind: "stringValue",
+              },
+            },
           },
         },
       };
@@ -101,6 +126,6 @@ module.exports = (query, userId) => new Promise((resolve, reject) => {
     // Send request and log result
     const responses = sessionClient.detectIntent(request);
 
-    resolve(responses);
+    return responses;
   });
-});
+};

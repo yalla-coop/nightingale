@@ -1,25 +1,23 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  /* margin-top: 2rem; */
   .Collapsible {
     border-top: 1px solid #cccc;
   }
 
   .Collapsible__trigger {
-    position: relative;
     cursor: pointer;
     display: flex;
+    z-index: 1px;
     padding: 1rem;
   }
 
   .is-closed {
+    display: flex;
+    justify-content: space-between;
     :after {
       font-family: "Font Awesome 5 Free";
       content: "\f107";
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
       display: block;
       color: #cccc;
       font-weight: 900;
@@ -29,12 +27,11 @@ export const Wrapper = styled.div`
   }
 
   .is-open {
+    display: flex;
+    justify-content: space-between;
     :after {
       font-family: "Font Awesome 5 Free";
       content: "\f107";
-      position: absolute;
-      right: 1rem;
-      top: 1rem;
       display: block;
       color: #cccc;
       font-weight: 900;
