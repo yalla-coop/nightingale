@@ -34,7 +34,7 @@ export const ViewDiv = styled.div`
 `;
 
 export const MessagesDiv = styled.div`
-  :nth-child(even)::after {
+  :nth-child(odd)::after {
     background: url(${img}) center center no-repeat;
     background-size: cover;
     display: inline-block;
@@ -44,11 +44,11 @@ export const MessagesDiv = styled.div`
   }
   display: block;
   clear: both;
-  :nth-child(even) {
+  :nth-child(odd) {
     float: left;
     margin: 5px;
   }
-  :nth-child(even) p:nth-child(1) {
+  :nth-child(odd) p:nth-child(1) {
     font-size: 1rem;
     background: #e5e6ea;
     padding: 1rem;
@@ -57,16 +57,16 @@ export const MessagesDiv = styled.div`
     font-weight: 500;
     margin: 5px;
   }
-  :nth-child(even) p:nth-child(2) {
+  :nth-child(odd) p:nth-child(2) {
     display: none;
   }
-  :nth-child(odd) {
+  :nth-child(even) {
     float: right;
     color: #fff;
     font-weight: 500;
     margin: 5px;
   }
-  :nth-child(odd) p:nth-child(1) {
+  :nth-child(even) p:nth-child(1) {
     font-size: 1rem;
     background: linear-gradient(to top, #925de5, #7874fd);
     padding: 1rem;
@@ -75,7 +75,7 @@ export const MessagesDiv = styled.div`
     font-weight: 500;
     margin: 5px;
   }
-  :nth-child(odd) p:nth-child(2) {
+  :nth-child(even) p:nth-child(2) {
     color: #8c8c8c !important;
     margin-left: 80%;
     display: inline;

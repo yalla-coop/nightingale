@@ -2,25 +2,24 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const SignUpWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
-  padding: 50px 0;
+  padding: 2rem 0.5rem 5rem 0.5rem;
+  min-height: 100vh;
+  text-align: center;
+  @media (min-width: 768px) {
+    padding: 0rem;
+    box-sizing: border-box;
+  }
 `;
 
-export const AppTitle = styled.img`
-  display: block;
-  object-fit: contain;
-  width: 80%;
-  max-width: 400px;
-`;
-
-export const AppLogo = styled.img`
-  display: block;
-  object-fit: contain;
-  width: 50%;
-  max-width: 250px;
+export const MainLogo = styled.img`
+  width: 55%;
+  margin: 0 auto;
+  @media (min-width: 700px) {
+    display: block;
+    width: 13%;
+    margin: 0 auto;
+  }
 `;
 
 export const Form = styled.form`
@@ -28,7 +27,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-item: center;
-  width: 85%;
+  width: 30%;
   padding: 25px 0;
   box-shadow: 0px 0px 6px #ccc;
   margin-top: 25px;
@@ -41,6 +40,11 @@ export const Form = styled.form`
   }
   h1 {
     border: none;
+    margin-bottom: 1rem;
+    font-weight: bold;
+  }
+  @media (max-width: 768px) {
+    width: 85%;
   }
 `;
 
@@ -68,15 +72,32 @@ export const SignUpText = styled.p`
 `;
 
 export const SignUpLink = styled(Link)`
-  color: black;
-  text-decoration: none;
-  font-weight: 900;
+  display: block;
+  color: #925de5;
+  :hover {
+    display: block;
+    color: #925de5;
+  }
+  ,
+  :active {
+    display: block;
+    color: #925de5;
+  }
+  ,
+  :visited {
+    display: block;
+    color: #925de5;
+  }
+  ,
+  :focus {
+    display: block;
+    color: #925de5;
+  }
 `;
 
 export const ErrorBox = styled.div`
   position: absolute;
-  min-width: 250px;
-  max-width: 85%;
+  min-width: 95%;
   background-color: #cccccc38;
   margin: 0 auto;
   text-align: center;

@@ -10,11 +10,11 @@ export const MenuDiv = styled.div`
 `;
 export const Menu = styled.div`
   position: absolute;
-  background: #cccccc75;
-  z-index: 1000;
+  background: #e3e3ea;
+  z-index: 100;
   top: 0;
   right: 0;
-  width: 200px;
+  width: 250px;
   height: 100vh;
   transition: all 500ms ease;
   padding: 40px 10px;
@@ -26,7 +26,7 @@ export const MenuItem = styled(Link)`
   margin-bottom: 2rem;
   display: flex;
   align-items: center;
-  color: #283d4c;
+  color: #6b6277;
   font-weight: bold;
   letter-spacing: 1px;
   transition: all 500ms ease;
@@ -37,8 +37,8 @@ export const MenuItem = styled(Link)`
   }
 
   :hover {
-    text-indent: 5px;
-    color: #2c1f46;
+    text-indent: 10px;
+    color: #925de5;
   }
 `;
 export const MenuIcon = styled.i`
@@ -47,11 +47,15 @@ export const MenuIcon = styled.i`
   cursor: pointer;
 `;
 export const MenuClose = styled.i`
-  color: #283d4c;
   position: absolute;
-  font-size: 20px;
+  font-size: 23px;
   top: 0;
   left: 0;
-  margin: 20px 0px 10px 5px;
+  margin: 20px 0px 10px 10px;
   cursor: pointer;
+  color: #6b6277;
+  cursor: pointer;
+  :hover {
+    color: #925de5;
+  }
 `;

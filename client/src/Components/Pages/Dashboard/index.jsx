@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Chart from "../../Common/Chart";
 import uuid from "uuid";
 import axios from "axios";
+import Chat from "../../../assets/chat.png";
 import {
+  View,
   TopDiv,
   Name,
   Welcome,
@@ -17,6 +19,9 @@ class Dashboard extends Component {
     message: "",
     dailyMood: [],
     statusMood: null
+  };
+  onClick = () => {
+    this.props.history.push("/chat");
   };
 
   componentDidMount = () => {
@@ -56,7 +61,7 @@ class Dashboard extends Component {
   render() {
     const { message, statusMood, dailyMood } = this.state;
     return (
-      <>
+      <View>
         <TopDiv>
           <Name>Hi {this.props.name} !</Name>
           <Welcome>It’s great to see you again</Welcome>
@@ -81,7 +86,8 @@ class Dashboard extends Component {
             ))}
           </DailyDiv>
         )}
-      </>
+        <img onClick={this.onClick} src={Chat} alt="start chat" />
+      </View>
     );
   }
 }

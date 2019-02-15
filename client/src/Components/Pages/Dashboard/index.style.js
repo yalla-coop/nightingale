@@ -1,4 +1,15 @@
 import styled from "styled-components";
+export const View = styled.div`
+margin-bottom: 5rem;
+  img {
+    margin-bottom: 15px;
+    margin-right:20px
+    position: fixed;
+    bottom: 0;
+    cursor:pointer;
+    right: 0;
+  }
+`;
 
 export const TopDiv = styled.div`
   width: 95%;

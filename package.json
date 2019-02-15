@@ -21,6 +21,7 @@
       "!**/passport.js",
       "!**/db_connection.js",
       "!**/generalFulfillment.js",
+      "!**/subjectFulfillment.js",
       "!**/dialogflowSessionClient.js",
       "!**/pusherSessionClient.js"
     ]
