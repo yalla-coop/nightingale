@@ -82,7 +82,9 @@ class Chat extends Component {
     // listening for the bot-response event on the bot channel
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
 
-    const channel = pusher.subscribe(`bot_${AppState.id}`);
+    // get the userid from state
+    const appState = JSON.parse(localStorage.getItem("AppState"));
+    const channel = pusher.subscribe(`bot_${appState.id}`);
     channel.bind("bot-response", data => {
       // if immediat support detected show a popup message
       if (data.needImmediateSupport) {
@@ -137,6 +139,8 @@ class Chat extends Component {
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {
+    console.log("evenst", dfEvent);
+
     // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
   };
