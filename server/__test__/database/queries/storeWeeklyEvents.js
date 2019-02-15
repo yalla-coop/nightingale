@@ -35,7 +35,7 @@ describe("Testing the updateUserParams function", () => {
         expect(event.user).toEqual(id);
         expect(event.days[0]).toEqual(1);
         expect(event.text).toEqual("favourite subject: Maths");
-        expect(event.eventEmotion).toEqual(moods[0]._id);
+        expect(event.eventEmotion.toJSON()).toEqual(moods[0].toJSON());
       },
     );
     done();

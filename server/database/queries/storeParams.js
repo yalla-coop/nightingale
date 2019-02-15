@@ -34,9 +34,9 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
           && faveSubj
           && leastFaveSubj
           && faveSubjDays
-          && faveSubjDays.listValue.values.length > 0
+          && faveSubjDays.listValue.values.length
           && leastFaveSubjDays
-          && leastFaveSubjDays.listValue.values.length > 0
+          && leastFaveSubjDays.listValue.values.length
       ) {
         // run functions
         resolve(updateUserParams(id, "birthDate", birthDate.stringValue));
@@ -46,7 +46,7 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
           storeWeeklyEvents(
             id,
             faveSubjDays.listValue.values,
-            "favourite subject",
+            "faveSubj",
             faveSubj.stringValue,
             4,
           ),
@@ -55,12 +55,13 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
           storeWeeklyEvents(
             id,
             leastFaveSubjDays.listValue.values,
-            "least favourite subject",
+            "leastFaveSubj",
             leastFaveSubj.stringValue,
             1,
           ),
         );
       }
+      return false;
     });
   }
   try {

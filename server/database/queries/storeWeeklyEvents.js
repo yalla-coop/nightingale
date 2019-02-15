@@ -13,7 +13,7 @@ module.exports = (id, inputDaysArray, description, value, moodScore) => new Prom
     user: id,
     days: makeDaysArray(inputDaysArray),
     text: `${[description]}: ${value}`,
-    eventEmotion: moods[moodScore]._id,
+    eventEmotion: moods[moodScore],
   });
   newWeeklyEvent
     .save()
