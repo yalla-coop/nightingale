@@ -7,6 +7,8 @@ const buildMessage = require("./message");
 const buildSupportKeyword = require("./support_keyword");
 const buildConversation = require("./conversation");
 const dbConnection = require("./../db_connection");
+const buildEventIntent = require("./event_intents");
+
 const resetDb = require("./reset_DB");
 
 
@@ -21,6 +23,7 @@ const buildDummyData = () => new Promise((resolve, reject) => {
       await buildNonSteadyEvent();
       await buildMessage();
       await buildSupportKeyword();
+      await buildEventIntent();
     })
     .then(resolve)
     .catch(reject);

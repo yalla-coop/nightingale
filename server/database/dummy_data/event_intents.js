@@ -1,4 +1,3 @@
-const Message = require("../models/Message");
 const EventIntent = require("./../models/EventIntent");
 
 const buildEventIntent = async () => {
@@ -194,246 +193,246 @@ const buildEventIntent = async () => {
   }, {
     intent: "Bullied-Talk-No",
     event: "BulliedTalkNo",
-  },{
-    intent: :"Bullied-Talk-Yes",
-    event: "BulliedTalkYes"
+  }, {
+    intent: "Bullied-Talk-Yes",
+    event: "BulliedTalkYes",
   }, {
     intent: "Bullied-Talk-Yes - fallback",
-    event: "BulliedTalkYesFallback"
-  },{
+    event: "BulliedTalkYesFallback",
+  }, {
     intent: "Bullied-Talk-Yes - Finish",
-    event: "BulliedTalkYesFinish"
-  },{
+    event: "BulliedTalkYesFinish",
+  }, {
     intent: "Extra-Thoughts",
-    event: "ExtraThoughts"
+    event: "ExtraThoughts",
   }, {
     intent: "Fave-Subject - fallback",
-    event: "FaveSubjectFallback"
-  },{
+    event: "FaveSubjectFallback",
+  }, {
     intent: "faveSubject",
-    event: "faveSubj"
-  },{
+    event: "faveSubj",
+  }, {
     intent: "fave-negativeLesson",
-    event: "faveNegativeLesson"
-  },{
+    event: "faveNegativeLesson",
+  }, {
     intent: "fave-neutral",
-    event: "faveNeutral"
-  },{
+    event: "faveNeutral",
+  }, {
     intent: "fave-neutral-yes",
-    event: "faveNeutralYes"
+    event: "faveNeutralYes",
   }, {
     intent: "fave-neutral-no",
-    event: "faveNeutralNo"
+    event: "faveNeutralNo",
   }, {
     intent: "fave-positiveLesson",
-    event: "favePositiveLesson"
-  },{
+    event: "favePositiveLesson",
+  }, {
     intent: "Friend-Issue",
-    event: "FriendIssue"
-  },{
+    event: "FriendIssue",
+  }, {
     intent: "Friend-Issue - yes",
-    event: "FriendIssueYes"
-  },{
+    event: "FriendIssueYes",
+  }, {
     intent: "Friend-Issue-Talk - fallback",
-    event: "FriendIssueTalkFallback"
+    event: "FriendIssueTalkFallback",
   }, {
     intent: "Friend-Issue-Talk - Finish",
-    event: "FriendIssueTalkFinish"
+    event: "FriendIssueTalkFinish",
   }, {
     intent: "Friend-Issue - no",
-    event: "FriendIssueNo"
+    event: "FriendIssueNo",
   }, {
     intent: "General-Other",
-    event: "GeneralOther"
-  },{
+    event: "GeneralOther",
+  }, {
     intent: "General-Other - yes",
-    event: "GeneralOtherYes"
+    event: "GeneralOtherYes",
   }, {
     intent: "General-Other - yes - fallback",
-    event: "GeneralOtherYesFallback"
+    event: "GeneralOtherYesFallback",
   }, {
     intent: "General-Other-Talk - Finish",
-    event: "GeneralOtherTalkFinish"
+    event: "GeneralOtherTalkFinish",
   }, {
     intent: "General-Other - no",
-    event: "GeneralOtherNo"
+    event: "GeneralOtherNo",
   }, {
     intent: "leastFaveSubject",
-    event: "leastFaveSubj"
+    event: "leastFaveSubj",
   }, {
     intent: "leastFave-NegativeLesson",
-    event: "leastFaveNegativeLesson"
-  },{
+    event: "leastFaveNegativeLesson",
+  }, {
     intent: "leastFave-Negative-Uninteresting",
-    event: "leastFaveNegativeUninteresting"
-  },{
+    event: "leastFaveNegativeUninteresting",
+  }, {
     intent: "leastFave-Negative-Difficult",
-    event: "leastFaveNegativeDifficult"
-  },{
+    event: "leastFaveNegativeDifficult",
+  }, {
     intent: "leastFave-PositiveLesson",
-    event: "leastFavePositiveLesson"
+    event: "leastFavePositiveLesson",
   }, {
     intent: "leastFave-Positive-DidWell",
-    event: "leastFavePositiveDidWell"
-  },{
+    event: "leastFavePositiveDidWell",
+  }, {
     intent: "leastFave-DidWell-Work",
-    event: "leastFaveDidWellWork"
-  },{
+    event: "leastFaveDidWellWork",
+  }, {
     intent: "leastFave-DidWell-Work-yes",
-    event: "leastFaveDidWellWorkYes"
-  },{
+    event: "leastFaveDidWellWorkYes",
+  }, {
     intent: "leastFave-DidWell-Work-yes-talk",
-    event: "leastFaveDidWellWorkYesTalk"
-  },{
+    event: "leastFaveDidWellWorkYesTalk",
+  }, {
     intent: "leastFave-DidWell-Work-yes-donttalk",
-    event: "leastFaveDidWellWorkYesDonttalk"
+    event: "leastFaveDidWellWorkYesDonttalk",
   }, {
     intent: "leastFave-DidWell-Work-no",
-    event: "leastFaveDidWellWorkNo"
+    event: "leastFaveDidWellWorkNo",
   }, {
     intent: "leastFave-DidWell-Work-no-donttalk",
-    event: "leastFaveDidWellWorkNoDonttalk"
+    event: "leastFaveDidWellWorkNoDonttalk",
   }, {
     intent: "leastFave-DidWell-Work-no-talk",
-    event: "leastFaveDidWellWorkNoTalk"
-  },{
+    event: "leastFaveDidWellWorkNoTalk",
+  }, {
     intent: "leastFave-DidWell-Other",
-    event: "leastFaveDidWellOther"
-  },{
+    event: "leastFaveDidWellOther",
+  }, {
     intent: "leastFave-DidWell-Challenge",
-    event: "leastFaveDidWellChallenge"
+    event: "leastFaveDidWellChallenge",
   }, {
     intent: "leastFave-Challenge-Anxiety",
-    event: "leastFaveChallengeAnxiety"
+    event: "leastFaveChallengeAnxiety",
   }, {
     intent: "leastFave-Challenge-Anxiety-yes",
-    event: "leastFaveChallengeAnxietyYes"
+    event: "leastFaveChallengeAnxietyYes",
   }, {
     intent: "leastFave-Challenge-Anxiety-no",
-    event: "leastFaveChallengeAnxietyNo"
+    event: "leastFaveChallengeAnxietyNo",
   }, {
     intent: "leastFave-Challenge-Other",
-    event: "leastFaveChallengeOther"
+    event: "leastFaveChallengeOther",
   }, {
     intent: "leastFave-DidWell-Concentrating",
-    event: "leastFaveDidWellConcentrating"
+    event: "leastFaveDidWellConcentrating",
   }, {
     intent: "Concentrating-Understand",
-    event: "ConcentratingUnderstand"
-  },{
+    event: "ConcentratingUnderstand",
+  }, {
     intent: "Concentrating-Understood-yes",
-    event: "ConcentratingUnderstoodYes"
+    event: "ConcentratingUnderstoodYes",
   }, {
     intent: "Concentrating-Understand-no",
-    event: "ConcentratingUnderstandNo"
+    event: "ConcentratingUnderstandNo",
   }, {
     intent: "Concentrating-Other",
-    event: "ConcentratingOther"
-  },{
+    event: "ConcentratingOther",
+  }, {
     intent: "leastFave-Challenge-Work",
-    event: "leastFaveChallengeWork"
+    event: "leastFaveChallengeWork",
   }, {
     intent: "leastFave-Challenge-Work-yes",
-    event: "leastFaveChallengeWorkYes"
+    event: "leastFaveChallengeWorkYes",
   }, {
     intent: "leastFave-Challenge-Work-yes-donttalk",
-    event: "leastFaveChallengeWorkYesDonttalk"
+    event: "leastFaveChallengeWorkYesDonttalk",
   }, {
     intent: "leastFave-Challenge-Work-yes-talk",
-    event: "leastFaveChallengeWorkYesTalk"
+    event: "leastFaveChallengeWorkYesTalk",
   }, {
     intent: "leastFave-Challenge-Work-no",
-    event: "leastFaveChallengeWorkNo"
+    event: "leastFaveChallengeWorkNo",
   }, {
     intent: "leastFave-Challenge-Work-no-talk",
-    event: "leastFaveChallengeWorkNoTalk"
-  },{
+    event: "leastFaveChallengeWorkNoTalk",
+  }, {
     intent: "leastFave-Challenge-Work-no-donttalk",
-    event :"leastFaveChallengeWorkNoDonttalk"
+    event: "leastFaveChallengeWorkNoDonttalk",
   }, {
     intent: "leastFaveSubject-Neutral",
-    event: "leastFaveSubjectNeutral"
-  },{
-    intent: "leastfave-neutral-no",
-    event: "leastfaveNeutralNo"
-  },{
-    intent: "leastfave-neutral-yes",
-    event: 'leastfaveNeutralYes'
-  }
-  // --------
-  ,{
-    intent: "negativeLesson-Classmates",
-    event:"negativeLessonClassmates"
-  },{
-    intent: "friendsNotThere",
-    event: "friendsNotThere2"
+    event: "leastFaveSubjectNeutral",
   }, {
-    intent: 'friendsNotThere-no',
-    event: "friendsNotThereNo"
-  },{
+    intent: "leastfave-neutral-no",
+    event: "leastfaveNeutralNo",
+  }, {
+    intent: "leastfave-neutral-yes",
+    event: "leastfaveNeutralYes",
+  },
+  // --------
+  {
+    intent: "negativeLesson-Classmates",
+    event: "negativeLessonClassmates",
+  }, {
+    intent: "friendsNotThere",
+    event: "friendsNotThere2",
+  }, {
+    intent: "friendsNotThere-no",
+    event: "friendsNotThereNo",
+  }, {
     intent: "friendsNotThere-yes",
-    event: "friendsNotThereYes"
+    event: "friendsNotThereYes",
   }, {
     intent: "negativeLesson-Difficult",
-    event: "negativeLessonDifficult"
-  },{
+    event: "negativeLessonDifficult",
+  }, {
     intent: "negativeLesson-Difficult-yes",
-    event: "negativeLessonDifficultYes"
-  },{
+    event: "negativeLessonDifficultYes",
+  }, {
     intent: "negativeLesson-Difficult-no",
-    event: "negativeLessonDifficultNo"
+    event: "negativeLessonDifficultNo",
   }, {
     intent: "negativeLesson-Uninteresting",
-    event: "negativeLessonUninteresting"
-  },{
+    event: "negativeLessonUninteresting",
+  }, {
     intent: "positiveLesson-didwell",
-    event: "positiveLessonDidwell"
-  },{
+    event: "positiveLessonDidwell",
+  }, {
     intent: "didWell-Work",
-    event:"didWellWork"
-  },{
+    event: "didWellWork",
+  }, {
     intent: "didWell-Other",
-    event: "didWellOther"
-  },{
+    event: "didWellOther",
+  }, {
     intent: "didWell-Challenge",
-    event: "didWellChallenge"
-  },{
+    event: "didWellChallenge",
+  }, {
     intent: "Challenge-Anxiety",
-    event: "ChallengeAnxiety"
-  },{
+    event: "ChallengeAnxiety",
+  }, {
     intent: "Challenge-Anxiety-no",
-    event: "ChallengeAnxietyNo"
+    event: "ChallengeAnxietyNo",
   }, {
     intent: "Challenge-Anxiety-yes",
-    event: 'ChallengeAnxietyYes'
-  },{
+    event: "ChallengeAnxietyYes",
+  }, {
     intent: "Challenge-HardWork",
-    event: "ChallengeHardWork"
+    event: "ChallengeHardWork",
   }, {
     intent: "Challenge-HardWork-yes",
-    event: "ChallengeHardWorkYes"
-  },{
+    event: "ChallengeHardWorkYes",
+  }, {
     intent: "Challenge-HardWork-yes-yes",
-    event: "ChallengeHardWorkYesYes"
-  },{
+    event: "ChallengeHardWorkYesYes",
+  }, {
     intent: "Challenge-HardWork-yes-no",
-    event :"ChallengeHardWorkYesNo"
+    event: "ChallengeHardWorkYesNo",
   }, {
     intent: "Challenge-HardWork-no",
-    event: "ChallengeHardWorkNo"
-  },{
+    event: "ChallengeHardWorkNo",
+  }, {
     intent: "Challenge-HardWork-no-yes",
-    event: "ChallengeHardWorkNoYes"
-  },{
+    event: "ChallengeHardWorkNoYes",
+  }, {
     intent: "Challenge-HardWork-no-no",
-    event: "ChallengeHardWorkNoNo"
-  },{
+    event: "ChallengeHardWorkNoNo",
+  }, {
     intent: "Challenge-Concentrating",
-    event: "ChallengeConcentrating"
-  },{
+    event: "ChallengeConcentrating",
+  }, {
     intent: "Challenge-Other",
-    event:"ChallengeOther"
-  }
+    event: "ChallengeOther",
+  },
   ];
 
 

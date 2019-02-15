@@ -5,6 +5,8 @@ const NonSteadyEvent = require("./../models/NonSteadyEvent");
 const Message = require("./../models/Message");
 const Conversation = require("./../models/Conversation");
 const SupportKeyword = require("./../models/SupportKeyword");
+const Context = require("./../models/Context");
+const EventIntent = require("./../models/EventIntent");
 
 const resetDB = () => new Promise(async (resolve) => {
   await Message.deleteMany();
@@ -14,6 +16,8 @@ const resetDB = () => new Promise(async (resolve) => {
   await Mood.deleteMany();
   await User.deleteMany();
   await SupportKeyword.deleteMany();
+  await EventIntent.deleteMany();
+  await Context.deleteMany();
   resolve();
 });
 
