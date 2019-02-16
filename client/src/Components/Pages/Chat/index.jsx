@@ -114,7 +114,7 @@ class Chat extends Component {
     });
   }
 
-  async componentDidUpdate() {
+  componentDidUpdate() {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
   }
