@@ -75,9 +75,7 @@ module.exports = async (query, userId) => {
     };
   } else if (query.event) {
     // decide which event should be sent in the query
-    console.log("EVENT1", query.event);
     const event = await decideFlow(query.event, userId);
-    console.log("EVENT2", event);
     request = {
       session: sessionPath,
       queryInput: {
@@ -105,6 +103,8 @@ module.exports = async (query, userId) => {
 
   // Send request and log result
   const responses = sessionClient.detectIntent(request);
+
+  console.log("RESPONSE", responses);
 
   return responses;
 };

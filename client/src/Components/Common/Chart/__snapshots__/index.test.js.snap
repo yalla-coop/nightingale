@@ -18,10 +18,10 @@ exports[`Chart renders correctly 1`] = `
     }
   />
   <div
-    className="sc-htpNat jbLzsI"
+    className="sc-htpNat faWzAv"
   >
     <div
-      className="sc-bxivhb foBzPx"
+      className="sc-bxivhb kRzjpM"
     >
       <p>
         title 1
@@ -45,7 +45,7 @@ exports[`Chart renders correctly 1`] = `
       </span>
     </div>
     <div
-      className="sc-bxivhb foBzPx"
+      className="sc-bxivhb kRzjpM"
     >
       <p>
         title 1
@@ -69,7 +69,7 @@ exports[`Chart renders correctly 1`] = `
       </span>
     </div>
     <div
-      className="sc-bxivhb foBzPx"
+      className="sc-bxivhb kRzjpM"
     >
       <p>
         title 1
@@ -93,7 +93,7 @@ exports[`Chart renders correctly 1`] = `
       </span>
     </div>
     <div
-      className="sc-bxivhb foBzPx"
+      className="sc-bxivhb kRzjpM"
     >
       <p>
         title 1

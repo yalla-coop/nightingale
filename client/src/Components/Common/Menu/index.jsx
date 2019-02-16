@@ -40,21 +40,21 @@ class HumburgerMenu extends Component {
             <Menu>
               <MenuClose className="fas fa-times" onClick={this.onClick} />
               <MainDiv>
+                <MenuItem to="/chat" onClick={this.onClick}>
+                  <i className="fas fa-comment" /> Chat
+                </MenuItem>
                 <MenuItem to="/dashboard" onClick={this.onClick}>
                   <i className="fas fa-smile-beam" /> Dashboard
                 </MenuItem>
                 <MenuItem to="/conversations" onClick={this.onClick}>
-                  <i className="fas fa-comments" /> Conversation
-                </MenuItem>
-                <MenuItem to="/chat" onClick={this.onClick}>
-                  <i className="fas fa-comment" /> Start Chat
+                  <i className="fas fa-history" /> Conversations
                 </MenuItem>
                 <MenuItem to="/advice" onClick={this.onClick}>
                   <i className="fas fa-link" /> Advice
                 </MenuItem>
                 <MenuItem onClick={this.handleLogout} as="p">
                   <i className="fas fa-sign-out-alt" />
-                  LogOut
+                  Log Out
                 </MenuItem>
               </MainDiv>
             </Menu>

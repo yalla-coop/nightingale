@@ -196,7 +196,6 @@ class Chat extends Component {
     });
 
     let message = this.state.userMessage;
-    console.log(message);
 
     // post request
     this.messagetoBackEnd(message)
@@ -251,7 +250,7 @@ class Chat extends Component {
 
     // function that renders cardReply as a card style speech bubble
     const CardReplyBubble = (card, className) => {
-      console.log("CARD", card);
+
       return (
         <div
           key={`${className}`}

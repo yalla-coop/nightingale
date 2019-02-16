@@ -3,11 +3,12 @@ import styled from "styled-components";
 export const LandingDiv = styled.div`
   background: linear-gradient(to top, #925de5, #cec8d8, #fff);
   min-height: 100vh;
-  width: 100%;
+  width: 100vw;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 `;
 
 export const MainLogo = styled.img`
@@ -26,11 +27,11 @@ export const View = styled.div`
   min-height: 100vh;
   text-align: center;
   @media (min-width: 768px) {
-    padding: 5rem;
+    padding: 8rem 5rem 5rem 5rem;
   }
   ,
   a,
-  // eslint-disable-next-line prettier/prettier
+  /* // eslint-disable-next-line prettier/prettier */
   Link {
     display: block;
     color: #925de5;

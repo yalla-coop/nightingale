@@ -21,12 +21,12 @@ exports[`Dashboard renders correctly 1`] = `
     
   </div>
   <div
-    className="sc-gqjmRU bvdSzw"
-  />
-  <img
-    alt="start chat"
-    onClick={[Function]}
-    src="chat.png"
-  />
+    className="sc-gqjmRU iJPaHM"
+  >
+    <p>
+      Here's a breakdown of your average mood per day:
+    </p>
+    <div />
+  </div>
 </div>
 `;

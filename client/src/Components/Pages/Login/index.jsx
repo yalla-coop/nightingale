@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import swal from "sweetalert";
 import axios from "axios";
 import Title from "./../../Common/Title";
-import ImgTitle from "../../../assets/title.png";
 import ImgLogo from "../../../assets/logo.png";
 import Input from "./../../Common/Input";
 import Button from "./../../Common/Button";
@@ -56,9 +55,8 @@ class Login extends Component {
   render() {
     return (
       <View>
-        <MainLogo src={ImgTitle} alt="logo" />
-        <MainLogo src={ImgLogo} alt="logo" />
         <Form onSubmit={this.handleSubmit}>
+          <MainLogo src={ImgLogo} alt="logo" />
           <Title value="Login" />
           <Input
             placeholder="Username"
