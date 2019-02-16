@@ -86,31 +86,23 @@ class Chat extends Component {
           // if not only update bot response text
           botMsg.text = e.text.text[0];
           botMsg.quickReply = [];
-          if (botMsg.text === "Thanks for the update!!!") {
-            axios.get("/api/bot/info").then(user => {
-              const {
-                username,
-                _id,
-                name,
-                birthDate,
-                faveSubj,
-                leastFaveSubj
-              } = user.data;
 
-              const newState = {
-                username: username,
-                id: _id,
-                name: name,
+          // here we check for a key-sentence which gets sent after user gives answers for required values like bday, subjects...
+          if (botMsg.text === "Thanks for the update!!!") {
+            // get request checking database for user's details
+            axios.get("/api/bot/info").then(user => {
+              const { birthDate, faveSubj, leastFaveSubj } = user.data;
+              // set new values for state update
+              const newParams = {
                 bdate: birthDate,
                 faveSubj: faveSubj,
-                leastFaveSubj: leastFaveSubj,
-                isLogin: true
-              }.catch(err => console.log("error updating localStorage"));
-              localStorage.setItem("AppState", JSON.stringify(newState));
+                leastFaveSubj: leastFaveSubj
+              };
+              // update
+              this.checkAppStateAndUpdate(newParams);
             });
           }
         }
-
         // update state (with every incoming bot response)
         return this.setState({
           botMessage: botMsg.text,
@@ -143,6 +135,15 @@ class Chat extends Component {
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------
+  // function that updates localState after params bday and subjects are set
+  checkAppStateAndUpdate = newParams => {
+    // get existing data
+    const existingState = JSON.parse(localStorage.getItem("AppState"));
+    // combine existing and new state
+    const newState = Object.assign(existingState, newParams);
+    // set AppState
+    localStorage.setItem("AppState", JSON.stringify(newState));
+  };
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {

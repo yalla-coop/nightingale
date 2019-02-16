@@ -10,7 +10,7 @@ const decideFlow = async (event, userId) => {
     return { intent: "start", eventTitle: "" };
   }
   if (!weekday) {
-    return { intent: "weekday", eventTitle: "" };
+    return { intent: "weekend", eventTitle: "" };
   }
 
   // WEEKDAY OPTIONS --------------------------------
