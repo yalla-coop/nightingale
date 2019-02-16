@@ -10,7 +10,6 @@ const hello = (phrase) => {
 
 // template function to put in quick reply suggestions for the user to select
 const quickReply = (agent) => {
-
   agent.add(new Suggestion("Suggestion to go here"));
 
   agent.add(new Suggestion("Suggestion 2 to go here"));
@@ -36,7 +35,6 @@ const cardReply = (agent) => {
 
 // template function to load multiple cards
 const multiCards = (agent) => {
-
   const card1 = new Card({
     title: "card title",
     text: "card text",
@@ -69,31 +67,30 @@ const multiCards = (agent) => {
 
 // template function for a custom action rather than using the fulfillment package
 // this is useful if we want to do something very bespoke e.g. multiple buttons per card
-const customAction = (req, res) => {
-
-  return res.json({
-    fulfillmentMessages: [
-      {
-        card: {
-          title: "card",
-          buttons: [
-            {
-              text: "good",
-              postback: "anything",
-            },
-            {
-              text: "bad",
-              postback: "anything",
-            },
-          ],
-        },
+const customAction = (req, res) => res.json({
+  fulfillmentMessages: [
+    {
+      card: {
+        title: "card",
+        buttons: [
+          {
+            text: "good",
+            postback: "anything",
+          },
+          {
+            text: "bad",
+            postback: "anything",
+          },
+        ],
       },
-    ],
-    source: "TestFulfillment",
-  });
-};
+    },
+  ],
+  source: "TestFulfillment",
+});
 
 module.exports = async (req, res) => {
+  console.log("intendoooo", res);
+
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
   if (req.body.queryResult.intent.displayName === "TestFulfillment") {

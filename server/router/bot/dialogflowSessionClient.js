@@ -66,7 +66,7 @@ module.exports = async (query, userId) => {
         payload: {
           fields: {
             name: {
-              stringValue: name,
+              stringValue: name.name,
               kind: "stringValue",
             },
           },
@@ -76,6 +76,7 @@ module.exports = async (query, userId) => {
   } else if (query.event) {
     // decide which event should be sent in the query
     const event = await decideFlow(query.event, userId);
+
     request = {
       session: sessionPath,
       queryInput: {
@@ -92,7 +93,7 @@ module.exports = async (query, userId) => {
               kind: "stringValue",
             },
             name: {
-              stringValue: name,
+              stringValue: name.name,
               kind: "stringValue",
             },
           },
@@ -103,8 +104,6 @@ module.exports = async (query, userId) => {
 
   // Send request and log result
   const responses = sessionClient.detectIntent(request);
-
-  console.log("RESPONSE", responses);
 
   return responses;
 };

@@ -74,6 +74,7 @@ class Chat extends Component {
           cardReply: null,
           user: "ai"
         };
+
         //check if quickReply exist in array and update quick reply value
         if (e.message === "quickReplies") {
           botMsg.quickReply = e.quickReplies.quickReplies;
@@ -85,6 +86,29 @@ class Chat extends Component {
           // if not only update bot response text
           botMsg.text = e.text.text[0];
           botMsg.quickReply = [];
+          if (botMsg.text === "Thanks for the update!!!") {
+            axios.get("/api/bot/info").then(user => {
+              const {
+                username,
+                _id,
+                name,
+                birthDate,
+                faveSubj,
+                leastFaveSubj
+              } = user.data;
+
+              const newState = {
+                username: username,
+                id: _id,
+                name: name,
+                bdate: birthDate,
+                faveSubj: faveSubj,
+                leastFaveSubj: leastFaveSubj,
+                isLogin: true
+              }.catch(err => console.log("error updating localStorage"));
+              localStorage.setItem("AppState", JSON.stringify(newState));
+            });
+          }
         }
 
         // update state (with every incoming bot response)
@@ -98,7 +122,7 @@ class Chat extends Component {
     });
   }
 
-  componentDidUpdate() {
+  async componentDidUpdate() {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
   }
@@ -108,7 +132,6 @@ class Chat extends Component {
     // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
     const AppState = await JSON.parse(localStorage.getItem("AppState"));
     const { bdate, faveSubj, leastFaveSubj } = AppState;
-    console.log(AppState);
 
     return bdate && faveSubj && leastFaveSubj
       ? this.getIntent("event")
@@ -123,8 +146,6 @@ class Chat extends Component {
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {
-    console.log("evenst", dfEvent);
-
     // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
   };
