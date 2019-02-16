@@ -3,7 +3,6 @@ import swal from "sweetalert";
 import axios from "axios";
 import validate from "./validation";
 import Title from "./../../Common/Title";
-import ImgTitle from "../../../assets/title.png";
 import ImgLogo from "../../../assets/logo.png";
 import Button from "./../../Common/Button";
 
@@ -99,8 +98,6 @@ export default class SignUp extends Component {
   render() {
     return (
       <SignUpWrapper>
-        {/* <MainLogo src={ImgTitle} alt="logo" /> */}
-
         <Form onSubmit={this.handleSubmit}>
           <MainLogo src={ImgLogo} alt="logo" />
           <Title value="Sign Up" />

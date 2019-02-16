@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Chart from "../../Common/Chart";
 import uuid from "uuid";
 import axios from "axios";
-import Chat from "../../../assets/chat.png";
 import {
   View,
   TopDiv,
