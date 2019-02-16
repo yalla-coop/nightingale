@@ -19,17 +19,27 @@ class Logo extends Component {
         <QuickMenu>
           <ul>
             <li>
-              <Link to="/chat">chat</Link>
+              <Link to="/chat">
+                <i className="fas fa-comment" />
+              </Link>
             </li>
             <li>
-              <Link to="/conversations">conversations</Link>
+              <Link to="/conversations">
+                <i className="fas fa-history" />
+              </Link>
             </li>
             <li>
-              <Link to="/dashboard">dashboard</Link>
+              <Link to="/dashboard">
+                {" "}
+                <i className="fas fa-smile-beam" />
+              </Link>
             </li>
             <li>
               {" "}
-              <Link to="/advice">advice</Link>
+              <Link to="/advice">
+                {" "}
+                <i className="fas fa-link" />
+              </Link>
             </li>
           </ul>
         </QuickMenu>

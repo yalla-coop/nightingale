@@ -19,6 +19,7 @@ export const Menu = styled.div`
   height: 100vh;
   transition: all 500ms ease;
   padding: 40px 10px;
+  z-index: 1000;
 `;
 export const MainDiv = styled.div`
   padding: 2rem 0 0 2rem;

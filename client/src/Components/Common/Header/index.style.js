@@ -4,9 +4,9 @@ export const Header = styled.header`
   position: fixed;
   background: #fff;
   top: 0;
-  height: 5rem;
+  height: 5.5rem;
   /* padding: 10px 0px 0px 20px; */
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem 1rem 0.5rem 1rem;
   box-shadow: 1px 1px 1px 3px rgba(181, 168, 168, 0.5);
   width: 100%;
   display: flex;
@@ -14,7 +14,7 @@ export const Header = styled.header`
   /* align-items: flex-start; */
 
   & + * {
-    padding-top: 5rem;
+    padding-top: 5.5rem;
 
     @media (min-width: 768px) {
       padding-top: 7rem;
@@ -22,7 +22,7 @@ export const Header = styled.header`
   }
 
   @media (max-width: 768px) {
-    padding: 0.5rem 1rem 0px 1rem;
+    padding: 0.75rem 0.75rem 0.25rem 0.75rem;
   }
 `;
 
@@ -54,30 +54,36 @@ export const QuickMenu = styled.div`
     justify-content: space-between;
     width: 100%;
     align-self: flex-end;
-    color: #8a8a8f;
+    color: #925de5;
     position: absolute;
     bottom: 0.25rem;
     /* margin-left: 25%; */
     /* padding: 55px 5px 0px 5px; */
-    font-weight: bold;
-    li a {
-      display: block;
-      text-transform: capitalize;
-      color: #8a8a8f;
-      :hover {
-        color: #5f5bfd !important;
-      }
-      ,
-      :active {
-        color: #8a8a8f;
-      }
-      ,
-      :visited {
-        color: #8a8a8f;
-      }
-      ,
-      :focus {
-        color: #8a8a8f;
+    font-weight: 600;
+    li {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+
+      a {
+        text-transform: capitalize;
+        color: #ab7bf7;
+
+        i {
+          font-size: 1.25rem;
+        }
+
+        :hover {
+          color: #925de5;
+        }
+
+        :active {
+          color: #925de5;
+        }
+
+        :focus {
+          color: #925de5;
+        }
       }
     }
   }
