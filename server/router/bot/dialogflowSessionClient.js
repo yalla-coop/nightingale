@@ -54,23 +54,7 @@ module.exports = async (query, userId) => new Promise((resolve, reject) => {
 
     // check if the user has sent a message - if so then set this up in the request otherwise,
     // it'll be an event query to start a conversation
-    if (query.event && query.event === "moreThoughts") {
-      request = {
-        session: sessionPath,
-        queryInput: {
-          text: {
-            text: query.message,
-            languageCode,
-          },
-        },
-        queryParams: {
-          sentimentAnalysisRequestConfig: {
-            analyzeQueryTextSentiment: true,
-          },
-          contexts: context,
-        },
-      };
-    } else if (query.message) {
+    if (query.message) {
       request = {
         session: sessionPath,
         queryInput: {
@@ -96,7 +80,7 @@ module.exports = async (query, userId) => new Promise((resolve, reject) => {
       };
     } else if (query.event) {
       // decide which event should be sent in the query
-      const event = await decideFlow(query.event);
+      const event = await decideFlow(query.event, userId);
       request = {
         session: sessionPath,
         resetContexts: event.eventTitle === "start",

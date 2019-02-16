@@ -7,7 +7,7 @@ export const Button = styled.button`
   border-radius: 32px;
   outline: none;
   font-family: "Kodchasan", sans-serif;
-  font-style: italic;
+  /* font-style: italic; */
   text-align: center;
   color: #925de5;
   font-size: 1rem;
@@ -32,22 +32,22 @@ export const MainLogo = styled.img`
   margin: 0 auto;
   @media (min-width: 700px) {
     display: block;
-    width: 15%;
+    width: 20%;
     margin: 0 auto;
   }
 `;
 
 export const View = styled.div`
   width: 100%;
-  padding: 5rem 0rem 5rem 0rem;
+  padding: 5rem 0.5rem 5rem 0.5rem;
   min-height: 100vh;
   text-align: center;
   @media (min-width: 768px) {
-    padding: 5rem;
+    padding: 8rem 5rem 5rem 5rem;
   }
   ,
   a,
-  // eslint-disable-next-line prettier/prettier
+  /* // eslint-disable-next-line prettier/prettier */
   Link {
     display: block;
     color: #925de5;

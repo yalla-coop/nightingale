@@ -28,12 +28,22 @@ export const Message = styled.p`
 
 export const DailyDiv = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   width: 50%;
   margin: 0 auto;
   margin-top: 3rem;
   border-top: #7874fd solid 1px;
   padding-top: 20px;
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  div {
+    display: flex;
+    justify-content: space-around;
+  }
   @media (max-width: 768px) {
     width: 95%;
   }
@@ -65,7 +75,7 @@ export const Dailyparagraph = styled.p`
     }
   }
   @media (max-width: 768px) {
-    font-size: 0.5rem;
+    font-size: 0.75rem;
     :nth-child(1) {
       font-size: 1rem;
     }
