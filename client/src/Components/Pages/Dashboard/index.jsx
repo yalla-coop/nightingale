@@ -77,16 +77,19 @@ class Dashboard extends Component {
         {statusMood && <Chart sections={statusMood} width={180} />}
         {dailyMood && (
           <DailyDiv>
-            {dailyMood.map(day => (
-              <Daily key={uuid()}>
-                {day.map(value => (
-                  <Dailyparagraph key={uuid()}>{value}</Dailyparagraph>
-                ))}
-              </Daily>
-            ))}
+            <p>Here's a breakdown of your average mood per day:</p>
+            <div>
+              {dailyMood.map(day => (
+                <Daily key={uuid()}>
+                  {day.map(value => (
+                    <Dailyparagraph key={uuid()}>{value}</Dailyparagraph>
+                  ))}
+                </Daily>
+              ))}
+            </div>
           </DailyDiv>
         )}
-        <img onClick={this.onClick} src={Chat} alt="start chat" />
+        {/* <img onClick={this.onClick} src={Chat} alt="start chat" /> */}
       </View>
     );
   }

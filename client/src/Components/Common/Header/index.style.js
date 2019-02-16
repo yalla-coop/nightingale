@@ -14,7 +14,11 @@ export const Header = styled.header`
   /* align-items: flex-start; */
 
   & + * {
-    padding-top: 6rem;
+    padding-top: 5rem;
+
+    @media (min-width: 768px) {
+      padding-top: 7rem;
+    }
   }
 
   @media (max-width: 768px) {
