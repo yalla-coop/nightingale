@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 export const MenuDiv = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 0;
-  right: 0;
-  padding: 20px 20px 0px 0px;
+  right: 0; */
+  /* padding: 0px 20px 0px 0px; */
+  justify-self: flex-end;
   z-index: 1000;
 `;
 export const Menu = styled.div`
@@ -18,6 +19,7 @@ export const Menu = styled.div`
   height: 100vh;
   transition: all 500ms ease;
   padding: 40px 10px;
+  z-index: 1000;
 `;
 export const MainDiv = styled.div`
   padding: 2rem 0 0 2rem;

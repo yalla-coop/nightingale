@@ -8,31 +8,28 @@ export const SignUpWrapper = styled.div`
   text-align: center;
   @media (min-width: 768px) {
     padding: 0rem;
+    padding-top: 4rem;
     box-sizing: border-box;
   }
 `;
 
 export const MainLogo = styled.img`
-  width: 55%;
+  height: 6rem;
   margin: 0 auto;
-  @media (min-width: 700px) {
-    display: block;
-    width: 13%;
-    margin: 0 auto;
-  }
+  margin-bottom: 1rem;
 `;
 
 export const Form = styled.form`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  align-item: center;
-  width: 30%;
+  align-items: center;
+  width: 35%;
   padding: 25px 0;
   box-shadow: 0px 0px 6px #ccc;
-  margin-top: 25px;
-  border-radius: 8px;
-  max-width: 500px;
+
+  border-radius: 0.5rem;
+  max-width: 600px;
 
   button {
     max-width: 100px;
@@ -64,7 +61,7 @@ export const Input = styled.input`
   outline-color: orange;
   font-size: 16px;
   width: 100%;
-  max-width: 400px;
+  /* max-width: 400px; */
 `;
 
 export const SignUpText = styled.p`
@@ -98,14 +95,16 @@ export const SignUpLink = styled(Link)`
 export const ErrorBox = styled.div`
   position: absolute;
   min-width: 95%;
-  background-color: #cccccc38;
+  /* background-color: #cccccc38; */
   margin: 0 auto;
   text-align: center;
   border-radius: 4px;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
+  /* margin-bottom: 0.5rem; */
   color: red;
   transform: translate(-50%, -50%);
-  top: 102%;
+  /* top: 101%; */
+  top: 100%;
   z-index: 1;
   left: 50%;
   font-size: 12px;

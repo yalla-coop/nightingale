@@ -21,6 +21,7 @@ export const Header = styled.h4`
 export const Charts = styled.div`
   margin-top: 3rem;
   margin-left: 20rem;
+
   @media (max-width: 768px) {
     min-width: 50px;
     margin-left: 0rem;
@@ -31,7 +32,7 @@ export const Title = styled.div`
   animation: down 0.7s ease-in 0.5s;
   animation-fill-mode: both;
   font-size: 1rem;
-  padding-lift: 15px;
+  padding-left: 15px;
   color: #555555;
   justify-content: flex-start;
   display: flex;

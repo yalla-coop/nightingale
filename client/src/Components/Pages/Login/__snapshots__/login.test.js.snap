@@ -2,22 +2,17 @@
 
 exports[`Login must match the snapshots renders correctly 1`] = `
 <div
-  className="sc-EHOje dhLwGS"
+  className="sc-EHOje folyfS"
 >
-  <img
-    alt="logo"
-    className="sc-bZQynM eJLwbu"
-    src="title.png"
-  />
-  <img
-    alt="logo"
-    className="sc-bZQynM eJLwbu"
-    src="logo.png"
-  />
   <form
-    className="sc-gzVnrw iaPOQO"
+    className="sc-gzVnrw bHivxz"
     onSubmit={[Function]}
   >
+    <img
+      alt="logo"
+      className="sc-bZQynM fmsapA"
+      src="logo.png"
+    />
     <div
       className="sc-bdVaJa khUSez"
     >
