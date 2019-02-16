@@ -11,6 +11,5 @@ bot.post("/messages", auth.authenticate(), messages);
 bot.post("/fulfillment", fulfillment);
 bot.post("/startchat", auth.authenticate(), startChat);
 bot.get("/info", auth.authenticate(), getUserInfo);
-// bot.post("/chat", chatBot);
 
 module.exports = bot;

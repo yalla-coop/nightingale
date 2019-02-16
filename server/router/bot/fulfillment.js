@@ -89,8 +89,6 @@ const customAction = (req, res) => res.json({
 });
 
 module.exports = async (req, res) => {
-  console.log("intendoooo", res);
-
   const agent = new WebhookClient({ request: req, response: res });
   const intentMap = new Map();
   if (req.body.queryResult.intent.displayName === "TestFulfillment") {
