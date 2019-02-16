@@ -6,6 +6,8 @@ const dialogflowResponse = require("./dialogflowSessionClient");
 
 const supportKeywordsChecker = require("./support_keywords");
 
+const checkUserInfo = require("./../../database/queries/check_user_info");
+
 // load storeMessages controller
 const storeMessages = require("./storeMessages");
 
@@ -19,36 +21,43 @@ module.exports = async (req, res) => {
   const { id } = req.user;
   // create responses object
   await dialogflowResponse(req.body, id)
-    .then((responses) => {
+    .then(async (responses) => {
+      // grab the important stuff
+      const result = responses[0].queryResult;
+      const initialConversationIntents = ["Welcome", "Birthday", "Fave-Subject", "Least-Fave-Subject", "AddThoughtsNow"];
+      const messageArr = result.fulfillmentMessages;
+      const paramArr = result.outputContexts;
+      const intent = result.intent.displayName;
+
+      let completedInfo = await checkUserInfo(id);
+
+      if (initialConversationIntents.includes(intent) || !completedInfo) {
+        // updates key information for user (subjects, birthday ..)
+        // creates new weekly events
+        storeParams(paramArr, paramArr[0], id)
+          .then(resu => console.log(resu))
+          .catch(err => console.log(err));
+      } else {
+        // STORAGE ------------------------------------
+        storeMessages(result.queryText, messageArr, id)
+          .then(storedMsg => console.log("stored messages: ", storedMsg))
+          .catch(err => console.log(err));
+      }
       // store the context from the response
       setContext(id, responses[0].queryResult.outputContexts)
         .then(() => {
-          // grab the important stuff
-          const result = responses[0].queryResult;
-          const messageArr = result.fulfillmentMessages;
-          const paramArr = result.outputContexts;
-
-          // STORAGE ------------------------------------
-          storeMessages(result.queryText, messageArr, id)
-            .then(storedMsg => console.log("stored messages: ", storedMsg))
-            .catch(err => console.log(err));
-
-          // updates key information for user (subjects, birthday ..)
-          // creates new weekly events
-          storeParams(paramArr, paramArr[0], id)
-            .then(resu => console.log(resu))
-            .catch(err => console.log(err));
-
           // check for support keywords
           supportKeywordsChecker(req.body.message, id)
             .then(async (needImmediateSupport) => {
               // RENDER---------------------------------------
               // check if result comes back defined and includes intent
               if (result && result.intent) {
+                completedInfo = await checkUserInfo(id);
                 // send over array of fullfilment messages via pusher
                 pusher(`bot_${id}`, "bot-response", {
                   message: messageArr,
                   needImmediateSupport,
+                  completedInfo,
                 }).catch(err => console.log(err));
               } else {
                 console.log("  No intent matched.");

@@ -26,7 +26,9 @@ class Chat extends Component {
     botQuickReply: [],
     botCardReply: null,
     userMessage: "",
-    conversation: []
+    conversation: [],
+    alreadyCompleted: false,
+    infoCompletedNow: false
   };
   // userMessage contains user input
   // botQuickReply contains quick replies
@@ -44,29 +46,27 @@ class Chat extends Component {
   componentDidMount() {
     // checks what event to be sent to dialogflow
     // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
-    const AppState = JSON.parse(localStorage.getItem("AppState"));
-    const Bdate = AppState.bdate;
-    const Fsubj = AppState.faveSubj;
-    const LFsubj = AppState.leastFaveSubj;
 
     // get the current conversation if exist
     axios
       .get("/api/user/current-conversation")
       .then(res => {
         const { data } = res;
-        this.setState({ conversation: data }, () => {
-          if (data.length) {
-            this.getIntent("moreThoughts")
+        const conversation = data[0];
+        const completedInfo = data[1];
+
+        this.setState({ conversation, alreadyCompleted: completedInfo }, () => {
+          if (completedInfo && !conversation.length) {
+            // completed info then call the "event"
+            this.getIntent("event")
               .then(result => console.log("result to server", result))
               .catch(err => console.log(err));
+          } else if (completedInfo && conversation.length) {
+            // do nothing
           } else {
-            Bdate && Fsubj && LFsubj
-              ? this.getIntent("event")
-                  .then(result => console.log("result to server", result))
-                  .catch(err => console.log(err))
-              : this.getIntent("start")
-                  .then(result => console.log("result to server", result))
-                  .catch(err => console.log(err));
+            this.getIntent("start")
+              .then(result => console.log("result to server", result))
+              .catch(err => console.log(err));
           }
         });
       })
@@ -96,6 +96,9 @@ class Chat extends Component {
             text: "Yes sure!"
           }
         });
+      }
+      if (data.completedInfo) {
+        this.setState({ infoCompletedNow: true });
       }
 
       // loop over fullfilment-array and create message objects
@@ -130,9 +133,20 @@ class Chat extends Component {
     });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
+    // if the user just fill the information start the daily conv.
+    if (
+      !prevState.alreadyCompleted &&
+      !this.state.alreadyCompleted &&
+      !prevState.infoCompletedNow &&
+      this.state.infoCompletedNow
+    ) {
+      this.getIntent("event")
+        .then(result => console.log("result to server", result))
+        .catch(err => console.log(err));
+    }
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------

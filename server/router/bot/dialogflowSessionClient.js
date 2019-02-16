@@ -12,7 +12,7 @@ const getContext = require("./../../database/queries/get_context");
 // Import userDetails to get userdetails
 const getUserDetails = require("../../database/queries/getUserDetails");
 
-module.exports = async (query, userId) => {
+module.exports = async (query, userId) => new Promise((resolve, reject) => {
   const private_key = process.env.private_key
     .replace(new RegExp("\\\\n", "g"), "\n")
     .replace("\"", "");
@@ -96,12 +96,13 @@ module.exports = async (query, userId) => {
       };
     } else if (query.event) {
       // decide which event should be sent in the query
-      const event = decideFlow(query.event);
+      const event = await decideFlow(query.event);
       request = {
         session: sessionPath,
+        resetContexts: event.eventTitle === "start",
         queryInput: {
           event: {
-            name: event,
+            name: event.eventTitle,
             languageCode,
           },
         },
@@ -125,7 +126,6 @@ module.exports = async (query, userId) => {
 
     // Send request and log result
     const responses = sessionClient.detectIntent(request);
-
-    return responses;
+    resolve(responses);
   });
-};
+});

@@ -7,13 +7,13 @@ const decideFlow = async (event, userId) => {
   const weekday = moment().weekday() > 0 && moment().weekday() < 6;
 
   if (event === "start") {
-    return { intent: "start", eventTitle: "" };
+    return { intent: "start", eventTitle: "start" };
   }
   if (event === "moreThoughts") {
     return { intent: "moreThoughts", eventTitle: "" };
   }
   if (!weekday) {
-    return { intent: "weekend", eventTitle: "" };
+    return { intent: "weekend", eventTitle: "weekend" };
   }
 
   // WEEKDAY OPTIONS --------------------------------
@@ -42,7 +42,7 @@ const decideFlow = async (event, userId) => {
   const intent = flowOptions[random].split(":")[0];
   const eventTitle = flowOptions[random].split(":")[1];
 
-  return { intent, eventTitle };
+  return { intent, eventTitle: eventTitle || "weekday" };
 };
 
 module.exports = decideFlow;
