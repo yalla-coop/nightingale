@@ -104,9 +104,6 @@ class Chat extends Component {
   }
 
   async componentWillMount() {
-    fetch("http://localhost:8080/api/user/info")
-      .then(info => console.log(info))
-      .catch(err => console.log(err));
     // checks what event to be sent to dialogflow
     // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
     const AppState = await JSON.parse(localStorage.getItem("AppState"));
@@ -250,7 +247,6 @@ class Chat extends Component {
 
     // function that renders cardReply as a card style speech bubble
     const CardReplyBubble = (card, className) => {
-
       return (
         <div
           key={`${className}`}

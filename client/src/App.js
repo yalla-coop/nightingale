@@ -10,6 +10,9 @@ class App extends Component {
     username: "",
     id: "",
     name: "",
+    bdate: "",
+    faveSubj: "",
+    leastFaveSubj: "",
     isLogin: false
   };
 
@@ -38,12 +41,14 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    localStorage.removeItem("AppState");
     this.handleChangeState({
       isLogin: false,
       id: "",
       username: "",
       name: "",
+      bdate: "",
+      faveSubj: "",
+      leastFaveSubj: "",
       token: ""
     });
   };

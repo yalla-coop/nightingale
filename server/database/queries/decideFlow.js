@@ -7,10 +7,10 @@ const decideFlow = async (event, userId) => {
   const weekday = moment().weekday() > 0 && moment().weekday() < 6;
 
   if (event === "start") {
-    return { intent: "start", eventTitle: "" }
+    return { intent: "start", eventTitle: "" };
   }
   if (!weekday) {
-    return { intent: "weekend", eventTitle: "" }
+    return { intent: "weekday", eventTitle: "" };
   }
 
   // WEEKDAY OPTIONS --------------------------------
