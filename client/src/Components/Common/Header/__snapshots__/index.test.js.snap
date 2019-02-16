@@ -2,56 +2,74 @@
 
 exports[`Header renders correctly 1`] = `
 <header
-  className="sc-bdVaJa bEcSms"
+  className="sc-bdVaJa dqIOTK"
 >
-  <img
-    alt="logo"
-    className="sc-bwzfXH kZUMPF"
-    onClick={[Function]}
-    src="header.png"
-  />
   <div
-    className="sc-htpNat hbkyLO"
+    className="sc-bwzfXH jYziQj"
   >
-    <i
-      className="fas fa-bars sc-bZQynM cvpdQh"
+    <img
+      alt="logo"
+      className="sc-htpNat ewsNvL"
       onClick={[Function]}
+      src="header.png"
     />
+    <div
+      className="sc-ifAKCX bBjkhb"
+    >
+      <i
+        className="fas fa-bars sc-htoDjs ewchAR"
+        onClick={[Function]}
+      />
+    </div>
   </div>
-  <ul>
-    <li>
-      <a
-        href="/chat"
-        onClick={[Function]}
-      >
-        chat
-      </a>
-    </li>
-    <li>
-      <a
-        href="/conversations"
-        onClick={[Function]}
-      >
-        conversations
-      </a>
-    </li>
-    <li>
-      <a
-        href="/dashboard"
-        onClick={[Function]}
-      >
-        dashboard
-      </a>
-    </li>
-    <li>
-       
-      <a
-        href="/advice"
-        onClick={[Function]}
-      >
-        advices
-      </a>
-    </li>
-  </ul>
+  <div
+    className="sc-bxivhb iiMUyf"
+  >
+    <ul>
+      <li>
+        <a
+          href="/chat"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-comment"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          href="/conversations"
+          onClick={[Function]}
+        >
+          <i
+            className="fas fa-history"
+          />
+        </a>
+      </li>
+      <li>
+        <a
+          href="/dashboard"
+          onClick={[Function]}
+        >
+           
+          <i
+            className="fas fa-smile-beam"
+          />
+        </a>
+      </li>
+      <li>
+         
+        <a
+          href="/advice"
+          onClick={[Function]}
+        >
+           
+          <i
+            className="fas fa-link"
+          />
+        </a>
+      </li>
+    </ul>
+  </div>
 </header>
 `;

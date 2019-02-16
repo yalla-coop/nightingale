@@ -2,7 +2,7 @@
 
 exports[`Landing renders correctly 1`] = `
 <div
-  className="sc-bwzfXH dCmxRV"
+  className="sc-bwzfXH hsIMFy"
   onClick={[Function]}
 >
   <img
