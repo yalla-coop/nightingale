@@ -7,27 +7,28 @@ export const View = styled.div`
   text-align: center;
   @media (min-width: 768px) {
     padding: 0rem;
+    padding-top: 4rem;
     box-sizing: border-box;
   }
 `;
 
 export const MainLogo = styled.img`
-  width: 55%;
+  height: 6rem;
   margin: 0 auto;
-  @media (min-width: 700px) {
-    display: block;
-    width: 13%;
-    margin: 0 auto;
-  }
+  margin-bottom: 1rem;
 `;
 
 export const Form = styled.form`
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   width: 35%;
-  padding: 2rem;
-  box-shadow: 1px 1px 1px 3px #ccc;
-  margin-top: 25px;
-  border-radius: 5px;
+  padding: 25px 0;
+  box-shadow: 0px 0px 6px #ccc;
+  border-radius: 0.5rem;
+  max-width: 600px;
+
   input {
     width: 90%;
     max-width: 400px;

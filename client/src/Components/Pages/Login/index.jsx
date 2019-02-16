@@ -56,9 +56,10 @@ class Login extends Component {
   render() {
     return (
       <View>
-        <MainLogo src={ImgTitle} alt="logo" />
-        <MainLogo src={ImgLogo} alt="logo" />
+        {/* <MainLogo src={ImgTitle} alt="logo" /> */}
+
         <Form onSubmit={this.handleSubmit}>
+          <MainLogo src={ImgLogo} alt="logo" />
           <Title value="Login" />
           <Input
             placeholder="Username"

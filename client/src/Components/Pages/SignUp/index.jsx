@@ -99,9 +99,10 @@ export default class SignUp extends Component {
   render() {
     return (
       <SignUpWrapper>
-        <MainLogo src={ImgTitle} alt="logo" />
-        <MainLogo src={ImgLogo} alt="logo" />
+        {/* <MainLogo src={ImgTitle} alt="logo" /> */}
+
         <Form onSubmit={this.handleSubmit}>
+          <MainLogo src={ImgLogo} alt="logo" />
           <Title value="Sign Up" />
           <InputWrapper>
             <Input
