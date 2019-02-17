@@ -24,6 +24,7 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
     array.map((e) => {
       // those dialogfow terms....
       const param = e.parameters.fields;
+
       // destructure the values set in dialogflow
       const {
         birthDate, leastFaveSubj, faveSubj, faveSubjDays, leastFaveSubjDays,

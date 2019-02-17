@@ -109,6 +109,7 @@ class Chat extends Component {
           cardReply: null,
           user: "ai"
         };
+
         //check if quickReply exist in array and update quick reply value
         if (e.message === "quickReplies") {
           botMsg.quickReply = e.quickReplies.quickReplies;
@@ -120,8 +121,23 @@ class Chat extends Component {
           // if not only update bot response text
           botMsg.text = e.text.text[0];
           botMsg.quickReply = [];
-        }
 
+          // here we check for a key-sentence which gets sent after user gives answers for required values like bday, subjects...
+          if (botMsg.text === "Thanks for the update!!!") {
+            // get request checking database for user's details
+            axios.get("/api/bot/info").then(user => {
+              const { birthDate, faveSubj, leastFaveSubj } = user.data;
+              // set new values for state update
+              const newParams = {
+                bdate: birthDate,
+                faveSubj: faveSubj,
+                leastFaveSubj: leastFaveSubj
+              };
+              // update
+              this.checkAppStateAndUpdate(newParams);
+            });
+          }
+        }
         // update state (with every incoming bot response)
         return this.setState({
           botMessage: botMsg.text,
@@ -150,11 +166,18 @@ class Chat extends Component {
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------
+  // function that updates localState after params bday and subjects are set
+  checkAppStateAndUpdate = newParams => {
+    // get existing data
+    const existingState = JSON.parse(localStorage.getItem("AppState"));
+    // combine existing and new state
+    const newState = Object.assign(existingState, newParams);
+    // set AppState
+    localStorage.setItem("AppState", JSON.stringify(newState));
+  };
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {
-    console.log("evenst", dfEvent);
-
     // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
   };
@@ -277,7 +300,6 @@ class Chat extends Component {
 
     // function that renders cardReply as a card style speech bubble
     const CardReplyBubble = (card, className) => {
-
       return (
         <div
           key={`${className}`}

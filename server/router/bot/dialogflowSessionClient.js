@@ -63,6 +63,14 @@ module.exports = async (query, userId) => new Promise((resolve, reject) => {
             languageCode,
           },
         },
+        payload: {
+          fields: {
+            name: {
+              stringValue: name.name,
+              kind: "stringValue",
+            },
+          },
+        },
         queryParams: {
           sentimentAnalysisRequestConfig: {
             analyzeQueryTextSentiment: true,
@@ -71,7 +79,7 @@ module.exports = async (query, userId) => new Promise((resolve, reject) => {
           payload: {
             fields: {
               name: {
-                stringValue: name,
+                stringValue: name.name,
                 kind: "stringValue",
               },
             },
@@ -99,7 +107,7 @@ module.exports = async (query, userId) => new Promise((resolve, reject) => {
                 kind: "stringValue",
               },
               name: {
-                stringValue: name,
+                stringValue: name.name,
                 kind: "stringValue",
               },
             },

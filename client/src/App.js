@@ -45,8 +45,16 @@ class App extends Component {
   }
 
   handleLogout = () => {
-    localStorage.removeItem("AppState");
-    this.handleChangeState(this.baseState);
+    this.handleChangeState({
+      isLogin: false,
+      id: "",
+      username: "",
+      name: "",
+      bdate: "",
+      faveSubj: "",
+      leastFaveSubj: "",
+      token: ""
+    });
   };
 
   render() {
