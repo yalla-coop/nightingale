@@ -29,8 +29,8 @@ class Messages extends Component {
       const msg = " No messages are found for this conversation !!";
       this.setState({ errMsg: msg, user: [], bot: [] });
     } else {
-      messages.map(row => {
-        msg.push([row.text, row.time, row.sender])}
+      messages.map(row => 
+        msg.push([row.text, row.time, row.sender])
         );
       const { date } = messages[0];
       const time = messages[0].dayOfWeek;
