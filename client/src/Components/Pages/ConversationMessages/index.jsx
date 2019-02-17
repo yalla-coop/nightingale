@@ -23,7 +23,6 @@ class Messages extends Component {
 
     const data = await axios(`/api/user/conversations/${conversation}`);
     const messages = data.data;
-    console.log("MESSAGE", messages)
 
     const { msg } = this.state;
     if (messages.length === 0) {
@@ -31,7 +30,6 @@ class Messages extends Component {
       this.setState({ errMsg: msg, user: [], bot: [] });
     } else {
       messages.map(row => {
-        console.log("ROW", row)
         msg.push([row.text, row.time, row.sender])}
         );
       const { date } = messages[0];

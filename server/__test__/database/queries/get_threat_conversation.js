@@ -21,7 +21,7 @@ describe("Tesing for getThreatVConversation query", () => {
           .then((data) => {
             expect(data).toBeDefined();
             expect(data[0].messages).toBeDefined();
-            expect(data[0].messages.length).toBe(11);
+            expect(data[0].messages.length).toBe(13);
             expect(data[0].userInfo).toBeDefined();
             expect(data[0].userInfo.name).toBe("Nadia");
             done();
