@@ -38,6 +38,10 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
+  lastEvent: {
+    type: String,
+    required: false,
+  },
 });
 
 function hashPassword(next) {

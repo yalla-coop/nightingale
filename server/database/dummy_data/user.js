@@ -10,6 +10,7 @@ const buildUser = () => {
     birthDate: "2009-02-01",
     faveSubj: "Maths",
     leastFaveSubj: "History",
+    lastEvent: "ChallengeAnxiety",
   };
   return User.create(defaultUser);
 };

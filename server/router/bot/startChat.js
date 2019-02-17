@@ -2,24 +2,37 @@
 
 const pusher = require("./pusherSessionClient");
 const dialogflowResponse = require("./dialogflowSessionClient");
-
+const checkUserInfo = require("./../../database/queries/check_user_info");
 // load storeMessages controller
 const storeMessages = require("./storeMessages");
 
 module.exports = async (req, res) => {
   const { id } = req.user;
   await dialogflowResponse(req.body, id)
-    .then((responses) => {
+    .then(async (responses) => {
       // grab the important stuff
 
       const result = responses[0].queryResult;
       const messageArr = result.fulfillmentMessages;
 
-      // STORAGE -------------------------------
+      const initialConversationIntents = [
+        "Welcome",
+        "Birthday",
+        "Fave-Subject",
+        "Least-Fave-Subject",
+        "AddThoughtsNow",
+        "Least-Fave-Subject - yes",
+      ];
+      const intent = result.intent.displayName;
+      const completedInfo = await checkUserInfo(id);
 
-      storeMessages("", messageArr, id)
-        .then(storedMsg => console.log("stored messages: ", storedMsg))
-        .catch(err => console.log(err));
+      if (!initialConversationIntents.includes(intent) && completedInfo) {
+        // STORAGE -------------------------------
+
+        storeMessages("", messageArr, id)
+          .then(storedMsg => console.log("stored messages: ", storedMsg))
+          .catch(err => console.log(err));
+      }
 
       // RENDER----------------------------------
       // check if result comes back defined and includes intent

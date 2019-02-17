@@ -26,7 +26,9 @@ class Chat extends Component {
     botQuickReply: [],
     botCardReply: null,
     userMessage: "",
-    conversation: []
+    conversation: [],
+    alreadyCompleted: false,
+    infoCompletedNow: false
   };
   // userMessage contains user input
   // botQuickReply contains quick replies
@@ -41,7 +43,37 @@ class Chat extends Component {
 
   // LIFECYCLE METHODS ---------------------------------------------------------------------------------------------
 
-  async componentDidMount() {
+  componentDidMount() {
+    // checks what event to be sent to dialogflow
+    // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
+
+    // get the current conversation if exist
+    axios
+      .get("/api/user/current-conversation")
+      .then(res => {
+        const { data } = res;
+        const conversation = data[0];
+        const completedInfo = data[1];
+
+        this.setState({ conversation, alreadyCompleted: completedInfo }, () => {
+          if (completedInfo && !conversation.length) {
+            // completed info then call the "event"
+            this.getIntent("event")
+              .then(result => console.log("result to server", result))
+              .catch(err => console.log(err));
+          } else if (completedInfo && conversation.length) {
+            // do nothing
+          } else {
+            this.getIntent("start")
+              .then(result => console.log("result to server", result))
+              .catch(err => console.log(err));
+          }
+        });
+      })
+      .catch(() => {
+        this.props.history.push("/server-error");
+      });
+
     // create new Pusher
     const pusher = new Pusher("42ea50bcb339ed764a4e", {
       cluster: "eu",
@@ -51,7 +83,7 @@ class Chat extends Component {
     // event gets triggered on the server and passed the response of the bot through the event payload coming from dialogflow
 
     // get the userid from state
-    const appState = await JSON.parse(localStorage.getItem("AppState"));
+    const appState = JSON.parse(localStorage.getItem("AppState"));
     const channel = pusher.subscribe(`bot_${appState.id}`);
     channel.bind("bot-response", data => {
       // if immediat support detected show a popup message
@@ -65,6 +97,9 @@ class Chat extends Component {
           }
         });
       }
+      if (data.completedInfo) {
+        this.setState({ infoCompletedNow: true });
+      }
 
       // loop over fullfilment-array and create message objects
       data.message.map(e => {
@@ -74,6 +109,7 @@ class Chat extends Component {
           cardReply: null,
           user: "ai"
         };
+
         //check if quickReply exist in array and update quick reply value
         if (e.message === "quickReplies") {
           botMsg.quickReply = e.quickReplies.quickReplies;
@@ -86,7 +122,6 @@ class Chat extends Component {
           botMsg.text = e.text.text[0];
           botMsg.quickReply = [];
         }
-
         // update state (with every incoming bot response)
         return this.setState({
           botMessage: botMsg.text,
@@ -98,33 +133,51 @@ class Chat extends Component {
     });
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps, prevState) {
     // scroll to bottom every time the component updates
     this.scrollToBottom();
-  }
+    // if the user just fill the information start the daily conv.
+    if (
+      !prevState.alreadyCompleted &&
+      !this.state.alreadyCompleted &&
+      !prevState.infoCompletedNow &&
+      this.state.infoCompletedNow
+    ) {
+      this.getIntent("event")
+        .then(result => console.log("result to server", result))
+        .catch(err => console.log(err));
 
-  async componentWillMount() {
-    // checks what event to be sent to dialogflow
-    // if no initial registration values for user (bday and subjects) -> first time login hence event needs to be 'start'
-    const AppState = await JSON.parse(localStorage.getItem("AppState"));
-    const { bdate, faveSubj, leastFaveSubj } = AppState;
-    console.log(AppState);
-
-    return bdate && faveSubj && leastFaveSubj
-      ? this.getIntent("event")
-          .then(result => console.log("result to server", result))
-          .catch(err => console.log(err))
-      : this.getIntent("start")
-          .then(result => console.log("result to server", result))
-          .catch(err => console.log(err));
+      axios.get("/api/bot/info").then(user => {
+        const { birthDate, faveSubj, leastFaveSubj } = user.data;
+        // set new values for state update
+        const newParams = {
+          bdate: birthDate,
+          faveSubj: faveSubj,
+          leastFaveSubj: leastFaveSubj
+        };
+        // update
+        this.checkAppStateAndUpdate(newParams);
+      });
+    }
   }
 
   // FUNCTIONS ---------------------------------------------------------------------------------------------
+  // function that updates localState after params bday and subjects are set
+  checkAppStateAndUpdate = newParams => {
+    // get existing data
+    const existingState = JSON.parse(localStorage.getItem("AppState"));
+    // combine existing and new state
+    const newState = Object.assign(existingState, newParams);
+    // update Chat new state
+    this.setState(newState);
+    // update the App state
+    this.props.handleChangeState(newState);
+    // set AppState
+    localStorage.setItem("AppState", JSON.stringify(newState));
+  };
 
   // function to get the initial intent when the user first loads this page
   getIntent = async dfEvent => {
-    console.log("evenst", dfEvent);
-
     // currently 5 flows: start, weekday, weekend, best-subject, worst-subject
     await axios.post("/api/bot/startChat", { event: dfEvent });
   };
@@ -247,7 +300,6 @@ class Chat extends Component {
 
     // function that renders cardReply as a card style speech bubble
     const CardReplyBubble = (card, className) => {
-
       return (
         <div
           key={`${className}`}
