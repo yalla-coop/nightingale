@@ -11,6 +11,7 @@ export const Header = styled.header`
   width: 100%;
   display: flex;
   flex-direction: column;
+  z-index: 1;
   /* align-items: flex-start; */
 
   & + * {
