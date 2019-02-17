@@ -20,14 +20,11 @@ class Conversations extends Component {
           const msg = " There is no conversations yet !!";
           this.setState({ message: msg, conversations: [] });
         } else {
-          data.map(row =>
-            conversations.push([
-              row.mood[0].moodEmoji,
-              row.dayOfWeek,
-              row.date,
-              row._id
-            ])
-          );
+          data.map(row => {
+            const mood =
+              (row.mood && row.mood[0] && row.mood[0].moodEmoji) || "❓";
+            return conversations.push([mood, row.dayOfWeek, row.date, row._id]);
+          });
           this.setState({ conversations });
         }
       })
