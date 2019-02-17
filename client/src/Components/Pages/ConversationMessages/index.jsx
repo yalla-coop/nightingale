@@ -12,7 +12,7 @@ import {
 
 class Messages extends Component {
   state = {
-    msg: [["", ""]],
+    msg: [],
     date: "",
     day: "",
     errMsg: ""
@@ -23,13 +23,17 @@ class Messages extends Component {
 
     const data = await axios(`/api/user/conversations/${conversation}`);
     const messages = data.data;
+    console.log("MESSAGE", messages)
 
     const { msg } = this.state;
     if (messages.length === 0) {
-      const msg = " There is no messages yet !!";
+      const msg = " No messages are found for this conversation !!";
       this.setState({ errMsg: msg, user: [], bot: [] });
     } else {
-      messages.map(row => msg.push([row.text, row.time]));
+      messages.map(row => {
+        console.log("ROW", row)
+        msg.push([row.text, row.time, row.sender])}
+        );
       const { date } = messages[0];
       const time = messages[0].dayOfWeek;
       this.setState({ date, time, msg });
@@ -63,7 +67,7 @@ class Messages extends Component {
             </ErrorMsg>
           )}
           {msg.map(row => (
-            <MessagesDiv>
+            <MessagesDiv className={row[2]}>
               <div key={uuid()}>
                 {row.map(value => (
                   <Message key={uuid()}>{value}</Message>
