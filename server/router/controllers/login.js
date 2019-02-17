@@ -21,7 +21,8 @@ module.exports = (req, res, next) => {
             name: user.name,
             username: user.username,
           });
-          res.cookie("token", token);
+          // set the cookie to 1 day
+          res.cookie("token", token, { maxAge: 86400000 });
           return res.json({
             id: user.id,
             name: user.name,
