@@ -14,7 +14,8 @@ module.exports = (req, res, next) => {
         .then((newUser) => {
           const data = { name, username, id: newUser.id };
           const token = createToken(data);
-          res.cookie("token", token);
+          // set the cookie to 1 day
+          res.cookie("token", token, { maxAge: 86400000 });
           res.json(data);
         })
         .catch((err) => {
