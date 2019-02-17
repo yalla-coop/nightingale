@@ -121,22 +121,6 @@ class Chat extends Component {
           // if not only update bot response text
           botMsg.text = e.text.text[0];
           botMsg.quickReply = [];
-
-          // here we check for a key-sentence which gets sent after user gives answers for required values like bday, subjects...
-          if (botMsg.text === "Thanks for the update!!!") {
-            // get request checking database for user's details
-            axios.get("/api/bot/info").then(user => {
-              const { birthDate, faveSubj, leastFaveSubj } = user.data;
-              // set new values for state update
-              const newParams = {
-                bdate: birthDate,
-                faveSubj: faveSubj,
-                leastFaveSubj: leastFaveSubj
-              };
-              // update
-              this.checkAppStateAndUpdate(newParams);
-            });
-          }
         }
         // update state (with every incoming bot response)
         return this.setState({
@@ -162,6 +146,18 @@ class Chat extends Component {
       this.getIntent("event")
         .then(result => console.log("result to server", result))
         .catch(err => console.log(err));
+
+      axios.get("/api/bot/info").then(user => {
+        const { birthDate, faveSubj, leastFaveSubj } = user.data;
+        // set new values for state update
+        const newParams = {
+          bdate: birthDate,
+          faveSubj: faveSubj,
+          leastFaveSubj: leastFaveSubj
+        };
+        // update
+        this.checkAppStateAndUpdate(newParams);
+      });
     }
   }
 
@@ -172,6 +168,10 @@ class Chat extends Component {
     const existingState = JSON.parse(localStorage.getItem("AppState"));
     // combine existing and new state
     const newState = Object.assign(existingState, newParams);
+    // update Chat new state
+    this.setState(newState);
+    // update the App state
+    this.props.handleChangeState(newState);
     // set AppState
     localStorage.setItem("AppState", JSON.stringify(newState));
   };
