@@ -9,7 +9,11 @@ const buildMessage = async () => {
 
   const messages = [{
     conversation,
-    text: ["Hi Nadia", "How was your school day?"],
+    text: ["Hi Nadia"],
+    sender: "bot",
+  }, {
+    conversation,
+    text: ["How was your school day?"],
     sender: "bot",
   }, {
     conversation,
@@ -19,6 +23,11 @@ const buildMessage = async () => {
     conversation,
     text: [
       "I am really happy to hear that! it's always nice to have an amazing day",
+    ],
+    sender: "bot",
+  }, {
+    conversation,
+    text: [
       "So come on spill, why was it an amazing day?",
     ],
     sender: "bot",

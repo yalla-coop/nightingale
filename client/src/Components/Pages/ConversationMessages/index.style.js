@@ -27,9 +27,9 @@ export const Paragraph = styled.p`
   letter-spacing: 1px;
 `;
 export const ViewDiv = styled.div`
-  padding: 100px;
+  padding: 32px;
   @media (max-width: 768px) {
-    padding: 100px 0px 20px 0px;
+    padding: 32px 0px 20px 0px;
   }
 
     .bot {
@@ -58,6 +58,10 @@ export const ViewDiv = styled.div`
   p:nth-child(2) {
     display: none;
   }
+
+  p:nth-child(3) {
+    display: none;
+  }
   }
 
   .user {
@@ -65,6 +69,7 @@ export const ViewDiv = styled.div`
     color: #fff;
     font-weight: 500;
     margin: 5px;
+    position: relative;
 
     p:nth-child(1) {
     font-size: 1rem;
@@ -78,8 +83,10 @@ export const ViewDiv = styled.div`
 
   p:nth-child(2) {
     color: #8c8c8c !important;
-    margin-left: 80%;
+    /* margin-left: 80%; */
     display: inline;
+    position: absolute;
+    right: 1rem;
   }
   }
 `;

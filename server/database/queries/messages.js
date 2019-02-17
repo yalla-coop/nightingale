@@ -67,7 +67,7 @@ module.exports = id => new Promise((resolve, reject) => {
           }],
         },
         time: {
-          $dateToString: { format: "%H:%Z", date: "$time" },
+          $dateToString: { format: "%H:%M", date: "$time" },
         },
         sender: 1,
         text: 1,
