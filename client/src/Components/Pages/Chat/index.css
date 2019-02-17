@@ -1,8 +1,18 @@
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 .chat-bubble {
   font-size: 16px;
   margin-bottom: 20px;
   width: 100%;
   display: flex;
+  animation: appear 0.7s;
 }
 
 .chat-bubble.human {
