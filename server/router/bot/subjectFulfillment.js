@@ -406,7 +406,7 @@ exports.leastFavePositive = (agent) => {
 
 exports.leastFaveDidWell = (agent) => {
   agent.add(new Text("That's great to hear! What made it different this time?"));
-  agent.add(new Text("My work"));
+  agent.add(new Suggestion("My work"));
   agent.add(new Suggestion("I overcame a challenge"));
   agent.add(new Suggestion("Other"));
 };

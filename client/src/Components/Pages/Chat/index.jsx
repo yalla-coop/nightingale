@@ -59,13 +59,13 @@ class Chat extends Component {
           if (completedInfo && !conversation.length) {
             // completed info then call the "event"
             this.getIntent("event")
-              .then(result => console.log("result to server", result))
+              .then(result => console.log("event result to server", result))
               .catch(err => console.log(err));
           } else if (completedInfo && conversation.length) {
             // do nothing
           } else {
             this.getIntent("start")
-              .then(result => console.log("result to server", result))
+              .then(result => console.log("start result to server", result))
               .catch(err => console.log(err));
           }
         });
