@@ -62,7 +62,13 @@ const buildMessage = async () => {
   }, {
     conversation,
     text: [
-      "Good to hear you found it intresting, lets hope the next lesson in the same!",
+      "Good to hear you found it intresting, lets hope the next lesson in the same!"
+    ],
+    sender: "bot",
+  },
+  {
+    conversation,
+    text: [
       "Remeber you can write down your thoughts on anything you want... it's a good practice to get into!",
     ],
     sender: "bot",

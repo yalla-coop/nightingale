@@ -26,6 +26,8 @@ module.exports = async (req, res) => {
       const intent = result.intent.displayName;
       const completedInfo = await checkUserInfo(id);
 
+      console.log("initial", intent)
+
       if (!initialConversationIntents.includes(intent) && completedInfo) {
         // STORAGE -------------------------------
 
@@ -37,6 +39,7 @@ module.exports = async (req, res) => {
       // RENDER----------------------------------
       // check if result comes back defined and includes intent
       if (result && result.intent) {
+        console.log("intent", result.intent)
         // send over array of fulfillment messages via pusher
         pusher(`bot_${id}`, "bot-response", {
           message: messageArr,
