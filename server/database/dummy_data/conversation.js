@@ -11,8 +11,12 @@ const buildConversation = async () => {
 
   const conversations = [{
     user: Nadia,
-    mood: moods[1],
+    mood: moods[0],
     completed: false,
+  }, {
+    user: Nadia,
+    mood: moods[1],
+    completed: true,
     time: "2019-01-27",
   }, {
     user: Nadia,

@@ -23,6 +23,6 @@ describe("Tesing for Conversation schema", () => {
 
   test("Conversation should contain 8 collections", async () => {
     const conversations = await Conversation.find();
-    expect(conversations.length).toBe(7);
+    expect(conversations.length).toBe(8);
   });
 });

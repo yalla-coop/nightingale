@@ -24,7 +24,7 @@ describe("Tesing conversation query", () => {
     const userID = user._id;
     await conversationQuery(userID).then((conversations) => {
       expect(conversations).toBeDefined();
-      expect(conversations.length).toEqual(7);
+      expect(conversations.length).toEqual(8);
     });
   });
 });

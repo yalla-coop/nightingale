@@ -34,7 +34,7 @@ describe("Testing the storeMessages function", () => {
         sender: "user",
       });
       // after we stored the new message
-      expect(userMessagesNew).toHaveLength(5);
+      expect(userMessagesNew).toHaveLength(6);
       done();
     });
   });
@@ -73,7 +73,7 @@ describe("Testing the storeMessages function", () => {
       });
 
       // after we stored the new message
-      expect(botMessagesNew).toHaveLength(9);
+      expect(botMessagesNew).toHaveLength(11);
 
       done();
     });
