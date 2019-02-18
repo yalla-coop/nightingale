@@ -27,14 +27,16 @@ export const Paragraph = styled.p`
   letter-spacing: 1px;
 `;
 export const ViewDiv = styled.div`
-  padding: 100px;
+  padding: 32px;
   @media (max-width: 768px) {
-    padding: 100px 0px 20px 0px;
+    padding: 32px 0px 20px 0px;
   }
-`;
 
-export const MessagesDiv = styled.div`
-  :nth-child(odd)::after {
+    .bot {
+    float: left;
+    margin: 5px;
+
+    :after {
     background: url(${img}) center center no-repeat;
     background-size: cover;
     display: inline-block;
@@ -42,13 +44,8 @@ export const MessagesDiv = styled.div`
     height: 20px;
     content: "";
   }
-  display: block;
-  clear: both;
-  :nth-child(odd) {
-    float: left;
-    margin: 5px;
-  }
-  :nth-child(odd) p:nth-child(1) {
+
+  p:nth-child(1) {
     font-size: 1rem;
     background: #e5e6ea;
     padding: 1rem;
@@ -57,16 +54,24 @@ export const MessagesDiv = styled.div`
     font-weight: 500;
     margin: 5px;
   }
-  :nth-child(odd) p:nth-child(2) {
+
+  p:nth-child(2) {
     display: none;
   }
-  :nth-child(even) {
+
+  p:nth-child(3) {
+    display: none;
+  }
+  }
+
+  .user {
     float: right;
     color: #fff;
     font-weight: 500;
     margin: 5px;
-  }
-  :nth-child(even) p:nth-child(1) {
+    position: relative;
+
+    p:nth-child(1) {
     font-size: 1rem;
     background: linear-gradient(to top, #925de5, #7874fd);
     padding: 1rem;
@@ -75,11 +80,20 @@ export const MessagesDiv = styled.div`
     font-weight: 500;
     margin: 5px;
   }
-  :nth-child(even) p:nth-child(2) {
+
+  p:nth-child(2) {
     color: #8c8c8c !important;
-    margin-left: 80%;
+    /* margin-left: 80%; */
     display: inline;
+    position: absolute;
+    right: 1rem;
   }
+  }
+`;
+
+export const MessagesDiv = styled.div`
+  display: block;
+  clear: both;
 `;
 
 export const Message = styled.p`

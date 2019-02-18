@@ -24,7 +24,7 @@ describe("Tesing for Message schema", () => {
 
   test("Message should contain 11 collections", async () => {
     const messages = await Message.find();
-    expect(messages.length).toBe(11);
+    expect(messages.length).toBe(13);
   });
 
   test("Message schema validation should work properly", async () => {

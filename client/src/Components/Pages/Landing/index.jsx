@@ -13,8 +13,14 @@ class Landing extends Component {
     pageThree: false,
     pageFour: false
   };
+
+  automaticMove = () => {
+     setTimeout(() => {
+      this.setState({ pageOne: false, pageTwo: true })}, 2000)
+  }
+  
   onClickOne = () => {
-    this.setState({ pageOne: false, pageTwo: true });
+      this.setState({ pageOne: false, pageTwo: true });
   };
 
   onClickTwo = () => {
@@ -29,11 +35,15 @@ class Landing extends Component {
 
   render() {
     const { pageOne, pageTwo, pageThree, pageFour } = this.state;
+
+    
+
     return (
       <>
         {pageOne && (
           <LandingDiv onClick={this.onClickOne}>
             <MainLogo src={Img} alt="logo" />
+            {this.automaticMove()}
           </LandingDiv>
         )}
         {pageTwo && (

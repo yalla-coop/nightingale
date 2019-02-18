@@ -16,6 +16,8 @@ module.exports = id => new Promise((resolve, reject) => {
         as: "mood",
 
       },
+    }, {
+      $sort: { time: -1 },
     },
     {
       $project: {
