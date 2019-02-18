@@ -143,10 +143,6 @@ class Chat extends Component {
       !prevState.infoCompletedNow &&
       this.state.infoCompletedNow
     ) {
-      this.getIntent("event")
-        .then(result => console.log("result to server", result))
-        .catch(err => console.log(err));
-
       axios.get("/api/bot/info").then(user => {
         const { birthDate, faveSubj, leastFaveSubj } = user.data;
         // set new values for state update
@@ -158,6 +154,10 @@ class Chat extends Component {
         // update
         this.checkAppStateAndUpdate(newParams);
       });
+
+      this.getIntent("event")
+        .then(result => console.log("result to server", result))
+        .catch(err => console.log(err));
     }
   }
 

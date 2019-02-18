@@ -63,7 +63,7 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
             1,
           ),
         );
-        return userReq;
+        return "ready updating";
       }
       return false;
     });
