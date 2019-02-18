@@ -43,39 +43,42 @@ module.exports = async (req, res) => {
           .then(storedMsg => console.log("stored messages: ", storedMsg))
           .catch(err => console.log(err));
       }
-      // store the context from the response
-      setContext(id, responses[0].queryResult.outputContexts)
-        .then(() => {
-          // check for support keywords
-          supportKeywordsChecker(req.body.message, id)
-            .then(async (needImmediateSupport) => {
-              // RENDER---------------------------------------
-              // check if result comes back defined and includes intent
-              if (result && result.intent) {
-                completedInfo = await checkUserInfo(id);
-                // send over array of fullfilment messages via pusher
-                pusher(`bot_${id}`, "bot-response", {
-                  message: messageArr,
-                  needImmediateSupport,
-                  completedInfo,
-                }).catch(err => console.log(err));
-              } else {
-                console.log("  No intent matched.");
-              }
-              if (result.sentimentAnalysisResult) {
-                console.log("Detected sentiment");
-                console.log(`  Score: ${result.sentimentAnalysisResult.queryTextSentiment.score}`);
-                console.log(
-                  `  Magnitude: ${result.sentimentAnalysisResult.queryTextSentiment.magnitude}`,
-                );
-              } else {
-                console.log("No sentiment Analysis Found");
-              }
-              return res.sendStatus(200);
-            })
 
-            .catch(() => res.sendStatus(500));
-        });
+      if (!responses[0].queryResult.intent.displayName.includes("Fallback")
+       && !responses[0].queryResult.intent.displayName.includes("fallback")) {
+        await setContext(id, responses[0].queryResult.outputContexts);
+      }
+
+      // store the context from the response
+      // check for support keywords
+      supportKeywordsChecker(req.body.message, id)
+        .then(async (needImmediateSupport) => {
+          // RENDER---------------------------------------
+          // check if result comes back defined and includes intent
+          if (result && result.intent) {
+            completedInfo = await checkUserInfo(id);
+            // send over array of fullfilment messages via pusher
+            pusher(`bot_${id}`, "bot-response", {
+              message: messageArr,
+              needImmediateSupport,
+              completedInfo,
+            }).catch(err => console.log(err));
+          } else {
+            console.log("  No intent matched.");
+          }
+          if (result.sentimentAnalysisResult) {
+            console.log("Detected sentiment");
+            console.log(`  Score: ${result.sentimentAnalysisResult.queryTextSentiment.score}`);
+            console.log(
+              `  Magnitude: ${result.sentimentAnalysisResult.queryTextSentiment.magnitude}`,
+            );
+          } else {
+            console.log("No sentiment Analysis Found");
+          }
+          return res.sendStatus(200);
+        })
+
+        .catch(() => res.sendStatus(500));
     })
     .catch(() => res.sendStatus(500));
 };
