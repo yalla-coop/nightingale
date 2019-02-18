@@ -22,9 +22,9 @@ describe("Tesing for Message schema", () => {
     expect(Message).toBeDefined();
   });
 
-  test("Message should contain 11 collections", async () => {
+  test("Message should contain 14 collections", async () => {
     const messages = await Message.find();
-    expect(messages.length).toBe(13);
+    expect(messages.length).toBe(14);
   });
 
   test("Message schema validation should work properly", async () => {

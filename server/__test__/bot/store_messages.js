@@ -34,7 +34,7 @@ describe("Testing the storeMessages function", () => {
         sender: "user",
       });
       // after we stored the new message
-      expect(userMessagesNew).toHaveLength(6);
+      expect(userMessagesNew).toHaveLength(5);
       done();
     });
   });
@@ -46,7 +46,7 @@ describe("Testing the storeMessages function", () => {
     const botMessages = await Message.find({ conversation: currentConversation, sender: "bot" });
 
     // before we store the new message
-    expect(botMessages).toHaveLength(8);
+    expect(botMessages).toHaveLength(9);
 
     // 2 messages from bot
     const messages = [
@@ -73,7 +73,7 @@ describe("Testing the storeMessages function", () => {
       });
 
       // after we stored the new message
-      expect(botMessagesNew).toHaveLength(10);
+      expect(botMessagesNew).toHaveLength(9);
 
       done();
     });
