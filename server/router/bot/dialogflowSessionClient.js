@@ -87,7 +87,7 @@ module.exports = async (query, userId) => new Promise((resolve, reject) => {
         },
       };
     } else if (query.event) {
-      console.log("EVENT REACHED")
+      console.log("EVENT REACHED");
       // decide which event should be sent in the query
       const event = await decideFlow(query.event, userId);
       request = {
@@ -117,7 +117,6 @@ module.exports = async (query, userId) => new Promise((resolve, reject) => {
       };
     }
 
-    console.log("REQUEST", request)
     // Send request and log result
     const responses = sessionClient.detectIntent(request);
     resolve(responses);

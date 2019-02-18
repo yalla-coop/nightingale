@@ -15,6 +15,7 @@ const storeWeeklyEvents = require("./storeWeeklyEvents");
 // object is the object inside the array made of more objects
 
 module.exports = (array, object, id) => new Promise((resolve, reject) => {
+  const userReq = {};
   if (
   // check if everything is there
     array
@@ -24,34 +25,35 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
     array.map((e) => {
       // those dialogfow terms....
       const param = e.parameters.fields;
+      console.log("paraaaamm", param);
 
       // destructure the values set in dialogflow
       const {
         birthDate, leastFaveSubj, faveSubj, faveSubjDays, leastFaveSubjDays,
       } = param;
         // wait until all data came through
-      if (
-        birthDate
-          && faveSubj
-          && leastFaveSubj
-          && faveSubjDays
-          && faveSubjDays.listValue.values.length
-          && leastFaveSubjDays
-          && leastFaveSubjDays.listValue.values.length
-      ) {
-        // run functions
-        resolve(updateUserParams(id, "birthDate", birthDate.stringValue));
-        resolve(updateUserParams(id, "faveSubj", faveSubj.stringValue));
-        resolve(updateUserParams(id, "leastFaveSubj", leastFaveSubj.stringValue));
+      if (birthDate) {
+        userReq.birthdate = birthDate.stringValue;
+        resolve(updateUserParams(id, "birthDate", userReq.birthdate));
+        return userReq;
+      }
+      if (faveSubj) {
+        userReq.faveSubj = faveSubj.stringValue;
+        resolve(updateUserParams(id, "faveSubj", userReq.faveSubj));
+        return userReq;
+      }
+      if (faveSubjDays && faveSubjDays.listValue.values.length) {
         resolve(
-          storeWeeklyEvents(
-            id,
-            faveSubjDays.listValue.values,
-            "faveSubj",
-            faveSubj.stringValue,
-            4,
-          ),
+          storeWeeklyEvents(id, faveSubjDays.listValue.values, "faveSubj", userReq.faveSubj, 4),
         );
+        return userReq;
+      }
+      if (leastFaveSubj) {
+        userReq.leastFaveSubj = leastFaveSubj.stringValue;
+        resolve(updateUserParams(id, "leastFaveSubj", leastFaveSubj.stringValue));
+        return userReq;
+      }
+      if (leastFaveSubjDays && leastFaveSubjDays.listValue.values.length) {
         resolve(
           storeWeeklyEvents(
             id,
@@ -61,6 +63,7 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
             1,
           ),
         );
+        return userReq;
       }
       return false;
     });
@@ -71,3 +74,27 @@ module.exports = (array, object, id) => new Promise((resolve, reject) => {
     reject(e);
   }
 });
+
+// ) {
+//   // run functions
+//   resolve(updateUserParams(id, "birthDate", birthDate.stringValue));
+//   resolve(updateUserParams(id, "faveSubj", faveSubj.stringValue));
+//   resolve(updateUserParams(id, "leastFaveSubj", leastFaveSubj.stringValue));
+//   resolve(
+//     storeWeeklyEvents(
+//       id,
+//       faveSubjDays.listValue.values,
+//       "faveSubj",
+//       faveSubj.stringValue,
+//       4,
+//     ),
+//   );
+//   resolve(
+//     storeWeeklyEvents(
+//       id,
+//       leastFaveSubjDays.listValue.values,
+//       "leastFaveSubj",
+//       leastFaveSubj.stringValue,
+//       1,
+//     ),
+//   );
