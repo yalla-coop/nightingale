@@ -27,7 +27,7 @@ describe("Tesing for decideFlow query", () => {
     const result = await decideFlow("start");
     expect(result).toBeDefined();
     expect(typeof result).toBe("object");
-    expect(result.intent).toEqual("start");
+    expect(result.intent).toEqual("Welcome-passiv");
     done();
   });
 });

@@ -7,7 +7,7 @@ const decideFlow = async (event, userId) => {
   const weekday = moment().weekday() > 0 && moment().weekday() < 6;
 
   if (event === "start") {
-    return { intent: "start", eventTitle: "start" };
+    return { intent: "Welcome-passiv", eventTitle: "WP" };
   }
   if (event === "moreThoughts") {
     return { intent: "moreThoughts", eventTitle: "" };

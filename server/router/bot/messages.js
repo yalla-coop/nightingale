@@ -24,14 +24,12 @@ module.exports = async (req, res) => {
     .then(async (responses) => {
       // grab the important stuff
       const result = responses[0].queryResult;
-      const initialConversationIntents = ["Welcome", "Birthday", "Fave-Subject", "Least-Fave-Subject", "AddThoughtsNow"];
       const messageArr = result.fulfillmentMessages;
       const paramArr = result.outputContexts;
-      const intent = result.intent.displayName;
 
       let completedInfo = await checkUserInfo(id);
 
-      if (initialConversationIntents.includes(intent) || !completedInfo) {
+      if (!completedInfo) {
         // updates key information for user (subjects, birthday ..)
         // creates new weekly events
         storeParams(paramArr, paramArr[0], id)
@@ -45,7 +43,7 @@ module.exports = async (req, res) => {
       }
 
       if (!responses[0].queryResult.intent.displayName.includes("Fallback")
-       && !responses[0].queryResult.intent.displayName.includes("fallback")) {
+       && !responses[0].queryResult.intent.displayName.includes("fallback") && completedInfo) {
         await setContext(id, responses[0].queryResult.outputContexts);
       }
 
