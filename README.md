@@ -21,3 +21,118 @@ As a means of security a key-word analysis on the student's text input operates 
 
 As stated above what has been built to date is a MVP that will enable the product owner to do further user testing. 
 
+![nightingale-individjpg](https://user-images.githubusercontent.com/23721486/53017517-7535d100-3450-11e9-8081-38a1fe80589a.jpg)
+
+## The Team
+[Ramy](https://github.com/ramyalshurafa) | [Asala](https://github.com/AsalaKM) | [Simon](https://github.com/dupreesi) | [Joe](https://github.com/thejoefriel)
+
+![nightingale](https://user-images.githubusercontent.com/23721486/53017735-fb521780-3450-11e9-8bae-ded91c50ddd3.jpeg)
+
+## Tech Stack
+Some of the tech stack we've used: 
+
+| Core | Testing | Other |
+| - | -------- | -------- |
+|Node|jest|babel
+|Express|supertest|passport
+|React|eslint|axios
+|MongoDB|react-testing-library|serve-favicon|
+|HTML|nodemon|env2|
+|CSS|concurrently|Dialogflow|
+|Styled-Components||bcryptjs|
+|D3||nodemailer|
+|axios||pusher|
+
+Our chat-bot is based on the MERN-stack (MongoDB, Express, React). We are connecting to Google's ai interface for chat-bots called Dialogflow. We are then using Pusher-js to enable real time chat behaviour between user and the bot.  
+
+## Summary
+The project was super intersting and an amazing challenge for our (partly) remotely working team. We are very happy with the result and would love to do further sprints to embed more features and to help spreading nightingale's vision. The communication between the developers and the product owners went great and the final product exceeded expectations as most of the bonus features could be implemented. The product handover went smoothly and the product owners were really pleased with the MVP. 
+
+## Getting Started
+### Note: If you consider running the app locally you would need to get access to nightingale's dialogflow account in order to gain access to the full range of conversation intent flows and webhooks so that the app works properly. Best would be to contact the owners via https://www.wearenightingale.co.uk/.
+
+How to get a copy of the project up and running on your local machine.
+
+*Please ensure you have this software **installed and running** on your local machine **before** you attempt to run this webapp.*
+> **Node** (via nvm recomended)
+> see: https://github.com/creationix/nvm
+
+> **MongoDB**
+> see: https://docs.mongodb.com/manual/installation/
+
+### Setup
+
+#### 1. Clone the repo:
+```
+$ git clone https://github.com/techforbetter/nightingale.git
+```
+#### 2. Install Dependencies 
+```
+$ cd nightingale
+$ npm i
+```
+
+#### 3. Install Dependencies in the `client` folder
+```
+$ npm run client:init
+```
+
+#### 4. Get Mongo running on your local computer
+Connect to mongo in a separate terminal tab/window.
+```
+$ mongod
+```
+
+#### 5. Add some more Environment Variables
+Create a `.env` file in the root.
+
+Add these👇 lines to the file, to make your local databases work, inserting your own username and password.
+```
+MONGO_URI = mongodb://localhost:27017/nightingale
+MONGOURI_TEST = mongodb://localhost:27017/nightingale_test
+```
+Add a 'Secret' for password encryption.
+```
+SECRET = "[SOMETHING SECRET]"
+```
+#### 7. Add even more .env Variables (dialogflow and pusher)
+You will need to create an Google account, register for dialogflow (https://dialogflow.com/) and grab the credentials needed for the code to work 
+```
+    const config = {
+      credentials: {
+        type: process.env.type,
+        project_id: process.env.project_id,
+        private_key_id: process.env.private_key_id,
+        private_key,
+        client_email: process.env.client_email,
+        client_id: process.env.client_id,
+        auth_uri: process.env.auth_uri,
+        token_uri: process.env.token_uri,
+        auth_provider_x509_cert_url: process.env.auth_provider_x509_cert_url,
+        client_x509_cert_url: process.env.client_x509_cert_url,
+      },
+    };
+```
+The same goes for pusher js (via www.pusher.com)
+```
+  const pusher = new Pusher({
+    appId: process.env.PUSHER_APP_ID,
+    key: process.env.PUSHER_APP_KEY,
+    secret: process.env.PUSHER_APP_SECRET,
+    cluster: process.env.PUSHER_APP_CLUSTER,
+    encrypted: true,
+  });
+```
+
+#### 6. Build the Database
+Use this script that runs dummy_data_build.js to set up your survey questions and put in some inital dummy data
+```
+$ npm run build:data
+```
+
+#### 7. Run the Tests
+To make sure everything is working as it should.
+
+```
+$ npm test
+```
