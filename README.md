@@ -1,6 +1,7 @@
 # nightingale      ![travis](https://travis-ci.com/techforbetter/nightingale.svg?branch=master)
 An app that aims to help students reflect on their emotions and work out what's affecting them at school
-Online: https://botnightingale.herokuapp.com/ 
+
+https://botnightingale.herokuapp.com/ 
 
 # An App related to Tech for Better
 [Tech for Better](https://www.foundersandcoders.com/techforbetter/) is a pro-bono programme for nonprofits to design, test and build new digital service ideas using developers in London and Gaza.
