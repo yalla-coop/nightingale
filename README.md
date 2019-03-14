@@ -133,7 +133,7 @@ The same goes for pusher js (via www.pusher.com)
 ```
 
 #### 6. Build the Database
-Use this script that runs dummy_data_build.js to set up your survey questions and put in some inital dummy data
+Use this script that runs dummy_data_build.js to put in some inital dummy data
 ```
 $ npm run build:data
 ```
@@ -143,4 +143,9 @@ To make sure everything is working as it should.
 
 ```
 $ npm test
+```
+
+#### 8. Run the app
+```
+$ npm start dev:both
 ```
