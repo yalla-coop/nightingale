@@ -3,6 +3,8 @@ An app that aims to help students reflect on their emotions and work out what's 
 
 https://botnightingale.herokuapp.com/ 
 
+![nightingale-individjpg](https://user-images.githubusercontent.com/23721486/53017517-7535d100-3450-11e9-8081-38a1fe80589a.jpg)
+
 # An App related to Tech for Better
 [Tech for Better](https://www.foundersandcoders.com/techforbetter/) is a pro-bono programme for nonprofits to design, test and build new digital service ideas using developers in London and Gaza.
 
@@ -23,8 +25,6 @@ The result is a mobile-first web-app that allows students to create an account a
 A summary of the initial agreed scope can be found here: https://github.com/techforbetter/nightingale/issues/5
 
 As stated above what has been built to date is a MVP that will enable the product owner to do further user testing. 
-
-![nightingale-individjpg](https://user-images.githubusercontent.com/23721486/53017517-7535d100-3450-11e9-8081-38a1fe80589a.jpg)
 
 ## The app’s potential social impact
 The vision is to encourage students to reflect on the link between their school experiences and mood. Demonstrating connections between experiences at school and mental wellbeing are giving the user the ability to evaluate trends.  This is designed to help them become more mindful and gain better insight into what affects their wellbeing. 
