@@ -35,6 +35,7 @@ Another important stakeholder are schools. Gathering data about a student’s ho
 [Ramy](https://github.com/ramyalshurafa) | [Asala](https://github.com/AsalaKM) | [Simon](https://github.com/dupreesi) | [Joe](https://github.com/thejoefriel)
 
 ![nightingale](https://user-images.githubusercontent.com/23721486/53017735-fb521780-3450-11e9-8bae-ded91c50ddd3.jpeg)
+Image: the two product owners Aaron and George on a call with Gazan developer Ramy.
 
 ## Tech Stack
 Some of the tech stack we've used: 
