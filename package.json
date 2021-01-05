@@ -45,7 +45,7 @@
   "dependencies": {
     "@google-cloud/storage": "^2.4.1",
     "actions-on-google": "^2.5.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "codecov": "^3.1.0",
